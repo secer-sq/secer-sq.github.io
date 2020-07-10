@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-10T04:13:49.988Z</updated>
+  <updated>2020-07-10T05:21:27.550Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>恶意挖矿清除常规步骤</title>
+    <link href="http://yoursite.com/2020/07/10/%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF%E6%B8%85%E9%99%A4%E5%B8%B8%E8%A7%84%E6%AD%A5%E9%AA%A4/"/>
+    <id>http://yoursite.com/2020/07/10/恶意挖矿清除常规步骤/</id>
+    <published>2020-07-10T05:11:54.000Z</published>
+    <updated>2020-07-10T05:21:27.550Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="恶意挖矿清除"><a href="#恶意挖矿清除" class="headerlink" title="恶意挖矿清除"></a>恶意挖矿清除</h1><h2 id="清除恶意程序计划任务"><a href="#清除恶意程序计划任务" class="headerlink" title="清除恶意程序计划任务"></a>清除恶意程序计划任务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编辑 &#x2F;var&#x2F;spool&#x2F;cron&#x2F;root 和&#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;root</span><br><span class="line">删除恶意计划任务内容</span><br></pre></td></tr></table></figure><h2 id="杀死恶意程序进程"><a href="#杀死恶意程序进程" class="headerlink" title="杀死恶意程序进程"></a>杀死恶意程序进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在知道恶意程序名称情况下：</span><br><span class="line">ps -ef | grep 恶意程序名称</span><br></pre></td></tr></table></figure><p>在定位到恶意程序在系统中的位置后</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pkill 直接杀死程序</span><br><span class="line">Kill -9 PID</span><br></pre></td></tr></table></figure><h2 id="清除恶意程序"><a href="#清除恶意程序" class="headerlink" title="清除恶意程序"></a>清除恶意程序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm –rf 恶意程序物理地址</span><br></pre></td></tr></table></figure><h2 id="iptables禁止恶意程序联网"><a href="#iptables禁止恶意程序联网" class="headerlink" title="iptables禁止恶意程序联网"></a>iptables禁止恶意程序联网</h2><p>检查恶意程序外网互联地址</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat –pantul | grep ESTAB</span><br></pre></td></tr></table></figure><p>下发外网访问控制策略</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">依据查询出的外网互联地址，直接下发访问控制策略，禁止服务访问这些网络地址</span><br><span class="line">iptables –A OUTPUT –d xx.x.xx.xx –j DROP</span><br><span class="line">重启设备</span><br></pre></td></tr></table></figure><h2 id="重做系统"><a href="#重做系统" class="headerlink" title="重做系统"></a>重做系统</h2><p>中了恶意程序的机器，在清除恶意程序后，最后都要重做系统。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+      <category term="恶意代码" scheme="http://yoursite.com/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/"/>
+    
+    
+      <category term="挖矿" scheme="http://yoursite.com/tags/%E6%8C%96%E7%9F%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>检测恶意挖矿</title>
