@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="挖矿," />
+  <meta name="keywords" content="命令执行," />
 
 
 
@@ -84,13 +84,13 @@
 
 
 <meta property="og:type" content="article">
-<meta property="og:title" content="检测恶意挖矿">
-<meta property="og:url" content="http://yoursite.com/2020/07/10/%E6%A3%80%E6%B5%8B%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF/index.html">
+<meta property="og:title" content="命令执行漏洞">
+<meta property="og:url" content="http://yoursite.com/2020/07/10/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/index.html">
 <meta property="og:site_name" content="故园遗剑">
-<meta property="article:published_time" content="2020-07-10T04:00:22.000Z">
-<meta property="article:modified_time" content="2020-07-10T04:13:49.988Z">
+<meta property="article:published_time" content="2020-07-10T06:48:37.000Z">
+<meta property="article:modified_time" content="2020-07-10T06:56:23.781Z">
 <meta property="article:author" content="mys3t">
-<meta property="article:tag" content="挖矿">
+<meta property="article:tag" content="命令执行">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/07/10/检测恶意挖矿/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/10/命令执行漏洞/"/>
 
 
 
 
 
-  <title>检测恶意挖矿 | 故园遗剑</title>
+  <title>命令执行漏洞 | 故园遗剑</title>
   
 
 
@@ -249,12 +249,12 @@
   
   
 
-  <article class="post post-type-恶意代码" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-web安全" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/%E6%A3%80%E6%B5%8B%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/10/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mys3t">
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">检测恶意挖矿</h1>
+          <h1 class="post-title" itemprop="name headline">命令执行漏洞</h1>
         
 
         <div class="post-meta">
@@ -283,7 +283,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-10T12:00:22+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-10T14:48:37+08:00">
                 2020-07-10
               </time>
             
@@ -306,8 +306,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index">
-                    <span itemprop="name">恶意代码</span>
+                  <a href="/categories/web%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">web安全</span>
                   </a>
                 </span>
 
@@ -345,25 +345,18 @@
       
         <hr>
 <a id="more"></a>
-<h1 id="Linux下检测恶意挖矿行为"><a href="#Linux下检测恶意挖矿行为" class="headerlink" title="Linux下检测恶意挖矿行为"></a>Linux下检测恶意挖矿行为</h1><h2 id="Linux知识"><a href="#Linux知识" class="headerlink" title="Linux知识"></a>Linux知识</h2><p>ps命令：可查看当前系统的进程状态，搭配kill指令随时中断、删除不必要的程序。使用该命令可以确定有哪些进程正在运行和运行的状态等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill进程：kill -9 进程id</span><br></pre></td></tr></table></figure>
-<p>top命令：实时动态地查看系统的整体运行情况。</p>
-<p>netstat 命令：查看Linux系统中网络系统的状态信息。</p>
-<p>cron服务：计划任务</p>
-<h2 id="异常进程排查"><a href="#异常进程排查" class="headerlink" title="异常进程排查"></a>异常进程排查</h2><p>1.查看进程使用CPU和内存的情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top –c</span><br></pre></td></tr></table></figure>
-<p>-c参数可直接查找到异常程序的物理位置。通过查看消耗CPU和内存较多的程序是否是未知程序。</p>
-<p>2.grep 恶意程序名称</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果知道恶意程序的名称，直接通过ps –ef | grep 恶意进程名称</span><br></pre></td></tr></table></figure>
-<h2 id="异常会话排查"><a href="#异常会话排查" class="headerlink" title="异常会话排查"></a>异常会话排查</h2><p>查看是否有异常会话连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat –pantul | grep ESTAB</span><br></pre></td></tr></table></figure>
-<h2 id="计划任务排查"><a href="#计划任务排查" class="headerlink" title="计划任务排查"></a>计划任务排查</h2><p>1.查看是否存在异常未知任务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查询当前计划任务中是否存在异常未知任务:</span><br><span class="line">crontab –l</span><br></pre></td></tr></table></figure>
-<p>2.查看root用户任务计划</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;spool&#x2F;cron&#x2F;root</span><br></pre></td></tr></table></figure>
-<p>3.查看计划任务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;root</span><br></pre></td></tr></table></figure>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>【https:]//www[.]hetianlab.com/expc.do?ce=94f48620-eda1-4939-b0a1-34154279dc3d</p>
+<h1 id="命令执行"><a href="#命令执行" class="headerlink" title="命令执行"></a>命令执行</h1><h2 id="什么是命令执行"><a href="#什么是命令执行" class="headerlink" title="什么是命令执行"></a>什么是命令执行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1.原理</span><br><span class="line">Web应用程序接收用户输入，拼接到要执行的系统命令中执行。</span><br><span class="line">产生原因：</span><br><span class="line">用户输入未过滤或净化</span><br><span class="line">拼接到系统命令中执行</span><br><span class="line"></span><br><span class="line">2.PHP下的命令执行函数</span><br><span class="line">system</span><br><span class="line">exec</span><br><span class="line">shell_exec</span><br><span class="line">passthru</span><br><span class="line">popen</span><br><span class="line">proc_popen</span><br><span class="line"></span><br><span class="line">payload示例：</span><br><span class="line">xxx.xxx.com&#x2F;?cmd&#x3D;ipconfig</span><br></pre></td></tr></table></figure>
+<h2 id="windows下命令执行"><a href="#windows下命令执行" class="headerlink" title="windows下命令执行"></a>windows下命令执行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.利用思路</span><br><span class="line">当代码中拼接用户的输入并带入system函数执行，但无法直接执行用户的自定义命令。</span><br><span class="line">思路：</span><br><span class="line">截断输入，重新拼接，两条命令都输入并执行。</span><br><span class="line"></span><br><span class="line">2.命令执行漏洞拼接符</span><br><span class="line">在windows系统下的cmd命令，有以下截断拼接符：</span><br><span class="line">&amp;前面的语句为假则直接执行后面的</span><br><span class="line">&amp;&amp;前面的语句为假则直接出错，后面的也不执行</span><br><span class="line">|直接执行后面的语句</span><br><span class="line">||前面出错执行后面的</span><br><span class="line"></span><br><span class="line">正常情况下ping 127.0.0.1</span><br><span class="line">ping 111 &amp; ipconfig</span><br><span class="line">ping 127.0.0.1 &amp;&amp; ipconfig</span><br><span class="line">ping 127.0.0.1 | ipconfig</span><br><span class="line">ping 111 || ipconfig</span><br></pre></td></tr></table></figure>
+<h2 id="Linux下命令执行"><a href="#Linux下命令执行" class="headerlink" title="Linux下命令执行"></a>Linux下命令执行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.命令执行漏洞拼接符</span><br><span class="line">在Linux系统下的shell命令中，有以下一些截断拼接符：</span><br><span class="line">;执行完前面的执行后面的</span><br><span class="line">|管道符，显示后面的执行结果</span><br><span class="line">||当前面的执行出错时执行后面的</span><br><span class="line">&amp;无论前边语句真假都会执行</span><br><span class="line">&amp;&amp;只有前面语句为真，才会执行后边语句</span><br></pre></td></tr></table></figure>
+<h2 id="命令执行自动化测试工具"><a href="#命令执行自动化测试工具" class="headerlink" title="命令执行自动化测试工具"></a>命令执行自动化测试工具</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.COmmix</span><br><span class="line">commix是一个使用Python开发的漏洞测试工具，用于测试一个请求是否存在命令执行漏洞，可直接导入burp的历史记录进行检测。</span><br><span class="line">项目地址：https:&#x2F;&#x2F;github.com&#x2F;stasinopoulos&#x2F;commix</span><br><span class="line">在kali中自带了commix工具</span><br><span class="line"></span><br><span class="line">2.commix工具基本使用</span><br><span class="line">commix -u xxx.xxx.com&#x2F;test.php?cmd&#x3D;127.0.0.1</span><br></pre></td></tr></table></figure>
+<h2 id="漏洞防护"><a href="#漏洞防护" class="headerlink" title="漏洞防护"></a>漏洞防护</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">避免或少用执行命令的函数或者直接禁用；</span><br><span class="line">进入执行命令的函数&#x2F;方法之前，对参数进行过滤，对敏感字符进行转义；</span><br><span class="line">disable_functions中禁用执行命令的函数；</span><br><span class="line">对于可控点是程序参数的情况下，使用escapeshellcmd函数进行过滤；</span><br><span class="line">对于可控点是程序参数值的情况下，使用escapeshellarg函数进行过滤；</span><br><span class="line">参数的值尽量使用引号包裹，并在拼接前调用addslashes进行转义。</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.freebuf.com/articles/network/154670.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/network/154670.html</a></p>
+<p>命令执行漏洞综合分析：</p>
+<p><a href="http://www.hetianlab.com/cour.do?w=1&amp;c=C9d6c0ca797abec2016071516463300001" target="_blank" rel="noopener">http://www.hetianlab.com/cour.do?w=1&amp;c=C9d6c0ca797abec2016071516463300001</a></p>
+<p>ImageMagick命令执行漏洞：</p>
+<p><a href="http://www.hetianlab.com/expc.do?ce=8700261e-dbcd-4a3a-aad4-1ad74de4a091" target="_blank" rel="noopener">http://www.hetianlab.com/expc.do?ce=8700261e-dbcd-4a3a-aad4-1ad74de4a091</a></p>
+<p>Struts2(s2-045)远程命令执行：</p>
+<p><a href="http://www.hetianlab.com/expc.do?ec=ECID9d6c0ca797abec2017031012041000001" target="_blank" rel="noopener">http://www.hetianlab.com/expc.do?ec=ECID9d6c0ca797abec2017031012041000001</a></p>
 
       
     </div>
@@ -381,7 +374,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%8C%96%E7%9F%BF/" rel="tag"># 挖矿</a>
+            <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag"># 命令执行</a>
           
         </div>
       
@@ -394,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/05/XSS%E6%BC%8F%E6%B4%9E%E5%8F%8A%E9%98%B2%E5%BE%A1/" rel="next" title="XSS漏洞及防御">
-                <i class="fa fa-chevron-left"></i> XSS漏洞及防御
+              <a href="/2020/07/10/win2003-shift%E5%90%8E%E9%97%A8/" rel="next" title="win2003-shift后门">
+                <i class="fa fa-chevron-left"></i> win2003-shift后门
               </a>
             
           </div>
@@ -403,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/10/%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF%E6%B8%85%E9%99%A4%E5%B8%B8%E8%A7%84%E6%AD%A5%E9%AA%A4/" rel="prev" title="恶意挖矿清除常规步骤">
-                恶意挖矿清除常规步骤 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -545,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux下检测恶意挖矿行为"><span class="nav-number">1.</span> <span class="nav-text">Linux下检测恶意挖矿行为</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux知识"><span class="nav-number">1.1.</span> <span class="nav-text">Linux知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常进程排查"><span class="nav-number">1.2.</span> <span class="nav-text">异常进程排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常会话排查"><span class="nav-number">1.3.</span> <span class="nav-text">异常会话排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计划任务排查"><span class="nav-number">1.4.</span> <span class="nav-text">计划任务排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.5.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命令执行"><span class="nav-number">1.</span> <span class="nav-text">命令执行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是命令执行"><span class="nav-number">1.1.</span> <span class="nav-text">什么是命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows下命令执行"><span class="nav-number">1.2.</span> <span class="nav-text">windows下命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux下命令执行"><span class="nav-number">1.3.</span> <span class="nav-text">Linux下命令执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令执行自动化测试工具"><span class="nav-number">1.4.</span> <span class="nav-text">命令执行自动化测试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞防护"><span class="nav-number">1.5.</span> <span class="nav-text">漏洞防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.6.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
             
 
           </div>
