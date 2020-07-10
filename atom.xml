@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-07-05T08:58:31.060Z</updated>
+  <updated>2020-07-10T04:13:49.988Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>检测恶意挖矿</title>
+    <link href="http://yoursite.com/2020/07/10/%E6%A3%80%E6%B5%8B%E6%81%B6%E6%84%8F%E6%8C%96%E7%9F%BF/"/>
+    <id>http://yoursite.com/2020/07/10/检测恶意挖矿/</id>
+    <published>2020-07-10T04:00:22.000Z</published>
+    <updated>2020-07-10T04:13:49.988Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="Linux下检测恶意挖矿行为"><a href="#Linux下检测恶意挖矿行为" class="headerlink" title="Linux下检测恶意挖矿行为"></a>Linux下检测恶意挖矿行为</h1><h2 id="Linux知识"><a href="#Linux知识" class="headerlink" title="Linux知识"></a>Linux知识</h2><p>ps命令：可查看当前系统的进程状态，搭配kill指令随时中断、删除不必要的程序。使用该命令可以确定有哪些进程正在运行和运行的状态等。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill进程：kill -9 进程id</span><br></pre></td></tr></table></figure><p>top命令：实时动态地查看系统的整体运行情况。</p><p>netstat 命令：查看Linux系统中网络系统的状态信息。</p><p>cron服务：计划任务</p><h2 id="异常进程排查"><a href="#异常进程排查" class="headerlink" title="异常进程排查"></a>异常进程排查</h2><p>1.查看进程使用CPU和内存的情况</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top –c</span><br></pre></td></tr></table></figure><p>-c参数可直接查找到异常程序的物理位置。通过查看消耗CPU和内存较多的程序是否是未知程序。</p><p>2.grep 恶意程序名称</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果知道恶意程序的名称，直接通过ps –ef | grep 恶意进程名称</span><br></pre></td></tr></table></figure><h2 id="异常会话排查"><a href="#异常会话排查" class="headerlink" title="异常会话排查"></a>异常会话排查</h2><p>查看是否有异常会话连接</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat –pantul | grep ESTAB</span><br></pre></td></tr></table></figure><h2 id="计划任务排查"><a href="#计划任务排查" class="headerlink" title="计划任务排查"></a>计划任务排查</h2><p>1.查看是否存在异常未知任务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查询当前计划任务中是否存在异常未知任务:</span><br><span class="line">crontab –l</span><br></pre></td></tr></table></figure><p>2.查看root用户任务计划</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;spool&#x2F;cron&#x2F;root</span><br></pre></td></tr></table></figure><p>3.查看计划任务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;root</span><br></pre></td></tr></table></figure><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>【https:]//www[.]hetianlab.com/expc.do?ce=94f48620-eda1-4939-b0a1-34154279dc3d</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+      <category term="恶意代码" scheme="http://yoursite.com/categories/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/"/>
+    
+    
+      <category term="挖矿" scheme="http://yoursite.com/tags/%E6%8C%96%E7%9F%BF/"/>
+    
+  </entry>
   
   <entry>
     <title>XSS漏洞及防御</title>
