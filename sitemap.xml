@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/08/01/SSRF%25E6%25BC%258F%25E6%25B4%259E/</loc>
+    
+    <lastmod>2020-08-01T13:56:54.693Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/08/01/CSRF%25E6%25BC%258F%25E6%25B4%259E/</loc>
+    
+    <lastmod>2020-08-01T11:08:19.375Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/08/01/XXE%25E6%25BC%258F%25E6%25B4%259E/</loc>
     
     <lastmod>2020-08-01T10:19:18.000Z</lastmod>
