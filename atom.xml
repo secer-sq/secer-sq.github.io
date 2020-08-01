@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-01T14:38:34.200Z</updated>
+  <updated>2020-08-01T14:42:17.290Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>暴力破解</title>
+    <link href="http://yoursite.com/2020/08/01/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"/>
+    <id>http://yoursite.com/2020/08/01/暴力破解/</id>
+    <published>2020-08-01T14:41:26.000Z</published>
+    <updated>2020-08-01T14:42:17.290Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h1><h2 id="暴力破解-1"><a href="#暴力破解-1" class="headerlink" title="暴力破解"></a>暴力破解</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1.原理</span><br><span class="line">使用自定义字典文件中的内容与验证程序交互，从而在枚举过程中得到正确数据。</span><br><span class="line">如破解用户名、密码</span><br><span class="line">破解验证码</span><br><span class="line"></span><br><span class="line">暴力破解的前提：</span><br><span class="line">应用程序或服务器未进行限制</span><br><span class="line">具有内容涵盖全面的字典</span><br><span class="line"></span><br><span class="line">2.暴力破解方式</span><br><span class="line">在线方式</span><br><span class="line">离线方式</span><br><span class="line">破解成功取决于字典是否强大，以及本地机器与服务器性能、带宽限制等因素。</span><br><span class="line"></span><br><span class="line">3.使用Burpsuite进行暴力破解</span><br><span class="line">判断依据：登录成功与失败返回的HTML内容不同，大小不同，根据大小不同选出唯一的内容。</span><br></pre></td></tr></table></figure><h2 id="暴力破解表单内容"><a href="#暴力破解表单内容" class="headerlink" title="暴力破解表单内容"></a>暴力破解表单内容</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1.HTML表单</span><br><span class="line">表单是一个包含表单元素的区域。</span><br><span class="line">表单元素是允许用户在表单中输入内容，如文本域、下拉列表、单选框、复选框等。</span><br><span class="line"></span><br><span class="line">2.暴力破解POST提交数据</span><br><span class="line">在登录页面经常使用POST方式提交数据。通过Burpsuite对POST提交的数据进行暴力破解。</span><br><span class="line"></span><br><span class="line">3.暴力破解验证码</span><br></pre></td></tr></table></figure><h2 id="HTTP-basic认证"><a href="#HTTP-basic认证" class="headerlink" title="HTTP basic认证"></a>HTTP basic认证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1.HTTP basic认证</span><br><span class="line">基本认证 basic authorizcation,是http1.0提出的认证方法。</span><br><span class="line"></span><br><span class="line">基本认证步骤：</span><br><span class="line">(1)服务端访问一个受http基本认证保护的资源</span><br><span class="line">(2)服务器返回401状态，要求客户端提供用户名和密码进行认证</span><br><span class="line">(3)客户端将输入的用户名密码用base64进行编码后，采用非加密明文方式发送给服务器</span><br><span class="line">(4)如果认证成功，则返回相应的资源。如果认证失败，则返回401状态，要求进行重新认证</span><br><span class="line"></span><br><span class="line">2.burpsuite分析认证过程</span><br><span class="line">使用Burpsuite对HTTP Basic认证进行抓包分析</span><br><span class="line">Authorizcation：Basic xxxxxx（base64加密后的用户名和密码）</span><br><span class="line"></span><br><span class="line">3.暴力破解burpsuite认证</span><br><span class="line">使用Burpsuite对目标进行暴力破解。</span><br><span class="line">在intruder里，选中base64加密后的用户名密码，add添加，选中payload；</span><br><span class="line">在payload processing里选中添加encode规则，选中base64，开始暴力破解。</span><br></pre></td></tr></table></figure><h2 id="HTTP-basic认证字典生成"><a href="#HTTP-basic认证字典生成" class="headerlink" title="HTTP basic认证字典生成"></a>HTTP basic认证字典生成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.字典生成思路</span><br><span class="line">字典生成是针对具体目标生成，确定目标：username，passwd</span><br><span class="line">思路：</span><br><span class="line">读取字典文件内容；</span><br><span class="line">对读取来的文件内容进行拼接；</span><br><span class="line">将新生成的内容写入到最终字典文件中，要符合HTTP Basic认证。</span><br></pre></td></tr></table></figure><h2 id="Burpsuite设置HTTP认证"><a href="#Burpsuite设置HTTP认证" class="headerlink" title="Burpsuite设置HTTP认证"></a>Burpsuite设置HTTP认证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.设置原因</span><br><span class="line">在web应用测试过程中，如果web设置了HTTP认证，就需要使用用户名、密码进行登录才能进行保护区域的资源访问。</span><br><span class="line"></span><br><span class="line">Burpsuite中提供了用于认证设置的功能模块可以设置HTTP认证需要的用户名、密码，方便测试。</span><br><span class="line">在useroptions在的Platform Authentication，点击add，填写destination host为目标ip，Authentication type选为Basic。</span><br></pre></td></tr></table></figure><h2 id="离线暴力破解"><a href="#离线暴力破解" class="headerlink" title="离线暴力破解"></a>离线暴力破解</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.离线破解</span><br><span class="line">离线破解：在破解过程中，已经获得加密密文，在不与目标服务器交互的情况下，利用在线网站或本地程序对密文进行破解。</span><br><span class="line"></span><br><span class="line">离线破解不会触发密码锁定机制；</span><br><span class="line">不会产生大量的登录失败日志引起注意。</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+      <category term="web安全" scheme="http://yoursite.com/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="暴力破解" scheme="http://yoursite.com/tags/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL注入</title>
