@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/07/27/PTE%25E7%2590%2586%25E8%25AE%25BA2/</loc>
+    
+    <lastmod>2020-08-02T09:31:13.956Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/08/01/SSRF%25E6%25BC%258F%25E6%25B4%259E/</loc>
     
     <lastmod>2020-08-01T15:18:22.476Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://yoursite.com/2020/08/01/XXE%25E6%25BC%258F%25E6%25B4%259E/</loc>
     
     <lastmod>2020-08-01T10:19:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/27/PTE%25E7%2590%2586%25E8%25AE%25BA2/</loc>
-    
-    <lastmod>2020-07-27T09:23:22.793Z</lastmod>
     
   </url>
   
