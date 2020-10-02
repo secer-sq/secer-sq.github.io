@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="故园遗剑" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-基础3">
+<meta property="og:url" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/index.html">
+<meta property="og:site_name" content="故园遗剑">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211445336.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211707974.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211743164.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211824495.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925212035174.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925214652836.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925215242142.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925215606572.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925222934240.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20201002150307424.png">
+<meta property="article:published_time" content="2020-09-25T13:10:14.000Z">
+<meta property="article:modified_time" content="2020-10-02T07:13:08.829Z">
+<meta property="article:author" content="mys3t">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211445336.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/09/25/Python-基础3/"/>
+
+
+
+
+
+  <title>Python-基础3 | 故园遗剑</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">故园遗剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-python" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/25/Python-%E5%9F%BA%E7%A1%803/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mys3t">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故园遗剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python-基础3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-25T21:10:14+08:00">
+                2020-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h1><h2 id="程序流程控制if"><a href="#程序流程控制if" class="headerlink" title="程序流程控制if"></a>程序流程控制if</h2><h4 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h4><p>Python语言所使用的关系运算符表：</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211445336.png" alt="image-20200925211445336"></p>
+<p>运算如果是真会传回True，如果是伪会传回False。</p>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p>Python所使用的逻辑运算符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">and ---相当于逻辑符号AND</span><br><span class="line"></span><br><span class="line">or ---相当于逻辑符号OR</span><br><span class="line"></span><br><span class="line">not ---相当于逻辑符号NOT</span><br></pre></td></tr></table></figure>
+<p>逻辑运算符and的图例说明:</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211707974.png" alt="image-20200925211707974"></p>
+<p>逻辑运算符or的图例说明:</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211743164.png" alt="image-20200925211743164"></p>
+<p>逻辑运算符not的图例说明:</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925211824495.png" alt="image-20200925211824495"></p>
+<h4 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h4><p>if语句的基本语法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if(条件判断)：</span><br><span class="line"> 程序代码</span><br></pre></td></tr></table></figure>
+<p>流程图：</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925212035174.png" alt="image-20200925212035174"></p>
+<p>在Python内是使用内缩方式区隔if语句的程序代码区块，编辑程序时可以用Tab键内缩或是直接内缩4个字符空间，表示这是if语句的程序代码区块。</p>
+<h4 id="if-else语句"><a href="#if-else语句" class="headerlink" title="if else语句"></a>if else语句</h4><p>条件判断为True时执行某一个程序代码区块，当条件判断为False时执行另一段程序代码区块，此时可以使用if … else语句，它的语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(条件为真)：</span><br><span class="line">程序代码区块1</span><br><span class="line">else：</span><br><span class="line">程序代码区块2</span><br></pre></td></tr></table></figure>
+<p>流程图：</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925214652836.png" alt="image-20200925214652836"></p>
+<h4 id="if-elif-else语句"><a href="#if-elif-else语句" class="headerlink" title="if  elif  else语句"></a>if  elif  else语句</h4><p>这是一个多重判断，基本语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(条件判断1)：</span><br><span class="line">程序代码区块1</span><br><span class="line">elif(条件判断2):</span><br><span class="line">程序代码区块2</span><br><span class="line">else：</span><br><span class="line">程序代码块n</span><br></pre></td></tr></table></figure>
+<p>流程图：</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925215242142.png" alt="image-20200925215242142"></p>
+<h4 id="嵌套的if语句"><a href="#嵌套的if语句" class="headerlink" title="嵌套的if语句"></a>嵌套的if语句</h4><p>嵌套的if语句是指在if语句内有其他的if语句，如：</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925215606572.png" alt="image-20200925215606572"></p>
+<h2 id="列表list"><a href="#列表list" class="headerlink" title="列表list"></a>列表list</h2><p>列表(list)是Python的一种可以更改内容的数据类型，它是由一系列元素所组成的序列。</p>
+<p>定义列表的语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name_list&#x3D;[元素1，元素2.....，元素n]</span><br></pre></td></tr></table></figure>
+<p>列表的每一个数据称元素，这些元素放在中括号[ ]内，彼此用逗号“,”隔开。如果要打印列表内容，可以使用print( )函数，将列表名称当作变量名称即可。</p>
+<h4 id="读取列表元素"><a href="#读取列表元素" class="headerlink" title="读取列表元素"></a>读取列表元素</h4><p>可以用列表名称与索引读取列表元素的内容，在Python中元素是从索引值0开始配置。所以如果是列表的第一个元素，索引值是0，第二个元素索引值是1，其他依此类推，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name_list&#x3D;[i]  #读取索引i的列表元素</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jame&#x3D;[12,13,14,15,16]</span><br><span class="line">game1,game2,game3,game4,game5&#x3D;jame</span><br><span class="line">print(&quot;jame得分&quot;,game1,game2,game3,game4,game5)</span><br></pre></td></tr></table></figure>
+<h4 id="列表切片"><a href="#列表切片" class="headerlink" title="列表切片"></a>列表切片</h4><p>常会需要取得列表前几个元素、后几个元素、某区间元素或是依照一定规则排序的元素，所取得的系列元素也可称子列表，这个观念称列表切片。可以用下列方法：</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20200925222934240.png" alt="image-20200925222934240"></p>
+<p>在列表使用中，如果索引值是-1，代表是最后一个列表元素。</p>
+<p>在Python中索引-1代表最后1个元素，-2代表最后第2个元素，其他负索引观念可依次类推。</p>
+<h4 id="列表统计最大、最小、总和"><a href="#列表统计最大、最小、总和" class="headerlink" title="列表统计最大、最小、总和"></a>列表统计最大、最小、总和</h4><p>如果列表内容全部是数值则可以使用max( )函数获得列表的最大值，min( )函数可以获得列表的最小值，sum( )函数可以获得列表的总和。如果列表内容全部是字符或字符串则可以使用max( )函数获得列表的unicode码值的最大值，min( )函数可以获得列表的unicode码值最小值。sum( )则不可使用在列表元素为非数值情况。</p>
+<h4 id="列表个数len"><a href="#列表个数len" class="headerlink" title="列表个数len"></a>列表个数len</h4><p>len( )函数可以获得列表的元素个数。</p>
+<h4 id="列表相加"><a href="#列表相加" class="headerlink" title="列表相加"></a>列表相加</h4><p>Python是允许列表相加的，相当于将列表结合。</p>
+<p>如果将列表以一个数字，这个数字相当于是列表元素重复次数。</p>
+<h4 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h4><p>删除指定索引的列表元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del name_list[i]  #删除索引i的列表元素</span><br></pre></td></tr></table></figure>
+<p>删除列表区间元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del name_list[start:end] #删除从索引start到end-1索引的列表元素</span><br></pre></td></tr></table></figure>
+<p>用step作为每隔多少区间再删除:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del name_list[start:end:step]  #每隔step步，删除所有start到end-1</span><br></pre></td></tr></table></figure>
+<p>建立一个空列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name_list&#x3D;[]</span><br></pre></td></tr></table></figure>
+<h4 id="删除列表"><a href="#删除列表" class="headerlink" title="删除列表"></a>删除列表</h4><p>Python允许我们删除整个列表，列表一经删除后就无法复原，同时也无法做任何操作了，删除列表的方式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del name_list #删除列表name_list</span><br></pre></td></tr></table></figure>
+<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p>在面向对象的程序设计(Object Oriented Programming)观念里，所有数据皆算是一个对象(Object)，例如，整数、浮点数、字符串或是本章所提的列表皆是一个对象。可以为所建立的对象设计一些方法(method)，供这些对象使用，在这里所提的方法就是函数。</p>
+<p>Python有为一些基本对象提供默认的方法，要使用这些方法可以在对象后先放小数点，再放方法名称，基本语法格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象.方法()</span><br></pre></td></tr></table></figure>
+<p>字符串操作常用的方法(method)如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lower( )：将字符串转成小写</span><br><span class="line"></span><br><span class="line">upper( )：将字符串转成大写</span><br><span class="line"></span><br><span class="line">title( )：将字符串转成第一个字母大写，其他是小写</span><br><span class="line"></span><br><span class="line">rstrip( )：删除字符串尾端多余的空白</span><br><span class="line"></span><br><span class="line">lstrip( )：删除字符串开始端多余的空白</span><br><span class="line"></span><br><span class="line">strip( )：删除字符串头尾两边多余的空白</span><br></pre></td></tr></table></figure>
+<h4 id="增加与删除列表元素"><a href="#增加与删除列表元素" class="headerlink" title="增加与删除列表元素"></a>增加与删除列表元素</h4><p>在列表末端增加元素append( )：</p>
+<p>Python为列表内置了新增元素的方法append( )，这个方法，可以在列表末端直接增加元素。方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namelist.append(&#39;新增元素&#39;)</span><br></pre></td></tr></table></figure>
+<p>插入列表元素insert( )：</p>
+<p>append( )方法是固定在列表末端插入元素，insert( )方法则是可以在任意位置插入元素，它的使用格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert(索引，元素内容) #索引是插入位置，元素内容是插入内容</span><br></pre></td></tr></table></figure>
+<p>删除列表元素pop():</p>
+<p>pop( )方法删除元素最大的优点是，删除后将弹出所删除的值，使用pop( )时若是未指明所删除元素的位置，一律删除列表末端的元素。pop( )的使用方式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">value&#x3D;namelist.pop()  #没有索引是删除列表末端的元素</span><br><span class="line">value&#x3D;namelist.pop(i)  #删除指定索引值的列表元素</span><br></pre></td></tr></table></figure>
+<p>删除指定元素remove():</p>
+<p>在删除列表元素时，有时可能不知道元素在列表内的位置，此时可以使用remove()方法删除指定的元素，它的使用方式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namelist.remove(想删除的元素内容)</span><br></pre></td></tr></table></figure>
+<h4 id="列表的排序"><a href="#列表的排序" class="headerlink" title="列表的排序"></a>列表的排序</h4><p>颠倒排序reverse( )：</p>
+<p>reverse( )可以颠倒排序列表元素，它的使用方式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namelist.reverse()  #颠倒namlist中的列表元素</span><br></pre></td></tr></table></figure>
+<p>列表经颠倒排放后，就算永久性更改了，如果要复原，可以再执行一次reverse( )方法。</p>
+<p>sort( )排序：</p>
+<p>sort( )方法可以对列表元素由小到大排序，这个方法同时对纯数值元素与纯英文字符串元素有非常好的效果。需要注意的是，经排序后原列表的元素顺序会被永久更改。它的使用格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namelist.sort()</span><br></pre></td></tr></table></figure>
+<p>sorted( )排序:</p>
+<p>如果不希望更改列表元素顺序，可以使用另一种排序sorted( )，使用这个排序可以获得想要的排序结果，我们可以用新列表存储新的排序列表，同时原先列表的顺序将不更改。它的使用格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newlist.sorted(namelist)</span><br></pre></td></tr></table></figure>
+<h4 id="列表操作index"><a href="#列表操作index" class="headerlink" title="列表操作index"></a>列表操作index</h4><p>index可以返回特定元素内容第一次出现的索引值，它的使用格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">索引值&#x3D;列表名称.index(搜寻值)</span><br></pre></td></tr></table></figure>
+<h4 id="列表操作count"><a href="#列表操作count" class="headerlink" title="列表操作count"></a>列表操作count</h4><p>可以返回特定元素内容出现的次数，它的使用格式为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">次数&#x3D;列表名称.count(搜寻值)</span><br></pre></td></tr></table></figure>
+<h4 id="列表操作join"><a href="#列表操作join" class="headerlink" title="列表操作join"></a>列表操作join</h4><p>这个方法可以将列表的元素组成一个字符串，它的使用格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char.join(seq)</span><br></pre></td></tr></table></figure>
+<p>seq表示参数必须为列表、元组等序列数据，char则是组合后各元素间的分隔字符，可以是单一字符，也可以是字符串。</p>
+<h4 id="列表内含列表"><a href="#列表内含列表" class="headerlink" title="列表内含列表"></a>列表内含列表</h4><p>列表内含列表的基本格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num&#x3D;[1,2,3,4,[7,8,9]]</span><br></pre></td></tr></table></figure>
+<p>num是一个列表，在这个列表内有另一个列表[7, 8, 9]，因为内部列表的索引值是5，所以可以用num[5]，获得这个元素列表的内容.</p>
+<p><img src="/2020/09/25/Python-%E5%9F%BA%E7%A1%803/image-20201002150307424.png" alt="image-20201002150307424"></p>
+<p>想要存取列表内的列表元素，可以使用下列格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num[索引1][索引2]</span><br></pre></td></tr></table></figure>
+<p>索引1是元素列表原先索引位置，索引2是元素列表内部的索引。</p>
+<h4 id="列表的深复制"><a href="#列表的深复制" class="headerlink" title="列表的深复制"></a>列表的深复制</h4><p>只要有一个列表更改元素会影响到另一个列表同步更改的复制称深复制(deep copy)。</p>
+<p>假设我喜欢的运动是，篮球与棒球，可以用下列方式设定列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysports&#x3D;[&#39;football&#39;，‘baseetball’]</span><br></pre></td></tr></table></figure>
+<p>如果我的朋友也喜欢这2种运动，可以下列方式设定列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">friedsports&#x3D;mysports</span><br></pre></td></tr></table></figure>
+<h4 id="列表的浅复制-shallow-copy"><a href="#列表的浅复制-shallow-copy" class="headerlink" title="列表的浅复制-shallow copy"></a>列表的浅复制-shallow copy</h4><p>浅复制(shallow copy)观念是，执行复制后当一个列表改变后，不会影响另一个列表的内容。方法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frinedsports&#x3D;mysports[:]</span><br></pre></td></tr></table></figure>
+<h4 id="split-处理字符串"><a href="#split-处理字符串" class="headerlink" title="split( )处理字符串"></a>split( )处理字符串</h4><p>这个方法(method)，可以将字符串以空格为分隔符，将字符串拆开，变成一个列表。变成列表后我们可以使用len( )获得此列表的元素个数，这相当于可以计算字符串是由多少个英文字母组成，由于中文字之间没有空格，该方法只适用在纯英文文件。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/22/Python-%E5%9F%BA%E7%A1%802/" rel="next" title="Python-基础2">
+                <i class="fa fa-chevron-left"></i> Python-基础2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mys3t</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python基础"><span class="nav-number">1.</span> <span class="nav-text">python基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#程序流程控制if"><span class="nav-number">1.1.</span> <span class="nav-text">程序流程控制if</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系运算符"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if语句"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">if语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if-else语句"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">if else语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if-elif-else语句"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">if  elif  else语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套的if语句"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">嵌套的if语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表list"><span class="nav-number">1.2.</span> <span class="nav-text">列表list</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#读取列表元素"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">读取列表元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表切片"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">列表切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表统计最大、最小、总和"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">列表统计最大、最小、总和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表个数len"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">列表个数len</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表相加"><span class="nav-number">1.2.0.5.</span> <span class="nav-text">列表相加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除列表元素"><span class="nav-number">1.2.0.6.</span> <span class="nav-text">删除列表元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除列表"><span class="nav-number">1.2.0.7.</span> <span class="nav-text">删除列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象"><span class="nav-number">1.2.0.8.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增加与删除列表元素"><span class="nav-number">1.2.0.9.</span> <span class="nav-text">增加与删除列表元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表的排序"><span class="nav-number">1.2.0.10.</span> <span class="nav-text">列表的排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表操作index"><span class="nav-number">1.2.0.11.</span> <span class="nav-text">列表操作index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表操作count"><span class="nav-number">1.2.0.12.</span> <span class="nav-text">列表操作count</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表操作join"><span class="nav-number">1.2.0.13.</span> <span class="nav-text">列表操作join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表内含列表"><span class="nav-number">1.2.0.14.</span> <span class="nav-text">列表内含列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表的深复制"><span class="nav-number">1.2.0.15.</span> <span class="nav-text">列表的深复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列表的浅复制-shallow-copy"><span class="nav-number">1.2.0.16.</span> <span class="nav-text">列表的浅复制-shallow copy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split-处理字符串"><span class="nav-number">1.2.0.17.</span> <span class="nav-text">split( )处理字符串</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mys3t</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
