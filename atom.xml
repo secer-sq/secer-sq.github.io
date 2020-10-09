@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-10-09T06:24:32.699Z</updated>
+  <updated>2020-10-09T07:30:56.311Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python-处理word文件</title>
+    <link href="http://yoursite.com/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/"/>
+    <id>http://yoursite.com/2020/10/09/Python-处理word文件/</id>
+    <published>2020-10-09T06:28:51.000Z</published>
+    <updated>2020-10-09T07:30:56.311Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><p>Word是二进制(binary)文件，同时Word还有字体格式、色彩与版面配置等，所以它的处理方式比起文本文件(txt)要复杂。</p><p>需要使用外部模块python-docx。安装指令是：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install python-docx</span><br></pre></td></tr></table></figure><p>导入模块指令为：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import docx</span><br></pre></td></tr></table></figure><h2 id="python中的word文件结构"><a href="#python中的word文件结构" class="headerlink" title="python中的word文件结构"></a>python中的word文件结构</h2><p>在python-docx模块内，将Word文件结构分成3层：</p><p>1、Document：这是最高层代表整个Word文件。</p><p>2、Paragraph：一个Word文件是由许多的段落所组成，在Python中整份文件的定义是Document，这些段落的定义就是Paragraph对象。我们使用Word编辑文件时，如果单击一次Enter键，会产生一个新的段落。在Python中一个段落代表一个Paragraph对象，所有段落以Paragraph对象列表(list)方式存在。</p><p>3、Run：Word文件要考虑的有字号、字体样式、色彩等，我们将这些称作样式。一个Run对象所指的是Paragraph对象中相同样式的连续文字，如果文字发生样式变化，Python将以新的Run对象代表。</p><h2 id="读取word文件内容"><a href="#读取word文件内容" class="headerlink" title="读取word文件内容"></a>读取word文件内容</h2><h4 id="建立docx对象"><a href="#建立docx对象" class="headerlink" title="建立docx对象"></a>建立docx对象</h4><p>首先需建立Word文件(Document)的对象docx对象，可用Document( )方法建立。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydoc &#x3D; docx.Document(&#39;文件名&#39;)  #建立docx对象mydoc</span><br></pre></td></tr></table></figure><h4 id="获得paragraph和Run数量"><a href="#获得paragraph和Run数量" class="headerlink" title="获得paragraph和Run数量"></a>获得paragraph和Run数量</h4><p>使用len()方法获得paragraph数量：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(mydoc.paragraphs)</span><br></pre></td></tr></table></figure><p>下列语法可以获得第n段paragraph的Run数量：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(mydoc.paragraphs[n].runs)  #n是第几段或者paragraph编号</span><br></pre></td></tr></table></figure><h4 id="列出paragraph的内容"><a href="#列出paragraph的内容" class="headerlink" title="列出paragraph的内容"></a>列出paragraph的内容</h4><p>打印第n段Paragraph内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(mydoc.paragraphs[n].text)</span><br></pre></td></tr></table></figure><h4 id="列出paragraph内run的内容"><a href="#列出paragraph内run的内容" class="headerlink" title="列出paragraph内run的内容"></a>列出paragraph内run的内容</h4><p>打印第n段Paragraph第m个Run内容：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(mydoc.paragraphs[n].runs[m].text)</span><br></pre></td></tr></table></figure><h4 id="读取文件与适度编排输出"><a href="#读取文件与适度编排输出" class="headerlink" title="读取文件与适度编排输出"></a>读取文件与适度编排输出</h4><p>word内容为：</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009145349672.png" alt="image-20201009145349672"></p><p>程序内容为：</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009145501800.png" alt="image-20201009145501800"></p><h2 id="存储文件"><a href="#存储文件" class="headerlink" title="存储文件"></a>存储文件</h2><p>save( )方法可以存储Document对象的文件，如果将建立Word文件与存储Word文件整个语法串连，整个语法如下：</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009150028841.png" alt="image-20201009150028841"></p><h2 id="建立文件内容"><a href="#建立文件内容" class="headerlink" title="建立文件内容"></a>建立文件内容</h2><h4 id="建立标题"><a href="#建立标题" class="headerlink" title="建立标题"></a>建立标题</h4><p>使用add_heading( )方法建立文件标题内容：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydoc.add_heading(&#39;content of head&#39;)  #mydoc为自建的文件对象</span><br></pre></td></tr></table></figure><p>Word的标题有1-9，如果想建立不同的标题可以使用第2个参数‘level=n’。</p><p>使用下列语法在建立文件标题内容同时设定标题格式：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydoc.add_heading(&#39;content of head&#39;,level&#x3D;n)</span><br></pre></td></tr></table></figure><h4 id="建立段落paragraph内容"><a href="#建立段落paragraph内容" class="headerlink" title="建立段落paragraph内容"></a>建立段落paragraph内容</h4><p>可以使用add_paragraph( )方法建立文件的段落（也可称Paragraph）内容。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptr &#x3D; mydoc.add_paragraph(&#39;content of paragraph&#39;)</span><br></pre></td></tr></table></figure><p>未来插入段落时可以将新段落插入此段落的前面，或是将Run内容插入此段落内。可以使用insert_paragraph_before( )方法，将段落插在上述ptr段落对象的前方。</p><p>如先插入2个段落，然后将新段落插在第一个段落的前面：</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009150606065.png" alt="image-20201009150606065"></p><h4 id="建立run内容"><a href="#建立run内容" class="headerlink" title="建立run内容"></a>建立run内容</h4><p>Paragraph是由Run组成，当我们建立Paragraph成功后，未来若是想要在Paragraph内插入内容，可以使用add_run( )方法，此方法的语法格式如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptr.add_run(&#39;content of run&#39;)  #ptr是段落对象</span><br></pre></td></tr></table></figure><h4 id="强制换页输出"><a href="#强制换页输出" class="headerlink" title="强制换页输出"></a>强制换页输出</h4><p>add_page_break( )方法可以强制Word换页。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydoc.add_page_break( )</span><br></pre></td></tr></table></figure><p>如果有插入段落时，会在新一页出现。</p><h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p>使用add_picture( )方法插入图片到Word文件内，如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mydoc.add_picture(&#39;image_file&#39;)</span><br></pre></td></tr></table></figure><p>如果插入图片时想要设定图片的宽度或高度，需导入docx.shared模块，然后就可以在add_picture( )方法内增加使用第2个参数width(宽度)或height(高度)，然后用Inches( )英寸函数或Cm( )公分函数设定图片宽度。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from docx.shared import Inches</span><br><span class="line">mydoc.add_picture(&#39;image_file&#39;,width&#x3D;Inches(宽度值))</span><br></pre></td></tr></table></figure><h2 id="建立表格"><a href="#建立表格" class="headerlink" title="建立表格"></a>建立表格</h2><p>add_table( )方法可以建立表格。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table &#x3D; mydoc.add_table(rows&#x3D;?,cols&#x3D;?) #执行完返回table表格对象</span><br></pre></td></tr></table></figure><h4 id="建立表格内容"><a href="#建立表格内容" class="headerlink" title="建立表格内容"></a>建立表格内容</h4><p>一次处理一列的表格内容，如下：</p><p>row = table.rows[0]</p><p>row.cell[0].text = ‘表格(0,0)的内容’</p><p>row.cell[1].text = ‘表格(0,1)的内容’</p><h4 id="插入表格列"><a href="#插入表格列" class="headerlink" title="插入表格列"></a>插入表格列</h4><p>使用add_row( )插入表格列。</p><h4 id="打印表格内容"><a href="#打印表格内容" class="headerlink" title="打印表格内容"></a>打印表格内容</h4><p>可以使用双层循环打印表格内容：</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009152358214.png" alt="image-20201009152358214"></p><h4 id="表格的样式"><a href="#表格的样式" class="headerlink" title="表格的样式"></a>表格的样式</h4><p>可以使用table.style设定框线。</p><p>设定表格的样式，LightShading是浅色底纹，Accent1是辅色1，若是调整为Accent2，……，Accent6将有不同的结果，LightShading-Accept1。</p><h2 id="paragraph样式"><a href="#paragraph样式" class="headerlink" title="paragraph样式"></a>paragraph样式</h2><p>Paragraph样式就是所谓的段落样式，下列是常见的Word样式内容。</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009152616751.png" alt="image-20201009152616751"></p><p>在插入段落时，可以在add_paragraph( )方法内增加第2个参数“style=样式名称”，这样就可以在插入段落同时设定段落的样式。</p><h2 id="Run的样式"><a href="#Run的样式" class="headerlink" title="Run的样式"></a>Run的样式</h2><p>Run的样式重点就是设定Run的文字(text)属性，下列是常见的属性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bold 粗体</span><br><span class="line">italic 斜体</span><br><span class="line">underline 下划线</span><br><span class="line">strike 删除线</span><br></pre></td></tr></table></figure><p>当我们建立一个Run对象时，会回传Run对象，此时若将此对象的样式设为True，相当于可以建立该Run对象的样式。</p><p>如建立Run内容，然后设定此内容的属性为粗体(bold)与斜体：</p><p><img src="/2020/10/09/Python-%E5%A4%84%E7%90%86word%E6%96%87%E4%BB%B6/image-20201009153002680.png" alt="image-20201009153002680"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://yoursite.com/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>Python-正则表达式</title>
@@ -431,28 +453,6 @@
     
     
       <category term="PTE" scheme="http://yoursite.com/tags/PTE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux系统加固</title>
-    <link href="http://yoursite.com/2020/07/10/Linux%E7%B3%BB%E7%BB%9F%E5%8A%A0%E5%9B%BA/"/>
-    <id>http://yoursite.com/2020/07/10/Linux系统加固/</id>
-    <published>2020-07-10T07:32:20.000Z</published>
-    <updated>2020-07-10T07:34:07.844Z</updated>
-    
-    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="Linux系统加固"><a href="#Linux系统加固" class="headerlink" title="Linux系统加固"></a>Linux系统加固</h1>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-    
-    </summary>
-    
-      <category term="Linux系统安全" scheme="http://yoursite.com/categories/Linux%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="Linux加固" scheme="http://yoursite.com/tags/Linux%E5%8A%A0%E5%9B%BA/"/>
     
   </entry>
   
