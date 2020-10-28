@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="横贯八方," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="故园遗剑" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由交换原理">
+<meta property="og:url" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="故园遗剑">
+<meta property="og:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028230117143.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028232747512.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233334342.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233528865.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233657752.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233742259.png">
+<meta property="article:published_time" content="2020-10-28T14:43:11.000Z">
+<meta property="article:modified_time" content="2020-10-28T15:38:33.688Z">
+<meta property="article:author" content="mys3t">
+<meta property="article:tag" content="横贯八方">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028230117143.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/10/28/路由交换原理/"/>
+
+
+
+
+
+  <title>路由交换原理 | 故园遗剑</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">故园遗剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-横贯八方" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mys3t">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故园遗剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">路由交换原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-28T22:43:11+08:00">
+                2020-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A8%AA%E8%B4%AF%E5%85%AB%E6%96%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">横贯八方</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="交换机工作原理"><a href="#交换机工作原理" class="headerlink" title="交换机工作原理"></a>交换机工作原理</h2><h4 id="工作方式"><a href="#工作方式" class="headerlink" title="工作方式"></a>工作方式</h4><p>当交换机收到数据时，它会检查它的目的MAC地址，然后把数据从目的主机所在的接口转发出去。</p>
+<p>交换机之所以能实现这一功能，是因为交换机内部有一个MAC地址表，MAC地址表记录了网络中所有MAC地址与该交换机各端口的对应信息。某一数据帧需要转发时，交换机根据该数据帧的目的MAC地址来查找MAC地址表，从而得到该地址对应的端口，即知道具有该MAC地址的设备是连接在交换机的哪个端口上，然后交换机把数据帧从该端口转发出去。</p>
+<h4 id="原理核心"><a href="#原理核心" class="headerlink" title="原理核心"></a>原理核心</h4><p>1、交换机根据收到数据帧中的源MAC地址建立该地址同交换机端口的映射，并将其写入MAC地址表中。</p>
+<p>2、交换机将数据帧中的目的MAC地址同已建立的MAC地址表进行比较，以决定由哪个端口进行转发。</p>
+<p>3、如数据帧中的目的MAC地址不在MAC地址表中，则向所有端口转发。这一过程称为泛洪（flood）。</p>
+<p>4、广播帧和组播帧向所有的端口转发。</p>
+<p>某网络拓扑图如下：</p>
+<p><img src="/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028230117143.png" alt="image-20201028230117143"></p>
+<h4 id="MAC地址表构建"><a href="#MAC地址表构建" class="headerlink" title="MAC地址表构建"></a>MAC地址表构建</h4><p>为快速转发报文，以太网交换机需要建立和维护MAC地址表。交换机采用源MAC地址学习的方法建立MAC地址表。</p>
+<p>交换机的初始状态MAC地址表为空。</p>
+<p>当计算机PC1要发送数据帧给计算机PC6时，因此时地址表是空的，交换机将向除PC1连接端口E0/1以外的其他所有端口转发数据帧。在转发之前，首先检查该数据帧的源MAC地址（00-10-B5-4B-30-85），并在交换机的MAC地址表中添加一条记录（00-10-B5-4B-30-85，E0/1）使之和端口E0/1相对应。</p>
+<p>计算机PC6收到发送的数据帧后，用该数据帧的目的MAC地址和本机的MAC地址比较，发现PC1找的正是它，则接收该数据帧，其他计算机丢弃数据帧。</p>
+<p>计算机PC6回复PC1时，交换机直接从端口E0/1转发，并学习到（00-10-B5-4B-30-65）为PC6连接的端口，将其添加到地址表中。</p>
+<p> 交换机的其他端口利用源MAC地址学习的方法在MAC地址表中不断添加新的MAC地址与端口号的对应信息。直到MAC地址表添加完整为止。</p>
+<h4 id="工作特性"><a href="#工作特性" class="headerlink" title="工作特性"></a>工作特性</h4><p>1、交换机的每一个端口所连接的网段都是一个独立的冲突域。 </p>
+<p>2、交换机所连接的设备仍然在同一个广播域内，也就是说，交换机不隔绝广播（惟一的例外是在配有VLAN的环境中）。 </p>
+<p>3、交换机依据帧头的信息进行转发，因此说交换机是工作在数据链路层的网络设备（此处所述交换机仅指传统的二层交换设备）。</p>
+<h2 id="路由器工作原理"><a href="#路由器工作原理" class="headerlink" title="路由器工作原理"></a>路由器工作原理</h2><h4 id="工作方式-1"><a href="#工作方式-1" class="headerlink" title="工作方式"></a>工作方式</h4><p>路由器是构建整个网络最核心的设备。比较著名的品牌为cisco、锐捷、华为、TP-LINK、H3C等等。路由器接口是用来接收数据包的。</p>
+<p>那么数据包到达路由器接口会发生什么呢？首先路由器会检查数据帧目标地址字段中的数据链路标识。（其实就是MAC地址，二层，数据链路层，只在单跳中有用，在网络上每进行一跳数据包头中的目的MAC都要进行改写才能继续进行下一跳。这和IP地址不一样，数据包中的目的IP地址在整个网络传输过程中是一直不会变化的。IP地址类似我们的地址，MAC地址类似于我们每个人的身份证号），如果它包含了路由器接口标识符或者广播标识符，那么说明这个数据包是给路由器我自己的，则路由器需要将从帧中剥离出数据包并传递给网络层。</p>
+<h4 id="原理核心-1"><a href="#原理核心-1" class="headerlink" title="原理核心"></a>原理核心</h4><p>路由器依据目的IP地址的网络地址部分，通过路由选择算法确定一条从源结点到达目的结点的最佳路由。</p>
+<p>路由器通过路由协议，网络连接的情况及网络的性能来建立网络的拓扑结构。路由算法为网络上的路由产生一个权值，路由器通过权值来选择最佳路径，权值越小，路由最佳。 </p>
+<p>对于一台路由器，其分组转发的任务即是在收到数据包后，根据路由表所提供的最佳路径的信息，将其转发给下一条的路由器，目的端口或是缺省路由器。缺省路由器也称缺省开关，它是与主机在同一个子网中的路由端口的IP地址。</p>
+<p>路由器也有它的缺省开关。如果目标网络中没有直接显示在路由表里的时候，那么就将数据分组传送给缺省网关。它一般指向与该路由器的一个端口的直接相连接的，并且通往Interest的出口路由。 </p>
+<p>分组转发的思想：</p>
+<p>目的IP地址，全程不变。 </p>
+<p>目的MAC地址，逐跳修改。 </p>
+<h4 id="路由表"><a href="#路由表" class="headerlink" title="路由表"></a>路由表</h4><p>路由表通过对路由表的查询来选择最佳路径的策略，路由表中保存着各种传输路径的相关数据，供路由选择时使用。 </p>
+<p>路由表的内容主要包括：</p>
+<p>1、目的网络地址及其所对应的目的端口 </p>
+<p>2、下一跳路由器的名字</p>
+<p>3、缺省路由的信息</p>
+<h2 id="单网卡双网关"><a href="#单网卡双网关" class="headerlink" title="单网卡双网关"></a>单网卡双网关</h2><p>Windows系统单网卡配置双IP双网关。</p>
+<p>Windows系统单网卡配置双IP双网关，一般情况下单网卡配置双IP是没有问题，当问题常常出在配置双网关上，默认windows系统只能有一个网关。这样对于需要配置双IP双网关的环境就有些问题。</p>
+<h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><p>在公司内网中有研发和测试两个网段，两个网段的环境都需要进行联通，才能进行访问，这时就可以在PC上设置双IP双网卡来访问两个不同的网段。</p>
+<h4 id="设置方法"><a href="#设置方法" class="headerlink" title="设置方法"></a>设置方法</h4><p>1、打开网络连接</p>
+<p><img src="/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028232747512.png" alt="image-20201028232747512"></p>
+<p>2、右键属性</p>
+<p><img src="/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233334342.png" alt="image-20201028233334342"></p>
+<p><img src="/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233528865.png" alt="image-20201028233528865"></p>
+<p><img src="/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233657752.png" alt="image-20201028233657752"></p>
+<p><img src="/2020/10/28/%E8%B7%AF%E7%94%B1%E4%BA%A4%E6%8D%A2%E5%8E%9F%E7%90%86/image-20201028233742259.png" alt="image-20201028233742259"></p>
+<p>这样设置，主要是解决双网络的情况。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%A8%AA%E8%B4%AF%E5%85%AB%E6%96%B9/" rel="tag"># 横贯八方</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/27/TortoiseSVN%E5%B0%8F%E7%99%BD%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="next" title="TortoiseSVN小白使用指南">
+                <i class="fa fa-chevron-left"></i> TortoiseSVN小白使用指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mys3t</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#交换机工作原理"><span class="nav-number">1.</span> <span class="nav-text">交换机工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作方式"><span class="nav-number">1.0.1.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理核心"><span class="nav-number">1.0.2.</span> <span class="nav-text">原理核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MAC地址表构建"><span class="nav-number">1.0.3.</span> <span class="nav-text">MAC地址表构建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作特性"><span class="nav-number">1.0.4.</span> <span class="nav-text">工作特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由器工作原理"><span class="nav-number">2.</span> <span class="nav-text">路由器工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作方式-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理核心-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">原理核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#路由表"><span class="nav-number">2.0.3.</span> <span class="nav-text">路由表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单网卡双网关"><span class="nav-number">3.</span> <span class="nav-text">单网卡双网关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#场景"><span class="nav-number">3.0.1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置方法"><span class="nav-number">3.0.2.</span> <span class="nav-text">设置方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mys3t</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
