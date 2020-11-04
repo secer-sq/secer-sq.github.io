@@ -3599,4 +3599,59 @@
         <tag>博客搭建</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Python-发送短信</title>
+    <url>/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<h1 id="使用python发送短信twilio"><a href="#使用python发送短信twilio" class="headerlink" title="使用python发送短信twilio"></a>使用python发送短信twilio</h1><p>主要内容是叙述如何使用Python传送手机短信，主要是以美国Twilio公司所提供的服务为例说明。全球这类通信公司很多，可以用关键词free sms gateway查询，sms全名是shortmessage service短信服务，这是目前电信公司很普遍的一个服务。</p>
+<h2 id="安装twilio模块"><a href="#安装twilio模块" class="headerlink" title="安装twilio模块"></a>安装twilio模块</h2><p>为了要用Python设计与Twilio公司有关的网络服务，首先要安装twilio模块。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install twilio</span><br></pre></td></tr></table></figure>
+<h2 id="到Twilio公司注册账号"><a href="#到Twilio公司注册账号" class="headerlink" title="到Twilio公司注册账号"></a>到Twilio公司注册账号</h2><p>为了要使用Twilio公司所提供的短信服务，需要到Twilio公司注册账号，以取得下列信息：</p>
+<p>1、Account SID：Twilio API key账号。</p>
+<p>2、Auth TOKEN：Twilio账号的图腾(TOKEN)。</p>
+<p>3、Twilio Number：Twilio电话号码。</p>
+<p>4、Verified numbers：电话号码使用地区。</p>
+<p>上述信息我们可以称之为API key(密钥)，有了上述密钥，您就可以使用Python程序发送短信了。</p>
+<h4 id="申请账号"><a href="#申请账号" class="headerlink" title="申请账号"></a>申请账号</h4><p>首先进入hxxp://<a href="http://www.twilio.com网站。" target="_blank" rel="noopener">www.twilio.com网站。</a></p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231058183.png" alt="image-20201104231058183"></p>
+<p>点选Get a free API key，然后将看到空白窗体。填写完成后，按Get Started按钮。</p>
+<p>为了不被网络恶意软件注册攻击，所以会要求输入电话号码，Twilio网站会从你登录IP判断你的位置，然后自动勾选你的国家或地区，请在上述字段输入你的手机号码，然后按Verify via SMS按钮，Twilio公司会发送验证码到你的手机，下列是笔者手机收到验证码的图例。</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231445340.png" alt="image-20201104231445340"></p>
+<p>输入完成后，请按Submit按钮，整个注册就算完成了。</p>
+<h4 id="获得Account-SID"><a href="#获得Account-SID" class="headerlink" title="获得Account SID"></a>获得Account SID</h4><p>注册成功后，在画面上可以看到Dashboard，请点选可以在此看到的所申请的Account SID信息。</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231543343.png" alt="image-20201104231543343"></p>
+<p>未来可以点选上述SID码，然后复制到Python程序。</p>
+<h4 id="获得Auth-TOKEN"><a href="#获得Auth-TOKEN" class="headerlink" title="获得Auth TOKEN"></a>获得Auth TOKEN</h4><p>与SID一样，使用时最好用复制方式粘贴到Python程序，比较方便，同时也不会有错误。</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231735522.png" alt="image-20201104231735522"></p>
+<h4 id="获得Twilio-Number"><a href="#获得Twilio-Number" class="headerlink" title="获得Twilio Number"></a>获得Twilio Number</h4><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231812663.png" alt="image-20201104231812663"></p>
+<p>在屏幕上有Phone Numbers，点选Phone Numbers。</p>
+<p>将会看到：</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231859663.png" alt="image-20201104231859663"></p>
+<p>点选Get Started按钮：</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232005975.png" alt="image-20201104232005975"></p>
+<p>点选Get yourfirst Twilio phone number按钮：</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232040297.png" alt="image-20201104232040297"></p>
+<p>将列出你的Twilio号码，按Choose this Number按钮：</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232122259.png" alt="image-20201104232122259"></p>
+<p>未来python程序需要上述格式的号码。</p>
+<h4 id="设定Twilio使用地区"><a href="#设定Twilio使用地区" class="headerlink" title="设定Twilio使用地区"></a>设定Twilio使用地区</h4><p>由于这是试用账号，同时我们不是在美国本土，所以还需在系统设定短信适用地区。</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232224000.png" alt="image-20201104232224000"></p>
+<p>点选所有服务功能，然后选Programmable SMS服务，将看到下列画面。</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232307073.png" alt="image-20201104232307073"></p>
+<p>点选these countries字符串，将看到Message Grographic Permissions标题，选China(+86)，未来用Python所发的短信就可以在中国大陆使用了。</p>
+<h2 id="使用Python程序设计发送短信"><a href="#使用Python程序设计发送短信" class="headerlink" title="使用Python程序设计发送短信"></a>使用Python程序设计发送短信</h2><p>导入模块：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from twilio.rest import client</span><br></pre></td></tr></table></figure>
+<p>发送短信的方法:</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232616420.png" alt="image-20201104232616420"></p>
+<p>执行结果：</p>
+<p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232657932.png" alt="image-20201104232657932"></p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>
