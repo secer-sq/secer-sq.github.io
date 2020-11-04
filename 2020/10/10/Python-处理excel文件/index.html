@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="故园遗剑" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-处理excel文件">
+<meta property="og:url" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="故园遗剑">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010110629013.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111007456.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111132003.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111430749.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111645958.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111822823.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010112107454.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010113605914.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010113728116.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010113905254.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010114530962.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010114607986.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010114705059.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010120423938.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010120853984.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010121838590.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122006529.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122307377.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122542596.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122701729.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122755848.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123010251.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123052984.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123119468.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123144636.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123337671.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123518713.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123642323.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010124641750.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010124706829.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010124945532.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125008131.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125118771.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125146949.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125237535.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125300188.png">
+<meta property="article:published_time" content="2020-10-10T03:03:04.000Z">
+<meta property="article:modified_time" content="2020-10-10T04:53:50.409Z">
+<meta property="article:author" content="mys3t">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010110629013.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/10/10/Python-处理excel文件/"/>
+
+
+
+
+
+  <title>Python-处理excel文件 | 故园遗剑</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">故园遗剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-python" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mys3t">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故园遗剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python-处理excel文件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-10T11:03:04+08:00">
+                2020-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<p>Excel是电子表格软件，主要是做数据的统计与分析。有时候我们可能会需要从数百或更多电子表格中依条件复制一些数据到其他表格，或是从数百或更多数据表中搜寻符合特定条件的数据等，这些皆是符合使用Python处理的条件。</p>
+<p>需要使用外部模块openpyxl,安装指令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openpyxl</span><br></pre></td></tr></table></figure>
+<p>导入模块指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import openpyxl</span><br></pre></td></tr></table></figure>
+<h2 id="EXCEL窗口"><a href="#EXCEL窗口" class="headerlink" title="EXCEL窗口"></a>EXCEL窗口</h2><p>Microsoft Excel窗口如下：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010110629013.png" alt="image-20201010110629013"></p>
+<p>Microsoft Excel文件的扩展名是xlsx，下列是一些基本名词。</p>
+<p>1、工作簿(workbook)：Excel的文件又称工作簿。</p>
+<p>2、工作表(worksheet)：一个工作簿由不同数量的工作表组成。</p>
+<p>3、栏(column)：工作表的栏名称是A、B、……</p>
+<p>4、行(row)：工作表的行名称是1、2、……</p>
+<p>5、单元格(cell)：工作表内的每一个格子称单元格，用(栏名, 行名)代表。</p>
+<h2 id="读取EXCEL文件"><a href="#读取EXCEL文件" class="headerlink" title="读取EXCEL文件"></a>读取EXCEL文件</h2><h4 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h4><p>导入openpyxl模块后，可以使用openpyxl.load_workbook( )方法打开Excel文件，然后可以回传Excel文件对象。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111007456.png" alt="image-20201010111007456"></p>
+<h4 id="取得工作表worksheet名称"><a href="#取得工作表worksheet名称" class="headerlink" title="取得工作表worksheet名称"></a>取得工作表worksheet名称</h4><p>可以使用get_sheet_names( )取得所打开工作簿文件的所有工作表，工作表将以列表数据类型回传。get_active_sheet( )可以取得当前工作表的名称，这里所指的当前工作表是打开文件后自动显示的工作表名称。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111132003.png" alt="image-20201010111132003"></p>
+<h4 id="设定当前工作的工作表"><a href="#设定当前工作的工作表" class="headerlink" title="设定当前工作的工作表"></a>设定当前工作的工作表</h4><p>使用Python操作Excel文件时，可能需随时更改当前工作表，可以使用get_sheet_by_name( )，然后将要设为当前工作表的名称当做这个方法的参数。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111430749.png" alt="image-20201010111430749"></p>
+<h4 id="取得工作表的内容"><a href="#取得工作表的内容" class="headerlink" title="取得工作表的内容"></a>取得工作表的内容</h4><p>有了当前工作表对象ws，可以用下列方式取得单元格内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ws[&#39;栏行&#39;].value   #栏是A、B，行是1、2</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111645958.png" alt="image-20201010111645958"></p>
+<p>除了可以使用value属性取得单元格内容外，也可以使用row、column或coordinate取得单元格相对位置信息。</p>
+<h4 id="取得工作表内容的栏数和行数"><a href="#取得工作表内容的栏数和行数" class="headerlink" title="取得工作表内容的栏数和行数"></a>取得工作表内容的栏数和行数</h4><p>对于当前工作表对象而言，max_column和max_row可以分别传回工作表内容的栏数和行数。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010111822823.png" alt="image-20201010111822823"></p>
+<h4 id="取得单元格的内容"><a href="#取得单元格的内容" class="headerlink" title="取得单元格的内容"></a>取得单元格的内容</h4><p>使用“ws[‘栏列’].value”取得单元格内容，也可以使用cell( )方法取得单元格内容，此时其语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ws.cell(column&#x3D;N,row&#x3D;M)  #N是栏编号，M是行编号</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010112107454.png" alt="image-20201010112107454"></p>
+<h4 id="工作表对象的rows和columns"><a href="#工作表对象的rows和columns" class="headerlink" title="工作表对象的rows和columns"></a>工作表对象的rows和columns</h4><p>当建立工作表对象ws成功后，会自动产生下列数据产生器(generators)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ws.rows:数据产生器以行的方式包裹</span><br><span class="line">ws.columns:数据产生器以栏的方式包裹</span><br></pre></td></tr></table></figure>
+<p>由于ws.rows和ws.columns是数据产生器，若是想取得它的内容须先将它们转成列表(list)，然后就可以用索引方式取得。列出特定行与栏的信息。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010113605914.png" alt="image-20201010113605914"></p>
+<p>对于数据产生器而言，我们可以使用逐行方式获得全部的工作表内容。</p>
+<p>如使用逐行方式获取工作表全部内容：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010113728116.png" alt="image-20201010113728116"></p>
+<p>使用逐栏方式获得全部的工作表内容：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010113905254.png" alt="image-20201010113905254"></p>
+<h4 id="用整数取代域名"><a href="#用整数取代域名" class="headerlink" title="用整数取代域名"></a>用整数取代域名</h4><p>在Excel中栏名称是A、B、…、Z、AA、AB、AC、……例如，1代表A、2代表B、26代表Z、27代表AA、28代表AB。如果工作表的栏数很多，无法清楚了解到底索引是多少，转化方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">get_column_letter(数值)   #将数值转化为字母</span><br><span class="line">column_index_from_string(字母)  #将字母转化为数值</span><br></pre></td></tr></table></figure>
+<p>方法存在于openpyxl.utils模块内，程序前面要加上下列指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl.utils import get_column_letter,column_index_from_string</span><br></pre></td></tr></table></figure>
+<p>如将字段的字母转成数值与将数值转成字母：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010114530962.png" alt="image-20201010114530962"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010114607986.png" alt="image-20201010114607986"></p>
+<h4 id="切片读取"><a href="#切片读取" class="headerlink" title="切片读取"></a>切片读取</h4><p>使用切片的观念读取某区间数据，例如，读取A3:E6数据可用下列方法：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010114705059.png" alt="image-20201010114705059"></p>
+<h2 id="写入EXCEL文件"><a href="#写入EXCEL文件" class="headerlink" title="写入EXCEL文件"></a>写入EXCEL文件</h2><h4 id="建立EXCEL文件"><a href="#建立EXCEL文件" class="headerlink" title="建立EXCEL文件"></a>建立EXCEL文件</h4><p>openpyxl.Workbook( )可以建立空白的工作簿，默认所建立的文件是可擦写，如果想要设为只写模式，可以加上write_only=True参数。</p>
+<h4 id="存储EXCEL文件"><a href="#存储EXCEL文件" class="headerlink" title="存储EXCEL文件"></a>存储EXCEL文件</h4><p>save( )方法可以存储Excel文件，这个方法需由Excel文件对象启动，先前我们是使用wb(workbook)当作文件对象的变量，使用语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wb.save(文件名)</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010120423938.png" alt="image-20201010120423938"></p>
+<h4 id="复制excel文件"><a href="#复制excel文件" class="headerlink" title="复制excel文件"></a>复制excel文件</h4><p>可以打开文件，然后新名称存储文件方式达到复制Excel文件的效果。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010120853984.png" alt="image-20201010120853984"></p>
+<h4 id="建立工作表"><a href="#建立工作表" class="headerlink" title="建立工作表"></a>建立工作表</h4><p>create_sheet( )可以在工作簿内建立新的工作表。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010121838590.png" alt="image-20201010121838590"></p>
+<h4 id="删除工作表"><a href="#删除工作表" class="headerlink" title="删除工作表"></a>删除工作表</h4><p>删除工作表可以使用remove_sheet( )方法，在使用时并不是直接将工作表名称当参数，必须使用工作簿对象wb调用get_sheet_by_name( )当作参数。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122006529.png" alt="image-20201010122006529"></p>
+<h4 id="写入单元格"><a href="#写入单元格" class="headerlink" title="写入单元格"></a>写入单元格</h4><p>如果想要写入资料，只要设定该单元格的值即可。</p>
+<p>如将资料写入单元格：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122307377.png" alt="image-20201010122307377"></p>
+<h4 id="将列表数据写入单元格"><a href="#将列表数据写入单元格" class="headerlink" title="将列表数据写入单元格"></a>将列表数据写入单元格</h4><p>可以使用append( )方法将列表资料写入单元格，append这个名词有附加的意义，如果当前工作表没有资料，append( )可将数据从第一行(row)开始写入，如果当前工作表已经有数据，可将数据从已有数据的下一行开始写入。</p>
+<p>如在空白工作表使用append( )输入列表数据：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122542596.png" alt="image-20201010122542596"></p>
+<h2 id="设定单元格的字体"><a href="#设定单元格的字体" class="headerlink" title="设定单元格的字体"></a>设定单元格的字体</h2><h4 id="font"><a href="#font" class="headerlink" title="font()"></a>font()</h4><p>Font对象主要功能是执行字体相关的设定，可以使用Font( )方法设定此对象，有了Font对象后就可以将它应用在单元格。这个方法常见的参数如下：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122701729.png" alt="image-20201010122701729"></p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010122755848.png" alt="image-20201010122755848"></p>
+<h4 id="字体色彩的设定"><a href="#字体色彩的设定" class="headerlink" title="字体色彩的设定"></a>字体色彩的设定</h4><p>所有颜色可以使用3个原色red(红色)、green(绿色)和blue(蓝色)，每个颜色数值在0—255间组成。Font( )方法内的参数color的值“FFFFFF”，分别代表Red、Green和Blue，下列是常见的256种颜色组合。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123010251.png" alt="image-20201010123010251"></p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123052984.png" alt="image-20201010123052984"></p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123119468.png" alt="image-20201010123119468"></p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123144636.png" alt="image-20201010123144636"></p>
+<h2 id="数学公式的使用"><a href="#数学公式的使用" class="headerlink" title="数学公式的使用"></a>数学公式的使用</h2><p>常见的数学公式如下：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123337671.png" alt="image-20201010123337671"></p>
+<p>如计算B1:B3单元格区间的加总、平均、最高分、最低分。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123518713.png" alt="image-20201010123518713"></p>
+<h2 id="设定单元格高度宽度"><a href="#设定单元格高度宽度" class="headerlink" title="设定单元格高度宽度"></a>设定单元格高度宽度</h2><p>单元格预设的高度是12.75pt，72pt等于1英寸。可以使用column_dimensions属性设定行高。单元格默认的宽度是8.43个英文字符宽度，可以使用row_dimensions设定单元格的宽度。如果将高度或宽度设为0，则具有隐藏单元格效果。</p>
+<p>如设定第一行(row)高度和第B栏(column)宽度：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010123642323.png" alt="image-20201010123642323"></p>
+<h2 id="单元格对齐方式"><a href="#单元格对齐方式" class="headerlink" title="单元格对齐方式"></a>单元格对齐方式</h2><p>可以使用Alignment( )方法，须在程序前方导入下列模块。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl.styles import Alignment</span><br></pre></td></tr></table></figure>
+<p>Alignment( )方法内可以有下列2个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">horizontal：可以设定left(靠左)、center(居中)、right(靠右)对齐。</span><br><span class="line"></span><br><span class="line">vertical：可以设定top(靠上)、center(居中)、bottom(靠下)对齐。</span><br></pre></td></tr></table></figure>
+<p>整个单元格设定的完整公式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ws[&#39;A1&#39;].alignment &#x3D; Alignment()</span><br></pre></td></tr></table></figure>
+<h2 id="合并单元格"><a href="#合并单元格" class="headerlink" title="合并单元格"></a>合并单元格</h2><h4 id="合并单元格-1"><a href="#合并单元格-1" class="headerlink" title="合并单元格"></a>合并单元格</h4><p>可以使用merge_cells( )合并单元格，可以合并同一行(row)、同一栏(column)或一个区间的单元格。</p>
+<h4 id="取消合并单元格"><a href="#取消合并单元格" class="headerlink" title="取消合并单元格"></a>取消合并单元格</h4><p>可以使用unmerge_cells( )取消合并单元格。</p>
+<h2 id="建立图表"><a href="#建立图表" class="headerlink" title="建立图表"></a>建立图表</h2><p>Python可以建立的图表有许多，所有Excel可以建立的图表皆可使用Python建立，为了建立图表可以更方便地导入图表模块，程序需导入下列图表方法。BarChart(柱形图)、BarChart3D(3D柱形图)、PieChart(饼图)、PieChart3D(3D饼图)、BubbleChart(泡泡图)、AreaChart(分区图)、AreaChart3D(3D分区图)、LineChart(线段图)、LineChart3D(3D线段图)、RadarChart(雷达图)、StockChart(股票图)。上述英文名称就是建立图表的方法，导入方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from openpyxl.chart import BarChart,Reference #以导入BarChart为例</span><br></pre></td></tr></table></figure>
+<p>另外需导入Reference方法，这个方法主要是供我们将建立图表所需的工作表数据或是卷标名称(有时也可称轴的卷标)数据导入所建的图表对象内。</p>
+<h4 id="柱形图"><a href="#柱形图" class="headerlink" title="柱形图"></a>柱形图</h4><p>最常见的图表应用，主要是显示多组数据于一段时间的变化，从此类型也可以了解各组资料间比较的情形，应用时通常数值数据是在纵轴(y轴)，而标记是在横轴(x轴)。</p>
+<p>如建立深石软件2020—2021年销售报表。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010124641750.png" alt="image-20201010124641750"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010124706829.png" alt="image-20201010124706829"></p>
+<h4 id="3D柱形图"><a href="#3D柱形图" class="headerlink" title="3D柱形图"></a>3D柱形图</h4><p>要建立3D柱形图表，只要导入BarChart3D。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010124945532.png" alt="image-20201010124945532"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125008131.png" alt="image-20201010125008131"></p>
+<h4 id="饼图"><a href="#饼图" class="headerlink" title="饼图"></a>饼图</h4><p>饼图(PieChart)只适合一个数据系列，主要是供了解单笔数据相对于整体数据的关系比。</p>
+<p>如将员工旅游意向调查表处理成饼图：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125118771.png" alt="image-20201010125118771"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125146949.png" alt="image-20201010125146949"></p>
+<h4 id="3D饼图"><a href="#3D饼图" class="headerlink" title="3D饼图"></a>3D饼图</h4><p>要建立3D饼图表就很简单，只要导入PieChart3D。</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125237535.png" alt="image-20201010125237535"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/image-20201010125300188.png" alt="image-20201010125300188"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/09/Python-%E5%A4%84%E7%90%86PDF%E6%96%87%E4%BB%B6/" rel="next" title="Python-处理PDF文件">
+                <i class="fa fa-chevron-left"></i> Python-处理PDF文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="prev" title="Python-网络爬虫">
+                Python-网络爬虫 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mys3t</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#EXCEL窗口"><span class="nav-number">1.</span> <span class="nav-text">EXCEL窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取EXCEL文件"><span class="nav-number">2.</span> <span class="nav-text">读取EXCEL文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#打开文件"><span class="nav-number">2.0.1.</span> <span class="nav-text">打开文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取得工作表worksheet名称"><span class="nav-number">2.0.2.</span> <span class="nav-text">取得工作表worksheet名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设定当前工作的工作表"><span class="nav-number">2.0.3.</span> <span class="nav-text">设定当前工作的工作表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取得工作表的内容"><span class="nav-number">2.0.4.</span> <span class="nav-text">取得工作表的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取得工作表内容的栏数和行数"><span class="nav-number">2.0.5.</span> <span class="nav-text">取得工作表内容的栏数和行数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取得单元格的内容"><span class="nav-number">2.0.6.</span> <span class="nav-text">取得单元格的内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作表对象的rows和columns"><span class="nav-number">2.0.7.</span> <span class="nav-text">工作表对象的rows和columns</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用整数取代域名"><span class="nav-number">2.0.8.</span> <span class="nav-text">用整数取代域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切片读取"><span class="nav-number">2.0.9.</span> <span class="nav-text">切片读取</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入EXCEL文件"><span class="nav-number">3.</span> <span class="nav-text">写入EXCEL文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立EXCEL文件"><span class="nav-number">3.0.1.</span> <span class="nav-text">建立EXCEL文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储EXCEL文件"><span class="nav-number">3.0.2.</span> <span class="nav-text">存储EXCEL文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制excel文件"><span class="nav-number">3.0.3.</span> <span class="nav-text">复制excel文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#建立工作表"><span class="nav-number">3.0.4.</span> <span class="nav-text">建立工作表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除工作表"><span class="nav-number">3.0.5.</span> <span class="nav-text">删除工作表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写入单元格"><span class="nav-number">3.0.6.</span> <span class="nav-text">写入单元格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将列表数据写入单元格"><span class="nav-number">3.0.7.</span> <span class="nav-text">将列表数据写入单元格</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设定单元格的字体"><span class="nav-number">4.</span> <span class="nav-text">设定单元格的字体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#font"><span class="nav-number">4.0.1.</span> <span class="nav-text">font()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字体色彩的设定"><span class="nav-number">4.0.2.</span> <span class="nav-text">字体色彩的设定</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学公式的使用"><span class="nav-number">5.</span> <span class="nav-text">数学公式的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设定单元格高度宽度"><span class="nav-number">6.</span> <span class="nav-text">设定单元格高度宽度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元格对齐方式"><span class="nav-number">7.</span> <span class="nav-text">单元格对齐方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并单元格"><span class="nav-number">8.</span> <span class="nav-text">合并单元格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并单元格-1"><span class="nav-number">8.0.1.</span> <span class="nav-text">合并单元格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消合并单元格"><span class="nav-number">8.0.2.</span> <span class="nav-text">取消合并单元格</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立图表"><span class="nav-number">9.</span> <span class="nav-text">建立图表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#柱形图"><span class="nav-number">9.0.1.</span> <span class="nav-text">柱形图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D柱形图"><span class="nav-number">9.0.2.</span> <span class="nav-text">3D柱形图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#饼图"><span class="nav-number">9.0.3.</span> <span class="nav-text">饼图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3D饼图"><span class="nav-number">9.0.4.</span> <span class="nav-text">3D饼图</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mys3t</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="故园遗剑" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-网络爬虫">
+<meta property="og:url" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/index.html">
+<meta property="og:site_name" content="故园遗剑">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131307765.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131401320.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131817536.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131839717.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131958962.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132122203.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132144213.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132308670.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132437922.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010133703575.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010133921608.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010134345317.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010134500430.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010134812644.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010135004153.png">
+<meta property="article:published_time" content="2020-10-10T05:07:42.000Z">
+<meta property="article:modified_time" content="2020-10-10T06:55:02.138Z">
+<meta property="article:author" content="mys3t">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131307765.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/10/10/Python-网络爬虫/"/>
+
+
+
+
+
+  <title>Python-网络爬虫 | 故园遗剑</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">故园遗剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-python" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mys3t">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故园遗剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python-网络爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-10T13:07:42+08:00">
+                2020-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="浏览网页"><a href="#浏览网页" class="headerlink" title="浏览网页"></a>浏览网页</h2><p>Python有提供webbrowser模块，可以调用这个模块的open( )方法，就可以打开指定的网页了。在使用前需导入此模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import webbrowser</span><br></pre></td></tr></table></figure>
+<p>如打开百度：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131307765.png" alt="image-20201010131307765"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131401320.png" alt="image-20201010131401320"></p>
+<h2 id="requests模块"><a href="#requests模块" class="headerlink" title="requests模块"></a>requests模块</h2><p>requests是第三方模块，安装模块指令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
+<h4 id="下载网页"><a href="#下载网页" class="headerlink" title="下载网页"></a>下载网页</h4><p>requests.get( )方法内需放置欲下载网页信息的网址当参数，这个方法可以传回网页的HTML源文件。</p>
+<p>使用requests.get( )之后传回的数据类型是Response对象。</p>
+<h4 id="Response对象"><a href="#Response对象" class="headerlink" title="Response对象"></a>Response对象</h4><p>Response对象内有下列几个重要属性：</p>
+<p>status_code：如果值是requests.codes.ok，表示获得的网页内容成功。</p>
+<p>text：网页内容。</p>
+<p>如打印网页原始内容：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131817536.png" alt="image-20201010131817536"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131839717.png" alt="image-20201010131839717"></p>
+<h4 id="搜索网页特定内容"><a href="#搜索网页特定内容" class="headerlink" title="搜索网页特定内容"></a>搜索网页特定内容</h4><p>网页内容下载后，如果我们想要搜寻特定字符串，可以使用许多方法。</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010131958962.png" alt="image-20201010131958962"></p>
+<h4 id="网页服务器阻挡造成读取错误"><a href="#网页服务器阻挡造成读取错误" class="headerlink" title="网页服务器阻挡造成读取错误"></a>网页服务器阻挡造成读取错误</h4><p>有些网页也许基于安全原因，或是不想让太多网络爬虫造访造成网络流量增加，因此会设计程序阻挡网络爬虫提取信息，碰上这类问题就会产生406的错误，如下所示：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132122203.png" alt="image-20201010132122203"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132144213.png" alt="image-20201010132144213"></p>
+<p>406错误就是网页服务器阻挡。</p>
+<h4 id="爬虫伪装成浏览器"><a href="#爬虫伪装成浏览器" class="headerlink" title="爬虫伪装成浏览器"></a>爬虫伪装成浏览器</h4><p>为了解决爬虫程序被服务器阻挡的困扰，我们可以将所设计的爬虫程序伪装成浏览器，方法是在程序前端加上headers内容。</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132308670.png" alt="image-20201010132308670"></p>
+<h4 id="存储下载的网页"><a href="#存储下载的网页" class="headerlink" title="存储下载的网页"></a>存储下载的网页</h4><p>使用requests.get( )获得网页内容时，是存储在Response对象类型内，如果要将这类型的对象存入硬盘内，需使用Response对象的iter_content( )方法，这个方法是采用重复迭代方式将Response对象内容写入指定的文件内，每次写入指定扇区大小是以Bytes为单位，一般可以设定1024×5或1024×10或更多。</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010132437922.png" alt="image-20201010132437922"></p>
+<h2 id="查看网页原始文件"><a href="#查看网页原始文件" class="headerlink" title="查看网页原始文件"></a>查看网页原始文件</h2><p>检视网页的原始文件目的，主要是掌握几个关键重点，然后提取我们想要的数据。</p>
+<p>如果使用的是Chrome浏览器，将鼠标光标放在网页上单击鼠标右键，打开快捷菜单，再执行View page source指令，也可以打开新窗口显示此网页的HTML原始文件。</p>
+<h2 id="BeautifulSoup模块"><a href="#BeautifulSoup模块" class="headerlink" title="BeautifulSoup模块"></a>BeautifulSoup模块</h2><p>使用BeautifulSoup模块解析HTML文件，目前这个模块是第4版，模块名称是beautifulsoup4。安装模块指令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install beautifulsoup4</span><br></pre></td></tr></table></figure>
+<p>导入模块时，可以使用指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import bs4</span><br></pre></td></tr></table></figure>
+<h4 id="建立beautifulsoup对象"><a href="#建立beautifulsoup对象" class="headerlink" title="建立beautifulsoup对象"></a>建立beautifulsoup对象</h4><p>建立BeautifulSoup对象的语法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">htmlfile &#x3D; request.get(&#39;www.baidu.com&#39;)  #下载网页内容</span><br><span class="line"></span><br><span class="line">obj &#x3D; bs4.BeautifulSoup(htmlfile.text,&#39;lxml&#39;) #lxml是解析HTML文件的方式</span><br></pre></td></tr></table></figure>
+<p>当网页下载后，将网页内容的Response对象传给bs4.BeautifulSoup( )方法，就可以建立BeautifulSoup对象。至于另一个参数“lxml”目的是注明解析HTML文件的方法，常用的有下列方法：</p>
+<p>‘html.parser’：这是老旧的方法(3.2.3版本前)，兼容性比较不好。</p>
+<p>‘lxml’：速度快，兼容性佳。</p>
+<p>html5lib’：速度比较慢，但是解析能力强，需另外安装html5lib（pip install html5lib）。</p>
+<h4 id="页标题title属性"><a href="#页标题title属性" class="headerlink" title="页标题title属性"></a>页标题title属性</h4><p>BeautifulSoup对象的title属性可以传回页标题的title标签内容。</p>
+<p>如使用title属性解析myhtml.html文件的页标题：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010133703575.png" alt="image-20201010133703575"></p>
+<h4 id="传回文字text属性"><a href="#传回文字text属性" class="headerlink" title="传回文字text属性"></a>传回文字text属性</h4><p>可以使用text属性获得卷标的内容。</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010133921608.png" alt="image-20201010133921608"></p>
+<h4 id="传回第一个符合的标签find"><a href="#传回第一个符合的标签find" class="headerlink" title="传回第一个符合的标签find()"></a>传回第一个符合的标签find()</h4><p>这个函数可以找寻HTML文件内第一个符合的标签内容，例如，find(‘h1’)是要找第一个h1的标签。如果找到了就传回该卷标字符串，可以使用text属性获得内容，如果没找到就传回None。</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010134345317.png" alt="image-20201010134345317"></p>
+<h4 id="传回所有符合的标签find-all"><a href="#传回所有符合的标签find-all" class="headerlink" title="传回所有符合的标签find all()"></a>传回所有符合的标签find all()</h4><p>这个函数可以找寻HTML文件内所有符合的标签内容，例如，find_all(‘h1’)是要找所有h1的标签。如果找到了就传回该标签列表，如果没找到就传回空列表。</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010134500430.png" alt="image-20201010134500430"></p>
+<h4 id="HTML元素上下文属性与getText"><a href="#HTML元素上下文属性与getText" class="headerlink" title="HTML元素上下文属性与getText( )"></a>HTML元素上下文属性与getText( )</h4><p>HTML元素内容的属性有下列3种：</p>
+<p>textContent：内容，不含任何标签码。</p>
+<p>innerHTML：元素内容，含子卷标码，但是不含本身标签码。</p>
+<p>outerHTML：元素内容，含子卷标码，也含本身标签码。</p>
+<p>如果有一个元素内容如下：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010134812644.png" alt="image-20201010134812644"></p>
+<p>则3个属性的内容分别如下：</p>
+<p><img src="/2020/10/10/Python-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/image-20201010135004153.png" alt="image-20201010135004153"></p>
+<p>使用BeautifulSoup模块解析HTML文件时，如果传回的是列表，也可以配合索引应用getText( )取得列表元素内容，所取得的内容是textContent。</p>
+<h4 id="select"><a href="#select" class="headerlink" title="select( )"></a>select( )</h4><p>select( )主要是以CSS选择器(selector)的观念寻找元素，如果找到，回传的是列表(list)，如果找不到则传回空列表。</p>
+<p>使用示例如下：</p>
+<p>objSoup.select(‘p’)：找寻所有&lt;</p><p>&gt;卷标的元素。</p>
+<p>objSoup.select (‘img’)：找寻所有&lt;<img>&gt;卷标的元素。</p>
+<p>objSoup.select (‘.happy’)：找寻所有CSS class属性为happy的元素。</p>
+<p>objSoup.select (‘#author’)：找寻所有CSS id属性为author的元素。</p>
+<p>objSoup.select (‘p #author’)：找寻所有</p><p>且id属性为author的元素。</p>
+<p>objSoup.select (‘p .happy’)：找寻所有</p><p>且class属性为happy的元素。</p>
+<p>objSoup.select (‘div strong’)：找寻所有在<section>元素内的<strong>元素。</strong></section></p>
+<p>objSoup.select (‘input[name]’)：找寻所有<input>卷标且有name属性的元素。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/10/Python-%E5%A4%84%E7%90%86excel%E6%96%87%E4%BB%B6/" rel="next" title="Python-处理excel文件">
+                <i class="fa fa-chevron-left"></i> Python-处理excel文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/10/Python-%E6%95%B0%E6%8D%AE%E5%9B%BE%E8%A1%A8%E8%AE%BE%E8%AE%A1/" rel="prev" title="Python-数据图表设计">
+                Python-数据图表设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mys3t</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览网页"><span class="nav-number">1.</span> <span class="nav-text">浏览网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requests模块"><span class="nav-number">2.</span> <span class="nav-text">requests模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载网页"><span class="nav-number">2.0.1.</span> <span class="nav-text">下载网页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Response对象"><span class="nav-number">2.0.2.</span> <span class="nav-text">Response对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索网页特定内容"><span class="nav-number">2.0.3.</span> <span class="nav-text">搜索网页特定内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网页服务器阻挡造成读取错误"><span class="nav-number">2.0.4.</span> <span class="nav-text">网页服务器阻挡造成读取错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爬虫伪装成浏览器"><span class="nav-number">2.0.5.</span> <span class="nav-text">爬虫伪装成浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储下载的网页"><span class="nav-number">2.0.6.</span> <span class="nav-text">存储下载的网页</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看网页原始文件"><span class="nav-number">3.</span> <span class="nav-text">查看网页原始文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BeautifulSoup模块"><span class="nav-number">4.</span> <span class="nav-text">BeautifulSoup模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立beautifulsoup对象"><span class="nav-number">4.0.1.</span> <span class="nav-text">建立beautifulsoup对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#页标题title属性"><span class="nav-number">4.0.2.</span> <span class="nav-text">页标题title属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传回文字text属性"><span class="nav-number">4.0.3.</span> <span class="nav-text">传回文字text属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传回第一个符合的标签find"><span class="nav-number">4.0.4.</span> <span class="nav-text">传回第一个符合的标签find()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传回所有符合的标签find-all"><span class="nav-number">4.0.5.</span> <span class="nav-text">传回所有符合的标签find all()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML元素上下文属性与getText"><span class="nav-number">4.0.6.</span> <span class="nav-text">HTML元素上下文属性与getText( )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#select"><span class="nav-number">4.0.7.</span> <span class="nav-text">select( )</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mys3t</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

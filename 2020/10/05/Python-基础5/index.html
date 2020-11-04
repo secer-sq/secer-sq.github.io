@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="故园遗剑" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-基础5">
+<meta property="og:url" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/index.html">
+<meta property="og:site_name" content="故园遗剑">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003103823057.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003152402426.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003152522193.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003152806604.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003153234774.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003153305754.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003155117536.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003155456390.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003155759704.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160237052.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160601838.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160632987.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160741064.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003161110904.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003161301240.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003162247407.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004201336873.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004201451152.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004202307701.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004202809117.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203310489.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203350625.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203553583.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203633339.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203745811.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004204206862.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004204230275.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004205537211.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004205636412.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004210015409.png">
+<meta property="og:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004210111832.png">
+<meta property="article:published_time" content="2020-10-05T02:27:18.000Z">
+<meta property="article:modified_time" content="2020-10-05T02:41:08.290Z">
+<meta property="article:author" content="mys3t">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003103823057.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/10/05/Python-基础5/"/>
+
+
+
+
+
+  <title>Python-基础5 | 故园遗剑</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">故园遗剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-python" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/05/Python-%E5%9F%BA%E7%A1%805/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mys3t">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故园遗剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python-基础5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-05T10:27:18+08:00">
+                2020-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h4><p>函数的语法格式如下：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003103823057.png" alt="image-20201003103823057"></p>
+<p>函数名称 名称必须是唯一的，程序未来可以调用引用。</p>
+<p>参数值可有可无的，完全视函数设计需要，可以接收调用函数传来的变量，各参数值之间是用逗号“,”隔开。</p>
+<p>return [返回值1,返回值2 , … ]不论是return或接续右边的返回值皆是可有可无，如果有返回多个数据彼此需以逗号“,”隔开。</p>
+<h4 id="函数的参数设计"><a href="#函数的参数设计" class="headerlink" title="函数的参数设计"></a>函数的参数设计</h4><p>在真实的函数设计与应用中大多是需要传递一些参数的。</p>
+<p>如传递一个参数：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003152402426.png" alt="image-20201003152402426"></p>
+<p>当所设计的函数需要传递多个参数，调用此函数时就需要特别留意传递参数的位置需要正确，最后才可以获得正确的结果。最常见的传递参数是数值或字符串数据。</p>
+<p>如设计减法的函数subtract( )，第一个参数会减去第二个参数，然后列出执行结果。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003152522193.png" alt="image-20201003152522193"></p>
+<p>关键词参数(keyword arguments)是指调用函数时，参数是用参数名称=值配对方式呈现。Python也允许在调用需传递多个参数的函数时，直接将参数名称=值用配对方式传送，这个时候参数的位置就不重要了。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003152806604.png" alt="image-20201003152806604"></p>
+<h4 id="函数返回none"><a href="#函数返回none" class="headerlink" title="函数返回none"></a>函数返回none</h4><p>Python在直译时会自动返回处理成“return None”，相当于返回None。在一些程序语言，例如，C语言这个None就是NULL，None在Python中独立成为一个数据类型NoneType。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003153234774.png" alt="image-20201003153234774"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003153305754.png" alt="image-20201003153305754"></p>
+<h4 id="函数返回数值"><a href="#函数返回数值" class="headerlink" title="函数返回数值"></a>函数返回数值</h4><p>参数具有返回值功能，将可以大大增加程序的可读性，返回的基本方式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return result  #result就是返回的值</span><br></pre></td></tr></table></figure>
+<p>使用return返回函数数据时，也允许返回多个数据，各个数据间只要以逗号隔开即可。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003155117536.png" alt="image-20201003155117536"></p>
+<h4 id="函数返回字典数据"><a href="#函数返回字典数据" class="headerlink" title="函数返回字典数据"></a>函数返回字典数据</h4><p>函数除了可以返回数值或字符串数据外，也可以返回比较复杂的数据，例如，字典或列表等。</p>
+<p>如调用时会输入VIP_ID编号和Name姓名数据，函数将返回所建立的字典数据：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003155456390.png" alt="image-20201003155456390"></p>
+<h4 id="调用函数时参数是列表"><a href="#调用函数时参数是列表" class="headerlink" title="调用函数时参数是列表"></a>调用函数时参数是列表</h4><p>在调用函数时，也可以将列表（此列表可以是由数值、字符串或字典所组成）当参数传递给函数，然后函数可以遍历列表内容，然后执行更进一步的运作。</p>
+<p>如函数遍历列表：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003155759704.png" alt="image-20201003155759704"></p>
+<h4 id="传递任意数量的参数"><a href="#传递任意数量的参数" class="headerlink" title="传递任意数量的参数"></a>传递任意数量的参数</h4><p>在设计Python的函数时，有时候可能会碰上不知道会有多少个参数会传递到这个函数。</p>
+<p>如建立一个冰淇淋的配料程序，一般冰淇淋可以在上面加上配料，这个程序在调用制作冰淇淋函数make_icecream( )时，可以传递0到多个配料，然后make_icecream( )函数会将配料结果的冰淇淋列出来。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160237052.png" alt="image-20201003160237052"></p>
+<h4 id="递归式函数设计recursive"><a href="#递归式函数设计recursive" class="headerlink" title="递归式函数设计recursive"></a>递归式函数设计recursive</h4><p>一个函数可以调用其他函数也可以调用自己，其中调用本身的动作称递归式(recursive)调用，递归式调用有下列特色：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">每次调用自己时，都会使范围越来越小。</span><br><span class="line"></span><br><span class="line">必须要有一个终止的条件来结束递归函数。</span><br></pre></td></tr></table></figure>
+<p>递归函数最常见的应用是处理正整数的阶乘(factorial)，一个正整数的阶乘是所有小于以及等于该数的正整数的积，同时如果正整数是0则阶乘为1，依照观念正整数是1时阶乘也是1。此阶乘数字的表示法为n!。</p>
+<p>如使用递归函数执行阶乘(factorial)运算：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160601838.png" alt="image-20201003160601838"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160632987.png" alt="image-20201003160632987"></p>
+<p>上述factorial( )函数的终止条件是参数值为1的情况，由第4行判断然后返回1，下列是正整数为3时递归函数的示意：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003160741064.png" alt="image-20201003160741064"></p>
+<h4 id="局部变量与全局变量"><a href="#局部变量与全局变量" class="headerlink" title="局部变量与全局变量"></a>局部变量与全局变量</h4><p>某个变量只有在该函数内使用，影响范围限定在这个函数内，这个变量称局部变量(local variable)。如果某个变量的影响范围是在整个程序，则这个变量称全局变量(global variable)。</p>
+<p>Python程序在调用函数时会建立一个内存工作区间，在这个内存工作区间可以处理属于这个函数的变量，当函数工作结束，返回原先调用程序时，这个内存工作区间就被收回，原先存在的变量也将被销毁，这也是为何局部变量的影响范围只限定在所属的函数内。</p>
+<p>一般在主程序内建立的变量称全局变量，这个变量程序内与本程序的所有函数皆可以引用。如设定一个全局变量，然后函数也可以调用引用：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003161110904.png" alt="image-20201003161110904"></p>
+<p>全局变量与函数内的局部变量不要使用相同的名称，因为很容易造成混淆。如果全局变量与函数内的局部变量使用相同的名称，Python会将相同名称的区域与全局变量视为不同的变量，在局部变量所在的函数是使用局部变量内容，其他区域则是使用全局变量的内容。</p>
+<p>如局部变量与全局变量定义了相同的变量msg，但是内容不相同。然后执行打印，可以发现在函数与主程序所打印的内容有不同的结果。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003161301240.png" alt="image-20201003161301240"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201003162247407.png" alt="image-20201003162247407"></p>
+<h4 id="程序设计需要注意"><a href="#程序设计需要注意" class="headerlink" title="程序设计需要注意"></a>程序设计需要注意</h4><p>一般程序设计时有关使用局部变量需注意下列事项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">局部变量内容无法在其他函数引用.</span><br><span class="line"></span><br><span class="line">局部变量内容无法在主程序引用.</span><br></pre></td></tr></table></figure>
+<h4 id="lambda函数"><a href="#lambda函数" class="headerlink" title="lambda函数"></a>lambda函数</h4><p>所谓的匿名函数(anonymous function)是指一个没有名称的函数，Python是使用def定义一般函数，匿名函数则是使用lambda来定义，有的人称之为lambda表达式，也可以将匿名函数称lambda函数。通常会将匿名函数与Python的内置函数filter( )、map( )等共同使用，此时匿名函数将只是这些函数的参数。</p>
+<p>匿名函数最大特色是可以有许多的参数，但是只能有一个程序码表达式，然后可以将执行结果返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lambda arg1,arg2.... :expression  #arg1为参数，可以有多个参数</span><br></pre></td></tr></table></figure>
+<p>单一参数的匿名函数应用，可以返回平方值：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004201336873.png" alt="image-20201004201336873"></p>
+<p>含2个参数的匿名函数应用，可以返回参数的积：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004201451152.png" alt="image-20201004201451152"></p>
+<h4 id="匿名函数使用与filter"><a href="#匿名函数使用与filter" class="headerlink" title="匿名函数使用与filter( )"></a>匿名函数使用与filter( )</h4><p>匿名函数一般是用在不需要函数名称的场合，例如，一些高阶函数(higher-orderfunction)的参数可能是函数，这时就很适合使用匿名函数，同时让程序变得更简洁。有一个内置函数filter( )，它的语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filter(function,iterable)</span><br></pre></td></tr></table></figure>
+<p>函数将依次对iterable(可以重复执行，例如，字符串string、列表list或元组tuple)的元素(item)放入function(item)内，然后将function( )函数执行结果是True的元素(item)组成新的筛选对象(filter object)返回。</p>
+<h4 id="匿名函数使用与map"><a href="#匿名函数使用与map" class="headerlink" title="匿名函数使用与map( )"></a>匿名函数使用与map( )</h4><p>内置函数map( )，它的语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map(function,interable)</span><br></pre></td></tr></table></figure>
+<p>函数将依次对iterable(可以重复执行，例如，字符串string、列表list或元组tuple)的元素(item)放入function(item)内，然后将function( )函数执行结果组成新的筛选对象(filter object)返回。</p>
+<h2 id="类-面向对象程序"><a href="#类-面向对象程序" class="headerlink" title="类-面向对象程序"></a>类-面向对象程序</h2><p>Python其实是一种面向对象的编程(Object Oriented Programming)，在Python中其实所有的数据类型皆是对象，Python也允许程序设计师自创数据类型，这种自创的数据类型就是类。</p>
+<p>设计程序时可以将世间万物分组归类，然后使用类(class)定义你的分类。</p>
+<h4 id="类的定义及使用"><a href="#类的定义及使用" class="headerlink" title="类的定义及使用"></a>类的定义及使用</h4><p>类的语法定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class classname():    #类名称第一个字母必须大写</span><br><span class="line">  statement1</span><br><span class="line">  ......</span><br></pre></td></tr></table></figure>
+<p>如对银行的类定义：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004202307701.png" alt="image-20201004202307701"></p>
+<p>Banks是类名称，在这个类中定义了一个属性(attribute)title与一个方法(method)motto。</p>
+<p>在类内定义方法(method)的方式与定义函数的方式相同，但是不可以称之为函数(function)，必须称之为方法(method)，在程序设计时我们可以随时调用函数，但是只有属于该类的对象(object)才可调用相关的方法。</p>
+<h4 id="操作类的属性与方法"><a href="#操作类的属性与方法" class="headerlink" title="操作类的属性与方法"></a>操作类的属性与方法</h4><p>操作类的属性与方法首先需定义该类的对象(object)变量，使用下列方式操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">object.类的属性</span><br><span class="line">object.类的方法()</span><br></pre></td></tr></table></figure>
+<h4 id="类的构造函数"><a href="#类的构造函数" class="headerlink" title="类的构造函数"></a>类的构造函数</h4><p>建立类很重要的一个工作是初始化整个类，所谓的初始化类是在类内建立一个初始化方法(method)，这是一个特殊方法，当在程序内定义这个类的对象时将自动执行这个方法。初始化方法有一个固定名称是“<strong>init</strong>( )”，写法是init左右皆是2个底线字符，init其实是initialization的缩写，通常又将这类初始化的方法称构造函数(constructor)。</p>
+<p>如设定初始化方法，同时存第一笔开户的钱100元入银行，然后列出存款金额。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004202809117.png" alt="image-20201004202809117"></p>
+<h4 id="类的访问权限-封装"><a href="#类的访问权限-封装" class="headerlink" title="类的访问权限-封装"></a>类的访问权限-封装</h4><p>类内的属性可以让外部引用的称公有(public)属性，而可以让外部引用的方法称公有方法。Python也提供一个私有属性与方法的观念，这个观念的主要精神是类外无法直接更改类内的私有属性，类外也无法直接调用私有方法，这个观念又称封装(encapsulation)。</p>
+<p>Python对于类内的属性增加了私有属性(private attribute)的观念，应用方式是定义时在属性名称前面增加__(2个底线)，定义为私有属性后，类外的程序就无法引用了。</p>
+<p>封装前：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203310489.png" alt="image-20201004203310489"></p>
+<p>封装后：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203350625.png" alt="image-20201004203350625"></p>
+<p>类有私有的属性，那么也有私有方法(private method)，它的观念与私有属性类似，类外的程序无法调用。至于定义方式与私有属性相同，只要在方法前面加上__(2个底线)符号即可。</p>
+<h4 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h4><p>在面向对象程序设计中类是可以继承的，其中被继承的类称父类(parent class)或基类(base class)，继承的类称子类(child class)或衍生类(derived class)。类继承的最大优点是许多父类的公有方法或属性，在子类中不用重新设计，可以直接引用。</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203553583.png" alt="image-20201004203553583"></p>
+<p>在程序设计时，基类(base class)必须在衍生类(derived class)前面，整个程序代码结构如下：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203633339.png" alt="image-20201004203633339"></p>
+<p>衍生类继承了基类的公有属性与方法，同时也可以有自己的属性与方法。</p>
+<p>如Banks类建立一个分行Shilin_Banks，这个衍生类没有任何数据，直接引用基类的公有函数，执行银行的存款作业：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004203745811.png" alt="image-20201004203745811"></p>
+<p>如何取得基类的私有属性？</p>
+<p>基于保护原因，类外是无法直接取得类内的私有属性，即使是它的衍生类也无法直接读取，如果真要取得可以使用return方式，传回私有属性内容。</p>
+<p>如衍生类对象取得基类的银行名称title的属性：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004204206862.png" alt="image-20201004204206862"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004204230275.png" alt="image-20201004204230275"></p>
+<h4 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h4><p>在面向对象的程序设计中，也常会发生一个类继承多个类的应用，此时子类也同时继承了多个类的方法。在这个时候，当多个父类拥有相同名称的方法时，应该先执行哪一个父类的方法。在程序中可用下列语法代表继承多个类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class 类名称(父类1，父类2.....，父类n)</span><br><span class="line">      类内容</span><br></pre></td></tr></table></figure>
+<h4 id="type与instance"><a href="#type与instance" class="headerlink" title="type与instance"></a>type与instance</h4><p>可以使用type( )函数得到某一对象变量的类。</p>
+<p>isinstance( )函数可以传回对象的类是否属于某一类，它包含2个参数，它的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isinstance(对象，类)   #可传回True或False</span><br></pre></td></tr></table></figure>
+<p>如果对象的类是属于第2个参数类或属于第2个参数的子类，则传回True，否则传回False。</p>
+<h4 id="特殊属性-文档字符串doc"><a href="#特殊属性-文档字符串doc" class="headerlink" title="特殊属性-文档字符串doc"></a>特殊属性-文档字符串<em>doc</em></h4><p>若是遇到<strong>xx</strong>类的字符串就要特别留意了，这些大多数是特殊属性或方法。</p>
+<p>文档字符串的英文原意是文档字符串(docstring)，Python鼓励程序设计师在设计函数或类时，尽量为函数或类增加文档的批注，未来可以使用<strong>doc</strong>特殊属性列出此文档批注。</p>
+<p>如将文档批注应用在函数：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004205537211.png" alt="image-20201004205537211"></p>
+<h4 id="特殊属性-name属性"><a href="#特殊属性-name属性" class="headerlink" title="特殊属性-name属性"></a>特殊属性-name属性</h4><p>在网络上看别人写的程序，一定会经常在程序末端看到下列叙述：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004205636412.png" alt="image-20201004205636412"></p>
+<p>如果上述程序是自己执行，那么<strong>name</strong>就一定是<strong>main</strong>。如果被import到另一个程序，则<strong>name</strong>是本身的文件名。</p>
+<p>总结就是<strong>name</strong>可以判别这个程序是自己执行或是被其他程序import导入当成模块使用。</p>
+<h4 id="类的特殊方法–str–方法"><a href="#类的特殊方法–str–方法" class="headerlink" title="类的特殊方法–str–方法"></a>类的特殊方法–str–方法</h4><p>类的特殊方法，可以协助返回易读取的字符串。</p>
+<p>如在定义<strong>str</strong>( )方法下，列出类的对象：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004210015409.png" alt="image-20201004210015409"></p>
+<p>执行结果：</p>
+<p><img src="/2020/10/05/Python-%E5%9F%BA%E7%A1%805/image-20201004210111832.png" alt="image-20201004210111832"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/02/Python-%E5%9F%BA%E7%A1%804/" rel="next" title="Python-基础4">
+                <i class="fa fa-chevron-left"></i> Python-基础4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/05/Python-%E6%A8%A1%E5%9D%97/" rel="prev" title="Python-模块">
+                Python-模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mys3t</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的定义"><span class="nav-number">1.0.1.</span> <span class="nav-text">函数的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的参数设计"><span class="nav-number">1.0.2.</span> <span class="nav-text">函数的参数设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数返回none"><span class="nav-number">1.0.3.</span> <span class="nav-text">函数返回none</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数返回数值"><span class="nav-number">1.0.4.</span> <span class="nav-text">函数返回数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数返回字典数据"><span class="nav-number">1.0.5.</span> <span class="nav-text">函数返回字典数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用函数时参数是列表"><span class="nav-number">1.0.6.</span> <span class="nav-text">调用函数时参数是列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传递任意数量的参数"><span class="nav-number">1.0.7.</span> <span class="nav-text">传递任意数量的参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#递归式函数设计recursive"><span class="nav-number">1.0.8.</span> <span class="nav-text">递归式函数设计recursive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量与全局变量"><span class="nav-number">1.0.9.</span> <span class="nav-text">局部变量与全局变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序设计需要注意"><span class="nav-number">1.0.10.</span> <span class="nav-text">程序设计需要注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lambda函数"><span class="nav-number">1.0.11.</span> <span class="nav-text">lambda函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名函数使用与filter"><span class="nav-number">1.0.12.</span> <span class="nav-text">匿名函数使用与filter( )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#匿名函数使用与map"><span class="nav-number">1.0.13.</span> <span class="nav-text">匿名函数使用与map( )</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类-面向对象程序"><span class="nav-number">2.</span> <span class="nav-text">类-面向对象程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类的定义及使用"><span class="nav-number">2.0.1.</span> <span class="nav-text">类的定义及使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作类的属性与方法"><span class="nav-number">2.0.2.</span> <span class="nav-text">操作类的属性与方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的构造函数"><span class="nav-number">2.0.3.</span> <span class="nav-text">类的构造函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的访问权限-封装"><span class="nav-number">2.0.4.</span> <span class="nav-text">类的访问权限-封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的继承"><span class="nav-number">2.0.5.</span> <span class="nav-text">类的继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多重继承"><span class="nav-number">2.0.6.</span> <span class="nav-text">多重继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type与instance"><span class="nav-number">2.0.7.</span> <span class="nav-text">type与instance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊属性-文档字符串doc"><span class="nav-number">2.0.8.</span> <span class="nav-text">特殊属性-文档字符串doc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊属性-name属性"><span class="nav-number">2.0.9.</span> <span class="nav-text">特殊属性-name属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的特殊方法–str–方法"><span class="nav-number">2.0.10.</span> <span class="nav-text">类的特殊方法–str–方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mys3t</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
