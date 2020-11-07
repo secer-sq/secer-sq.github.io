@@ -896,7 +896,9 @@
 <h4 id="Ubuntu安装vmware-tool"><a href="#Ubuntu安装vmware-tool" class="headerlink" title="Ubuntu安装vmware tool"></a>Ubuntu安装vmware tool</h4><p>虚拟机点击安装vmware tool，在桌面上会自动出现CD标志，进入进入其中，会发现无法对VM***.tar.gz进行操作，显示只读。</p>
 <p>解决方法</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.拖动VM***.tar.gz至桌面，tar zxvf VM***.tar.gz即可</span><br><span class="line">2.进入解压后的文件夹，执行</span><br><span class="line">chmod +x vmware-install.pl</span><br><span class="line">sudo .&#x2F;vmware-install.pl</span><br><span class="line">3.选择yes，一路回车，提示yes输入yes即可，最后reboot</span><br></pre></td></tr></table></figure>
-<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><h4 id="VMware激活"><a href="#VMware激活" class="headerlink" title="VMware激活"></a>VMware激活</h4><p>VMware Workstation Pro 15 激活密钥许可证</p>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><h4 id="VMware激活"><a href="#VMware激活" class="headerlink" title="VMware激活"></a>VMware激活</h4><p>VMware Workstation Pro 16 激活密钥许可证</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ZF3R0-FHED2-M80TY-8QYGC-NPKYF</span><br><span class="line">YF390-0HF8P-M81RQ-2DXQE-M2UT6</span><br><span class="line">ZF71R-DMX85-08DQY-8YMNC-PPHV8</span><br></pre></td></tr></table></figure>
+<p>VMware Workstation Pro 15 激活密钥许可证</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">UY758-0RXEQ-M81WP-8ZM7Z-Y3HDA</span><br><span class="line">VF750-4MX5Q-488DQ-9WZE9-ZY2D6</span><br><span class="line">UU54R-FVD91-488PP-7NNGC-ZFAX6</span><br><span class="line">YC74H-FGF92-081VZ-R5QNG-P6RY4</span><br><span class="line">YC34H-6WWDK-085MQ-JYPNX-NZRA2</span><br><span class="line">ZC10K-8EF57-084QZ-VXYXE-ZF2XF</span><br><span class="line">UF71K-2TW5J-M88QZ-8WMNT-WKUY4</span><br><span class="line">AZ7MK-44Y1J-H819Z-WMYNC-N7ATF</span><br><span class="line">CU702-DRD1M-H89GP-JFW5E-YL8X6</span><br><span class="line">YY5EA-00XDJ-480RP-35QQV-XY8F6</span><br><span class="line">VA510-23F57-M85PY-7FN7C-MCRG0</span><br><span class="line">VC1J8-0TX11-M84WP-2WNGX-PQKD8</span><br><span class="line">AA7EU-FUE97-4896Q-3WYZC-WYKY0</span><br><span class="line">ZY7EU-2JG01-H8EDZ-9NYNX-ZVHW0</span><br><span class="line">AZ312-2FE41-M81LP-R6WEZ-NA2Z4</span><br><span class="line">AU71H-0VE44-M81DZ-77Y5C-QG0G4</span><br><span class="line">ZA7HK-AWFE2-M80AY-KDNZG-XQ2X8</span><br><span class="line">CA58K-DDF13-H88PY-VWN7V-XKHW2</span><br><span class="line">GV10H-A4E02-H84VY-JXYEV-NAATD</span><br><span class="line">VA71K-83Y55-H88NP-JWZEG-YYK92</span><br><span class="line">FY3JH-6XGEN-088HZ-95WET-QCKVD</span><br><span class="line">VG5HH-D6E04-0889Y-QXZET-QGUC8</span><br><span class="line">CY55A-F6G80-H85HQ-WNN5X-W38W4</span><br><span class="line">AC11H-4HZ05-08EDQ-APQGX-YCUC8</span><br><span class="line">ZG780-8EZ9M-M89LY-M5PEG-W2AZ8</span><br><span class="line">ZF3NU-D6XEJ-48E7Q-27YNC-PC8ED</span><br><span class="line">AV5M0-F4W8M-088PZ-36ZNV-NFHE2</span><br><span class="line">AU15R-A0Z4N-M88HY-HQYNX-QYKD6</span><br><span class="line">VY110-4RD50-H886P-5FMN9-WPUUD</span><br><span class="line">GF302-4HW44-H88DQ-WZXNV-Q3R94</span><br><span class="line">UA752-0KF9J-0811Y-MQNEX-ZUAGF</span><br></pre></td></tr></table></figure>
 <p>VMware Workstation Pro 14 激活密钥许可证</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AC5XK-0ZD4H-088HP-9NQZV-ZG2R4</span><br><span class="line">FF590-2DX83-M81LZ-XDM7E-MKUT4</span><br><span class="line">CG54H-D8D0H-H8DHY-C6X7X-N2KG6</span><br><span class="line">ZC3WK-AFXEK-488JP-A7MQX-XL8YF</span><br><span class="line">AA702-81D8N-0817Y-75PQT-Q70A4</span><br><span class="line">YC592-8VF55-M81AZ-FWW5T-WVRV0</span><br><span class="line">FC78K-FKED6-H88LZ-0QPEE-QP8X6</span><br><span class="line">UV1H2-AKWD2-H8EJZ-GGMEE-PCATD</span><br><span class="line">AC310-0VG0P-M88CQ-YWY5Z-QPRG0</span><br><span class="line">FF31K-AHZD1-H8ETZ-8WWEZ-WUUVA</span><br><span class="line">CV7T2-6WY5Q-48EWP-ZXY7X-QGUWD</span><br></pre></td></tr></table></figure>
@@ -3652,6 +3654,85 @@
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kali</title>
+    <url>/2020/11/07/Kali/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<p><img src="/2020/11/07/Kali/image-20201107203728503.png" alt="image-20201107203728503"></p>
+<h1 id="KALI"><a href="#KALI" class="headerlink" title="KALI"></a>KALI</h1><h2 id="kali-基础配置"><a href="#kali-基础配置" class="headerlink" title="kali 基础配置"></a>kali 基础配置</h2><h4 id="安装kali2"><a href="#安装kali2" class="headerlink" title="安装kali2"></a>安装kali2</h4><p>1、创建虚拟机，选择Linux，版本Debian 10.x 64位</p>
+<p><img src="/2020/11/07/Kali/image-20201107204858821.png" alt="image-20201107204858821"></p>
+<p>2、填写虚拟机名称和存储位置</p>
+<p><img src="/2020/11/07/Kali/image-20201107205102795.png" alt="image-20201107205102795"></p>
+<p>3、选择磁盘存储大小，大小自定义即可，磁盘拆分选默认</p>
+<p><img src="/2020/11/07/Kali/image-20201107205338416.png" alt="image-20201107205338416"></p>
+<p>4、点击虚拟机配置，CD/DVD选择kali ISO镜像，内存给到2-4G，处理器2核</p>
+<p><img src="/2020/11/07/Kali/image-20201107205725956.png" alt="image-20201107205725956"></p>
+<p>5、选择第一项图形化安装</p>
+<p><img src="/2020/11/07/Kali/image-20201107205903463.png" alt="image-20201107205903463"></p>
+<p>6、语言选择简体中文，地区中国，键盘选择汉语</p>
+<p><img src="/2020/11/07/Kali/image-20201107210131814.png" alt="image-20201107210131814"></p>
+<p><img src="/2020/11/07/Kali/image-20201107210247968.png" alt="image-20201107210247968"></p>
+<p><img src="/2020/11/07/Kali/image-20201107210339175.png" alt="image-20201107210339175"></p>
+<p>点击继续安装</p>
+<p><img src="/2020/11/07/Kali/image-20201107210423204.png" alt="image-20201107210423204"></p>
+<p>7、网络选择现在不进行网络配置，主机名默认即可</p>
+<p><img src="/2020/11/07/Kali/image-20201107210650538.png" alt="image-20201107210650538"></p>
+<p><img src="/2020/11/07/Kali/image-20201107210742392.png" alt="image-20201107210742392"></p>
+<p>8、用户名、密码自定义即可</p>
+<p><img src="/2020/11/07/Kali/image-20201107210831042.png" alt="image-20201107210831042"></p>
+<p>9、磁盘配置选择使用整个磁盘</p>
+<p><img src="/2020/11/07/Kali/image-20201107210946397.png" alt="image-20201107210946397"></p>
+<p>默认即可，一路继续</p>
+<p><img src="/2020/11/07/Kali/image-20201107211033272.png" alt="image-20201107211033272"></p>
+<p><img src="/2020/11/07/Kali/image-20201107211114006.png" alt="image-20201107211114006"></p>
+<p>磁盘分区改动写入选择是，点击继续</p>
+<p><img src="/2020/11/07/Kali/image-20201107211219660.png" alt="image-20201107211219660"></p>
+<p>10、安装软件及桌面选择，按下图即可，点击继续</p>
+<p><img src="/2020/11/07/Kali/image-20201107211409062.png" alt="image-20201107211409062"></p>
+<p>引导启动选择是</p>
+<p><img src="/2020/11/07/Kali/image-20201107211639672.png" alt="image-20201107211639672"></p>
+<p><img src="/2020/11/07/Kali/image-20201107211730406.png" alt="image-20201107211730406"></p>
+<p>安装完成重启即可。</p>
+<h4 id="安装VM-tools"><a href="#安装VM-tools" class="headerlink" title="安装VM tools"></a>安装VM tools</h4><p>普通用户切换至root</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line">输入普通用户密码即可</span><br><span class="line">whoami</span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+<p>安装VM tools软件包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install open-vm-tools-desktop fuse</span><br></pre></td></tr></table></figure>
+<p>重启</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">init 6</span><br></pre></td></tr></table></figure>
+<h4 id="安装更新"><a href="#安装更新" class="headerlink" title="安装更新"></a>安装更新</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get update   #更新软件源中的所有软件列表</span><br><span class="line"></span><br><span class="line">apt-get upgrade  #更新软件</span><br><span class="line"></span><br><span class="line">apt-get dist-upgrade  #更新系统版本</span><br><span class="line"></span><br><span class="line">apt-get clean</span><br></pre></td></tr></table></figure>
+<h4 id="用户切换"><a href="#用户切换" class="headerlink" title="用户切换"></a>用户切换</h4><p>普通用户切换root</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line"></span><br><span class="line">test@kali:~&#x2F;桌面$ whoami</span><br><span class="line">test</span><br><span class="line">test@kali:~&#x2F;桌面$ sudo su</span><br><span class="line">[sudo] test 的密码：</span><br><span class="line">root@kali:&#x2F;home&#x2F;test&#x2F;桌面# whoami</span><br><span class="line">root</span><br><span class="line">root@kali:&#x2F;home&#x2F;test&#x2F;桌面#</span><br></pre></td></tr></table></figure>
+<p>root用户切回普通用户</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exit</span><br><span class="line"></span><br><span class="line">root@kali:&#x2F;home&#x2F;test&#x2F;桌面# exit</span><br><span class="line">exit</span><br><span class="line">test@kali:~&#x2F;桌面$</span><br></pre></td></tr></table></figure>
+<h4 id="不锁屏"><a href="#不锁屏" class="headerlink" title="不锁屏"></a>不锁屏</h4><p>设置Kali Linux永不锁屏：</p>
+<p>点击设置，打开电源管理器，显示选项全部设置为从不即可</p>
+<p><img src="/2020/11/07/Kali/image-20201107213831929.png" alt="image-20201107213831929"></p>
+<p><img src="/2020/11/07/Kali/image-20201107214030910.png" alt="image-20201107214030910"></p>
+<h4 id="修复乱码"><a href="#修复乱码" class="headerlink" title="修复乱码"></a>修复乱码</h4><p>有时会遇到kali乱码的情况，如图所示：</p>
+<p><img src="/2020/11/07/Kali/image-20201107214343498.png" alt="image-20201107214343498"></p>
+<p>修复方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install fonts-wqy-microhei fonts-wqy-zenhei</span><br><span class="line"></span><br><span class="line">reboot  #重启</span><br></pre></td></tr></table></figure>
+<h4 id="安装第三方工具"><a href="#安装第三方工具" class="headerlink" title="安装第三方工具"></a>安装第三方工具</h4><p>以安装Nessus为例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dpkg -i [软件包名称]</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/07/Kali/image-20201107214922672.png" alt="image-20201107214922672"></p>
+<h4 id="更换背景图片"><a href="#更换背景图片" class="headerlink" title="更换背景图片"></a>更换背景图片</h4><p>kali默认Xface背景存放位置为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;share&#x2F;backgrounds&#x2F;xfce&#x2F;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/07/Kali/image-20201107215155823.png" alt="image-20201107215155823"></p>
+<p>undercover桌面存放背景位置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;usr&#x2F;share&#x2F;kali-undercover&#x2F;backgrounds&#x2F;</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/07/Kali/image-20201107215510328.png" alt="image-20201107215510328"></p>
+<p>点击设置，打开桌面设置项，点击背景，选择喜欢的背景图片即可。</p>
+<p><img src="/2020/11/07/Kali/image-20201107215750704.png" alt="image-20201107215750704"></p>
+<p><img src="/2020/11/07/Kali/image-20201107215827366.png" alt="image-20201107215827366"></p>
+]]></content>
+      <categories>
+        <category>kali</category>
+      </categories>
+      <tags>
+        <tag>kali</tag>
       </tags>
   </entry>
 </search>
