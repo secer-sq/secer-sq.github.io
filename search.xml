@@ -4348,4 +4348,27 @@
         <tag>横贯八方</tag>
       </tags>
   </entry>
+  <entry>
+    <title>PS学习笔记</title>
+    <url>/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201130223142511.png" alt="image-20201130223142511"></p>
+<h2 id="初识PS"><a href="#初识PS" class="headerlink" title="初识PS"></a>初识PS</h2><p>所用版本为PS 2020。</p>
+<p>PS为位图，放大会失真。</p>
+<h4 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h4><p>使用旧版界面打开：ctrl+k 打开配置界面，勾选使用旧版”新建文档”界面。</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201130223701413.png" alt="image-20201130223701413"></p>
+<p>ctrl+N打开新建界面</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201130223818707.png" alt="image-20201130223818707"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">名称可以自定义</span><br><span class="line"></span><br><span class="line">记住像素、厘米、毫米三个就可以，常用的是像素</span><br><span class="line"></span><br><span class="line">只要不打印，单位都用像素。</span><br><span class="line"></span><br><span class="line">打印的单位用厘米或者毫米。</span><br><span class="line"></span><br><span class="line">屏幕显示的分辨率必须使用72，打印的分辨率用300</span><br><span class="line"></span><br><span class="line">像素&#x2F;英寸：每英寸里包含多少像素</span><br><span class="line"></span><br><span class="line">屏幕显示--光的三原色是红绿蓝，颜料--美术的三原色是红绿蓝</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201130225013446.png" alt="image-20201130225013446"></p>
+<p>不打印必须采用RGB颜色，打印采用CMYK颜色。位数必须8位。</p>
+]]></content>
+      <categories>
+        <category>横贯八方</category>
+      </categories>
+      <tags>
+        <tag>横贯八方</tag>
+      </tags>
+  </entry>
 </search>
