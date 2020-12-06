@@ -4366,11 +4366,46 @@
 <h4 id="格式区别"><a href="#格式区别" class="headerlink" title="格式区别"></a>格式区别</h4><p>.jpg格式无图层，无法修改。</p>
 <p>.png格式有图层，支持透明模式，即显示图片背面的格子。</p>
 <p>.psd格式是PS的源文件格式，可进行任意修改。</p>
-<h4 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h4><p>快捷键是ctrl+shift+alt+s</p>
+<p>存储素材时一般用png格式。</p>
+<h4 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h4><p>存储为web格式的快捷键是ctrl+shift+alt+s</p>
 <p>保存指定大小，比如不准超过多少大小的场景：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.必须选择JPEG格式，其他格式没有</span><br><span class="line"></span><br><span class="line">2.点击优化菜单，选择对应大小，软件会自动选择对应大小的品质</span><br></pre></td></tr></table></figure>
 <p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206120529376.png" alt="image-20201206120529376"></p>
 <p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206120747010.png" alt="image-20201206120747010"></p>
+<h4 id="移动工具"><a href="#移动工具" class="headerlink" title="移动工具"></a>移动工具</h4><p>跨文档移动：</p>
+<p>单击左键不松手，拖着往想拖往的文档名字拖即可。</p>
+<p>往PS里拖一堆图片：</p>
+<p>按住CTRL键选择需要的文件。或者选择第一个，按shift不松手，选择最后一个，之间的都会被选中。</p>
+<p>delete键可以把不要的图片都删除掉。</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206224543054.png" alt="image-20201206224543054"></p>
+<p>显示变换控件不要勾选。</p>
+<p><strong>对齐与分布：</strong></p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206225013789.png" alt="image-20201206225013789"></p>
+<p>用CTRL键选择多个图层才能使用对齐与分布。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CTRL+R 显示标尺</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206225136493.png" alt="image-20201206225136493"></p>
+<p>清除参考线：视图菜单下清除参考线</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206225625327.png" alt="image-20201206225625327"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CTRL+T找到物体的中点。</span><br></pre></td></tr></table></figure>
+<h4 id="画布缩放"><a href="#画布缩放" class="headerlink" title="画布缩放"></a>画布缩放</h4><p>1、用放大镜工具，按alt可临时切换放大放小</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206230912381.png" alt="image-20201206230912381"></p>
+<p>2、用放大镜工具，按住放大镜不松手，左拖缩小，右拖放大。</p>
+<p>3、CTRL+K找到首选项，点击工具，勾选用鼠标滚轮缩放。</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206231125847.png" alt="image-20201206231125847"></p>
+<p>4、CTRL+加号/减号键进行缩放画布。</p>
+<p>这四种方式优选第3/4种。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CTRL+1：可立即变成100%缩放。</span><br><span class="line">CTRL+0：适应屏幕显示。</span><br></pre></td></tr></table></figure>
+<h4 id="抓手工具"><a href="#抓手工具" class="headerlink" title="抓手工具"></a>抓手工具</h4><p>比如我在不缩小画布的情况下，可利用抓手工具查看图片其他部分。</p>
+<p>抓手工具快捷键：按住空格键不松手。</p>
+<p>或者选择抓手工具</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206231709712.png" alt="image-20201206231709712"></p>
+<p>按完CTRL+0是不能用抓手工具了，因为画布不足够大。</p>
+<h4 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h4><p>快捷键是<code>CTRL+Z</code>，还原上一步操作，只能用一次。</p>
+<p>撤销多步操作的快捷键：<code>CTRL+ALT+Z</code></p>
+<p>还原多步操作：<code>CTRL+SHIFT+Z</code></p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206232207032.png" alt="image-20201206232207032"></p>
+<h4 id="自由变换"><a href="#自由变换" class="headerlink" title="自由变换"></a>自由变换</h4><p>快捷键：<code>CTRL+T</code>，拖四个角可进行随意大小变换，回车确定。</p>
+<p>等比例变换：ctrl+T后按住shift键就可以进行不变形缩放。</p>
 ]]></content>
       <categories>
         <category>横贯八方</category>
