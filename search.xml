@@ -4406,6 +4406,41 @@
 <p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201206232207032.png" alt="image-20201206232207032"></p>
 <h4 id="自由变换"><a href="#自由变换" class="headerlink" title="自由变换"></a>自由变换</h4><p>快捷键：<code>CTRL+T</code>，拖四个角可进行随意大小变换，回车确定。</p>
 <p>等比例变换：ctrl+T后按住shift键就可以进行不变形缩放。</p>
+<p>中心点变化：ctrl+T后按住ALT键就可以进行不变形缩放。</p>
+<p>同心等比放大：ctrl+T后按住shift+ALT键就可以进行不变形缩放。</p>
+<p>CTRL+K：调出首选项</p>
+<p>左右中括号键调整图层顺序。</p>
+<h4 id="图层"><a href="#图层" class="headerlink" title="图层"></a>图层</h4><p>图层快捷键：F7</p>
+<p>图层的性质就是上方图层会遮挡下方图层。</p>
+<p>可以用拖拽的方式或者CTRL+SHIFT+{}来调整图层顺序。</p>
+<p>背景图后面的锁是用来锁住背景的，可以点掉图层锁，就可以移动背景。</p>
+<p>可以点掉图层前面的小眼睛，可以打开或者关闭图层显示。</p>
+<p>不透明度和填充不同，用的多的是不透明度。</p>
+<p>不透明度不保留效果，填充保留效果。</p>
+<h2 id="抠图"><a href="#抠图" class="headerlink" title="抠图"></a>抠图</h2><h4 id="选区"><a href="#选区" class="headerlink" title="选区"></a>选区</h4><p>选区要区分正选和反选。选区又叫蚂蚁线</p>
+<p>反选快捷键：CTRL+SHIFT+i</p>
+<p>全选画布快捷键：CTRL+A</p>
+<p>正选与反选的区别：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">正选：蚂蚁线和蚂蚁线之间的东西是选中的区域。</span><br><span class="line"></span><br><span class="line">反选：蚂蚁线与全选之间的区域。</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201208221137440.png" alt="image-20201208221137440"></p>
+<h4 id="套索工具"><a href="#套索工具" class="headerlink" title="套索工具"></a>套索工具</h4><p>套索工具快捷键：L</p>
+<p>取消选区快捷键：CTRL+D</p>
+<p>shift+L切换套索工具子菜单。</p>
+<p>选中套索工具，单击左键不松手，开始画，使套索首尾相连就会形成一个选区。</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201208221455612.png" alt="image-20201208221455612"></p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201208231411636.png" alt="image-20201208231411636"></p>
+<p>套索一般不用来抠图，而是利用套索工具的布尔运算进行修整，弥补抠图抠的不好的情况。</p>
+<p>布尔运算：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">按住shift画圈进行加</span><br><span class="line">按住alt画圈进行减</span><br></pre></td></tr></table></figure>
+<h4 id="魔棒工具组"><a href="#魔棒工具组" class="headerlink" title="魔棒工具组"></a>魔棒工具组</h4><p>快捷键是W，shift+w可切换子菜单。</p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201208232107522.png" alt="image-20201208232107522"></p>
+<p>快速选择工具：</p>
+<p>左右中括号变换所有画笔类工具的大小。画选区类工具都有布尔运算。</p>
+<p>根据四周的颜色来进行判断的。</p>
+<p><strong>魔棒工具</strong></p>
+<p><img src="/2020/11/30/PS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20201208233042859.png" alt="image-20201208233042859"></p>
+<p>容差：控制颜色相似的范围，容差越大，选中的范围越大。容差值一般5-35之间，不可以太大。</p>
+<p>选择了红色，这个区域所有的红色以及与红色相近的颜色，都会给选出来。</p>
 ]]></content>
       <categories>
         <category>横贯八方</category>
