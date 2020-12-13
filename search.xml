@@ -4551,4 +4551,29 @@
         <tag>横贯八方</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CTF-bugku-writeup</title>
+    <url>/2020/12/13/CTF-bugku-writeup/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213225801063.png" alt="image-20201213225801063"></p>
+<h1 id="WEB题"><a href="#WEB题" class="headerlink" title="WEB题"></a>WEB题</h1><h3 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h3><p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213230103040.png" alt="image-20201213230103040"></p>
+<p>直接F12查看网页源代码</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213230154641.png" alt="image-20201213230154641"></p>
+<p>得到flag<code>flag{c4e79bb775eb6321f7700d9c8f5115a0}</code>，提交即可。</p>
+<h3 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h3><p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213230613304.png" alt="image-20201213230613304"></p>
+<p>发现只能输入一个数字，可以直接打开开发者工具改一下</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213230750140.png" alt="image-20201213230750140"></p>
+<p>得到flag后提交即可。</p>
+<h3 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h3><p>发现是很简单的代码  提交的数据（get方式）只要what=flag就行</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213231039493.png" alt="image-20201213231039493"></p>
+<p>浏览器URL提交内容：<code>xxx.xxx.xxx.xxx:8002/what=flag</code>，就可以得到flag。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
 </search>
