@@ -93,8 +93,20 @@
 <meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201213230613304.png">
 <meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201213230750140.png">
 <meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201213231039493.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214195142334.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214213936688.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214214208908.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214214812435.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214220113657.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214221410118.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214221814967.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214224158838.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214224806291.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214224922217.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214225215907.png">
+<meta property="og:image" content="http://yoursite.com/2020/12/13/CTF-bugku-writeup/image-20201214225359172.png">
 <meta property="article:published_time" content="2020-12-13T14:56:26.000Z">
-<meta property="article:modified_time" content="2020-12-13T15:18:02.890Z">
+<meta property="article:modified_time" content="2020-12-14T14:54:10.056Z">
 <meta property="article:author" content="mys3t">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -398,6 +410,36 @@
 <h3 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h3><p>发现是很简单的代码  提交的数据（get方式）只要what=flag就行</p>
 <p><img src="/2020/12/13/CTF-bugku-writeup/image-20201213231039493.png" alt="image-20201213231039493"></p>
 <p>浏览器URL提交内容：<code>xxx.xxx.xxx.xxx:8002/?what=flag</code>，就可以得到flag。</p>
+<h3 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h3><p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214195142334.png" alt="image-20201214195142334"></p>
+<p>打开hackbar，采用post方式提交what=flag</p>
+<h3 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h3><p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214213936688.png" alt="image-20201214213936688"></p>
+<p>读一下代码，判断输入的num  如果不是数字的话且为1的话输出flag。让num为1但是不是数字，比如num= 1e0.123</p>
+<p>payload: <code>http://114.67.246.176:13406/?num=%201e0.123</code></p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214214208908.png" alt="image-20201214214208908"></p>
+<p>得出flag提交即可。</p>
+<h3 id="web6"><a href="#web6" class="headerlink" title="web6"></a>web6</h3><p>是一个弹窗，点击禁止，然后一片空白，F12看下源代码</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214214812435.png" alt="image-20201214214812435"></p>
+<p>将底部一串粘贴到burp的Decoder解码模块，点击智能解码，即可得出flag。</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214220113657.png" alt="image-20201214220113657"></p>
+<h3 id="web7"><a href="#web7" class="headerlink" title="web7"></a>web7</h3><p>你必须让它停下，浏览器开启代理，使用burp进行单步步进。</p>
+<p>发送到repeter重放器，然后不停的GO即可。</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214221410118.png" alt="image-20201214221410118"></p>
+<h3 id="web8"><a href="#web8" class="headerlink" title="web8"></a>web8</h3><p>文件包含</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214221814967.png" alt="image-20201214221814967"></p>
+<p>分析出hello这个post/get获取的参数值很重要（$_REQUEST对get，post都能接受）</p>
+<p>payload：<code>http://114.67.246.176:14729/?hello=file(%27flag.php%27)</code></p>
+<p>得出flag：</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214224158838.png" alt="image-20201214224158838"></p>
+<h3 id="web9"><a href="#web9" class="headerlink" title="web9"></a>web9</h3><p>变量</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214224806291.png" alt="image-20201214224806291"></p>
+<p>提示flag在变量里。正则匹配只能大小写字符和数字。 eval(“var_dump($$args);”);打印出变量的值。 利用超全局数组GLOBALS 可以打印出所有变量。</p>
+<p>payload：<code>114.67.246.176:17470/?args=GLOBALS</code></p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214224922217.png" alt="image-20201214224922217"></p>
+<p>得出flag，提交即可。</p>
+<h3 id="web10"><a href="#web10" class="headerlink" title="web10"></a>web10</h3><p>头等舱</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214225215907.png" alt="image-20201214225215907"></p>
+<p>发给burp的repeter，点击GO，得出flag</p>
+<p><img src="/2020/12/13/CTF-bugku-writeup/image-20201214225359172.png" alt="image-20201214225359172"></p>
 
       
     </div>
@@ -575,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB题"><span class="nav-number">1.</span> <span class="nav-text">WEB题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web1"><span class="nav-number">1.0.1.</span> <span class="nav-text">web1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web2"><span class="nav-number">1.0.2.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web3"><span class="nav-number">1.0.3.</span> <span class="nav-text">web3</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB题"><span class="nav-number">1.</span> <span class="nav-text">WEB题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web1"><span class="nav-number">1.0.1.</span> <span class="nav-text">web1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web2"><span class="nav-number">1.0.2.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web3"><span class="nav-number">1.0.3.</span> <span class="nav-text">web3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web4"><span class="nav-number">1.0.4.</span> <span class="nav-text">web4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web5"><span class="nav-number">1.0.5.</span> <span class="nav-text">web5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web6"><span class="nav-number">1.0.6.</span> <span class="nav-text">web6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web7"><span class="nav-number">1.0.7.</span> <span class="nav-text">web7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web8"><span class="nav-number">1.0.8.</span> <span class="nav-text">web8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web9"><span class="nav-number">1.0.9.</span> <span class="nav-text">web9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web10"><span class="nav-number">1.0.10.</span> <span class="nav-text">web10</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
