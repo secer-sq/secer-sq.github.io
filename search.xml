@@ -4667,11 +4667,20 @@
 <p>5G的SBA架构改变了网络的基本单元，将以往的网元设备按照功能进行拆解组合形成一个个功能模块，使组网更加灵活、简单。但5G继承了移动网的主要特性，包括用户认证、移动性管理、业务连接、策略控制、路由转发等。</p>
 <p>4G核心网与5G核心网的功能映射示意图：</p>
 <p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201215221937040.png" alt="image-20201215221937040"></p>
+<p>5G核心网功能名词</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AMF:移动性管理功能</span><br><span class="line">SMF：会话管理功能</span><br><span class="line">AUSF：鉴权</span><br><span class="line">UDM：用户签约</span><br><span class="line">PCF：策略控制</span><br><span class="line">UPF:用户面</span><br></pre></td></tr></table></figure>
 <h2 id="5G-NSA组网架构"><a href="#5G-NSA组网架构" class="headerlink" title="5G NSA组网架构"></a>5G NSA组网架构</h2><p>3GPP给出了两种5G网络模式，即NSA和SA。NSA和SA在网络组织和部署等方面差异非常大。</p>
 <p>NSA是指使用现有的4G基础设施（主要是无线网及核心网）进行5G网络的部署。运营商可根据业务需求确定4G升级基站和区域，不一定需要完整的5G连片覆盖。基于NSA架构（主要是Option3系列）的5G基站载波仅承载用户数据，其控制信令仍通过4G网络传输，系统级的业务控制仍然由4G网络负责。这种方式相当于是在现有的4G网络上增加新型载波来进行容量扩容。由此可知，NSA是把5G无线技术依附于4G网络来开展业务的，5G应用场景依然是目前4G的移动互联网场景。</p>
 <p>NSA组网需要用到双连接技术。“双连接（ Dual Connectivity,DC）”技术是指在同一个核心网的两个无线基站共同覆盖区内，终端同时接入这两个无线基站，并将其中的一个基站作为主基站（Master Node,MN），将另一个基站作为辅基站（Secondary Node,SN）。主基站是用户终端接入网络的锚点（即接入的统一入口），提供用户终端接入网络的信令控制（例如，移动性管理、位置信息上报等），并负责用户面数据的转发；辅基 站在主基站的控制下仅为用户终端提供额外的用户面数据转发资源。</p>
 <p>为方便不同的运营商的建网选择，3GPP对NSA组网提出了多种可选的模式，比较典型的有选项3（Option3）、选项4（Option4）、选项7（Option7）三种模式。</p>
 <h4 id="Option3"><a href="#Option3" class="headerlink" title="Option3"></a>Option3</h4><p>采用Option3模式的5G NSA的核心网为4G的演进分组核心网（Evolved PacketCore network,EPC），无线网由4G基站和5G基站组成。在某个4G/5G基站共同覆盖的区域，用户双连接到4G和5G基站，其中，主基站为4G基站，辅基站为5G基站，控制面仍然锚定在4G基站。5G NSA终端先接入4G基站，与统一的核心网EPC通信完成鉴权后，再通过双连接技术添加5G基站，从而将终端接入5G基站。</p>
+<p>Option3的具体实现又可细分为Option3、Option3a和Option3x 三种选项。这三种选项对5G基站控制信息的处理方式是一致的，即其控制信息（或信令消息）由4G基站统一接入EPC,5G基站用户面数据根据不同选项采用不同的转发方式。</p>
+<p>1、Option3</p>
+<p>用户的承载有两个，即“EPC—4G基站—5G基站—用户”和“EPC—4G基站—用户”两个承载通道，由于5G空口的带宽较大，可优先选择“EPC—4G基站—5G基站—用户”通道转发用户面数据。</p>
+<p>2、Option3a</p>
+<p>4G基站建立“EPC—4G基站—用户”的承载，5G基站建立“EPC—5G基站—用户”承载通道。</p>
+<p>3、Option3x</p>
+<p>5G基站建立“EPC—5G基站—用户”承载通道和可选的“EPC—5G基站—4G基站—用户”承载通道，一般优先选择“EPC—5G基站—用户”承载通道转发用户面数据。</p>
 <p>Option3系列组网示意图：</p>
 <p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201215222505355.png" alt="image-20201215222505355"></p>
 <h4 id="Option7"><a href="#Option7" class="headerlink" title="Option7"></a>Option7</h4><p>Option7相对于Option3，运营商先部署5G核心网，统一的核心网为5GC，无线网仍然由4G基站和5G基站组成。与Option3一样，Option7的主基站为4G基站，辅基站为5G基站。</p>
@@ -4748,7 +4757,162 @@
 <p>NF将其支持的服务列表注册到NRF。NF可以按需更新、按需注册NRF中的服务。</p>
 <p>服务消费者通过NRF查询所需NF及服务列表。NRF只返回授权的NF及服务列表。</p>
 <p>服务提供者或者NRF可判断一个服务消费者是否有权调用或发现一个服务。</p>
-<h4 id="基于服务化的5G网络功能架构"><a href="#基于服务化的5G网络功能架构" class="headerlink" title="基于服务化的5G网络功能架构"></a>基于服务化的5G网络功能架构</h4>]]></content>
+<h4 id="基于服务化的5G网络功能架构"><a href="#基于服务化的5G网络功能架构" class="headerlink" title="基于服务化的5G网络功能架构"></a>基于服务化的5G网络功能架构</h4><p>1、5G系统架构</p>
+<p>5G系统架构为服务化架构。5G网络功能由不同的NF提供， NF间相互独立，可以按需部署。</p>
+<p>5G系统控制面所有的NF之间交互采用服务化接口（Service BasedInterface,SBI）, NF的同一种服务可以通过NF的服务化接口被其他多种NF调用。NF间通过调用彼此的服务化接口实现相应的功能。</p>
+<p><strong>基于服务接口的5G系统网络架构如图：</strong></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216202745207.png" alt="image-20201216202745207"></p>
+<p>虚线方框内的（图中上面部分）是控制面的NF，点划线框内（图中下面部分）的是用户面的网络功能。其中，基于服务的接口在控制平面内使用Nnssf、Nnef等，它们属于网络功能之间的接口。</p>
+<p><strong>基于参考点的5G系统架构如图:</strong></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216203030270.png" alt="image-20201216203030270"></p>
+<p>参考点是指5G系统服务化架构映射到传统架构后，对应传统网元之间点对点的接口，用来代表NF之间交互的参考模型，并不是真实的接口。控制面NF之间连接体现的是基于服务化接口的参考点。</p>
+<p>服务化接口与点对点架构下的接口不同。服务化的接口类似一个总线结构，每个网络功能通过服务化接口接入总线。服务化接口间采用相同的协议栈，传输层统一采用下一代超文本传输协议（Hyper Text Transport Protocol 2.0,HTTP2.0），应用层携带不同的服务消息。因为底层的传输方式相同，所以服务化接口可以在同一总线上进行传输，支撑业务灵活上线。因此在服务化方式下，网络部署非常便利，每个网络功能的接入或退出，只需要按照规范进行操作即可，不用考虑对其他网络功能的影响。</p>
+<p>2、服务化接口和参考点</p>
+<p>5G系统架构包含以下服务化接口：</p>
+<ul>
+<li>Namf:AMF展示的基于服务的接口。</li>
+<li>Nsmf:SMF展示的基于服务的接口。</li>
+<li>Nnef:NEF展示的基于服务的接口。</li>
+<li>Npcf:PCF展示的基于服务的接口。</li>
+<li>Nudm:UDM展示的基于服务的接口。</li>
+<li>Naf:AF展示的基于服务的接口。</li>
+<li>Nnrf:NRF展示的基于服务的接口。</li>
+<li>Nnssf:NSSF展示的基于服务的接口。</li>
+<li>Nausf:AUSF展示的基于服务的接口。</li>
+<li>Nudr:UDR展示的基于服务的接口。</li>
+<li>Nudsf:UDSF展示的基于服务的接口。</li>
+<li>N5g-eir:5G-EIR展示的基于服务的接口。</li>
+<li>Nnwdaf:NWDAF展示的基于服务的接口。</li>
+</ul>
+<p>5G系统架构包含以下参考点：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">N1:UE和AMF间的参考点。</span><br><span class="line"></span><br><span class="line">N2:（R）AN和AMF间的参考点。</span><br><span class="line"></span><br><span class="line">N3:（R）AN和UPF间的参考点</span><br><span class="line"></span><br><span class="line">N4:SMF和UPF间的参考点。</span><br><span class="line"></span><br><span class="line">N6:UPF和数据网络（DN）间的参考点。</span><br><span class="line"></span><br><span class="line">N9：两个UPF之间的参考点。</span><br><span class="line"></span><br><span class="line">N5:PCF和AF间的参考点。</span><br><span class="line"></span><br><span class="line">N7:SMF和PCF间的参考点。</span><br><span class="line"></span><br><span class="line">N8:UDM和AMF间的参考点。</span><br><span class="line"></span><br><span class="line">N10:UDM和SMF间的参考点。</span><br><span class="line"></span><br><span class="line">N11:AMF和SMF间的参考点。</span><br><span class="line"></span><br><span class="line">N12:AMF和AUSF间的参考点。</span><br><span class="line"></span><br><span class="line">N13:UDM和AUSF间的参考点。</span><br><span class="line"></span><br><span class="line">N14：两个AMF之间的参考点。</span><br><span class="line"></span><br><span class="line">N15:PCF和AMF间的参考点。</span><br><span class="line"></span><br><span class="line">N16：两个SMF之间的参考点。</span><br><span class="line"></span><br><span class="line">N17:AMF和5G-EIR间的参考点。</span><br><span class="line"></span><br><span class="line">N18:NF和UDSF间的参考点。</span><br><span class="line"></span><br><span class="line">N22:AMF和NSSF间的参考点。</span><br><span class="line"></span><br><span class="line">N23:PCF和NWDAF间的参考点。</span><br><span class="line"></span><br><span class="line">N24:PCF和PCF间的参考点。</span><br><span class="line"></span><br><span class="line">N27:NRF和NRF间的参考点。</span><br><span class="line"></span><br><span class="line">N31:NSSF和NSSF间的参考点。</span><br><span class="line"></span><br><span class="line">N32:SEPP和SEPP间的参考点。</span><br><span class="line"></span><br><span class="line">N33:NEF和AF间的参考点。</span><br><span class="line"></span><br><span class="line">N34:NSSF和NWDAF间的参考点。</span><br><span class="line"></span><br><span class="line">N35:UDM和UDR间的参考点。</span><br><span class="line"></span><br><span class="line">N36:PCF和UDR间的参考点。</span><br><span class="line"></span><br><span class="line">N37:NEF和UDR间的参考点。</span><br><span class="line"></span><br><span class="line">N40:SMF和CHF间的参考点。</span><br><span class="line"></span><br><span class="line">N50:AMF和CBCF间的参考点。</span><br></pre></td></tr></table></figure>
+<p>服务化接口与参考点模式对应关系：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216205837574.png" alt="image-20201216205837574"></p>
+<h4 id="网络功能服务"><a href="#网络功能服务" class="headerlink" title="网络功能服务"></a>网络功能服务</h4><p>网络功能服务是NF（NF服务生产者）通过基于服务的接口向其他授权的NF（NF服务消费者）公开的一种能力。</p>
+<p>NF 服务消费者和NF 服务的生产者之间交互遵循以下两种机制。</p>
+<p>1、“请求—响应”</p>
+<p>控制平面NF-B（NF服务生产者）由另一个控制平面NF-A（NF服务消费者）请求提供某个NF服务。该服务可以是执行一个动作或提供信息或两者都有。NF-B根据NF-A的请求提供NF服务。为了满足NF-A的请求，NF-B可以反过来作为服务消费者请求来自其他NF的NF服务。在“请求—响应”机制中，通信在两个NF（消费者和生产者）之间是“一对一”的，并且在一定时间范围内完成响应。</p>
+<p>“请求—响应”流程如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216210427961.png" alt="image-20201216210427961"></p>
+<p>2、“订阅—通知”</p>
+<p>控制平面NF-A（NF服务消费者）订阅由另一控制平面NF-B（NF服务生产者）提供的NF服务。多个控制平面NF可以订阅相同的控制平面NF服务。 NF-B将此NF服务的结果通知给订阅此服务的NF。另外，订阅请求可以包括用于定期更新的通知请求或通过某些事件触发的通知。</p>
+<p>“订阅—通知”流程：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216210608319.png" alt="image-20201216210608319"></p>
+<p>5G核心网控制面所有NF之间的交互采用服务化接口，每个NF可以提供不同的服务，每个服务中定义了多个服务操作（Service Operation,SO）,NF的同一种SO可以通过服务化接口被其他多个NF调用，实现特定功能。</p>
+<p>NF服务发现功能使核心网各 NF能够发现提供预期服务的NF实例。</p>
+<p>各NF的服务化功能概要：</p>
+<ul>
+<li>AMF服务</li>
+</ul>
+<p>AMF的服务化接口包括4个服务，可实现接入控制等功能。服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216213927689.png" alt="image-20201216213927689"></p>
+<p>AMF的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216213957600.png" alt="image-20201216213957600"></p>
+<ul>
+<li>SMF服务</li>
+</ul>
+<p>SMF的服务化接口包括两个服务，可实现会话管理等功能。SMF服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216214127537.png" alt="image-20201216214127537"></p>
+<p>SMF的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216214155506.png" alt="image-20201216214155506"></p>
+<ul>
+<li>PCF服务</li>
+</ul>
+<p>PCF的服务化接口包括4个服务，可实现策略管理等功能。PCF服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216214837756.png" alt="image-20201216214837756"></p>
+<p>PCF的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216214914644.png" alt="image-20201216214914644"></p>
+<ul>
+<li>UDM服务</li>
+</ul>
+<p>UDM的服务化接口包括5个服务，可实现用户鉴权、事件开放等功能。UDM服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215134863.png" alt="image-20201216215134863"></p>
+<p>UDM的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215159772.png" alt="image-20201216215159772"></p>
+<ul>
+<li>NRF服务</li>
+</ul>
+<p>NRF的服务化接口包括3个服务，可实现NF管理、NF发现、访问令牌功能。NRF服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215250227.png" alt="image-20201216215250227"></p>
+<p>NRF的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215318190.png" alt="image-20201216215318190"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215331702.png" alt="image-20201216215331702"></p>
+<ul>
+<li>AUSF服务</li>
+</ul>
+<p>AUSF的服务化接口包括两个服务，可实现UE认证和漫游保护功能。AUSF服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215418122.png" alt="image-20201216215418122"></p>
+<p>AUSF的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215443010.png" alt="image-20201216215443010"></p>
+<ul>
+<li>NEF服务</li>
+</ul>
+<p>NEF的服务化接口包括7个服务，可实现分组流描述（Packet FlowDescription,PFD）管理、触发支持、QoS提供、事件开放、参数提供、话务影响、计费更新功能。NEF服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215522988.png" alt="image-20201216215522988"></p>
+<p>NEF的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215550924.png" alt="image-20201216215550924"></p>
+<ul>
+<li>SMSF</li>
+</ul>
+<p>SMSF的服务化接口包括1个服务，可实现短信服务功能。SMSF服务架构如图:</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215631223.png" alt="image-20201216215631223"></p>
+<p>SMSF的具体服务描述:</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215700097.png" alt="image-20201216215700097"></p>
+<ul>
+<li>UDR服务</li>
+</ul>
+<p>UDR的服务化接口包括1个服务，可实现数据管理功能。UDR服务架构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215742659.png" alt="image-20201216215742659"></p>
+<p>UDR的具体服务描述：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216215812954.png" alt="image-20201216215812954"></p>
+<h2 id="网络切片"><a href="#网络切片" class="headerlink" title="网络切片"></a>网络切片</h2><h4 id="网络切片的概念"><a href="#网络切片的概念" class="headerlink" title="网络切片的概念"></a>网络切片的概念</h4><p>网络切片的概念被广泛接受，经常超出5G范畴，4G专用核心网（Dedicate CoreNetwork,DCN）也被叫作4G切片。</p>
+<p>3GPP从R13开始，专用核心网和扩展专用核心网已经被引入。专用核心网/扩展专用核心网定义了为支持特定功能用户的专用核心网的增强架构，专用核心网可以提供特定功能或隔离特定的用户设备和用户。专用核心网的增强架构是路由终端到带有服务PLMN的独立核心网和保持终端到带有服务PLMN的独立核心网，一个独立核心网可能部署支持一个或多个无线技术。</p>
+<p>由于专用核心网/扩展专用核心网的设计都是基于4G EPC核心网架构的，不能完全满足运营商灵活的业务需求。</p>
+<p>网络切片就是要在现有网络的硬件条件下，切出不同的功能网络应用于不同的场景，而且这些应用于不同场景的网络切片是相互独立的。</p>
+<p>3GPP给网络切片的定义是A logical network that provides specifi c networkcapabilities and network characteristics，具体指的是，网络可以基于运营商与客户签订的业务服务协议（Service Level Agreement,SLA），为不同垂直行业、不同客户、不同业务提供相互隔离、功能可定制的网络服务，是一个提供特定网络能力和特性的端到端的逻辑网络。</p>
+<p>网络切片是基于客户需求，提供可设计、可部署、可维护的逻辑网络。不同的客户业务场景的需求，对应不同的网络切片实例。网络切片实例包括网络、存储、计算等资源，以及资源相互间的协同连接。网络功能通过虚拟网元和网络管理系统实现。网络中的终端、接入网、传输网、核心网、业务网等都可称为网元。网络切片的需求提出者、使用者可称为租户。</p>
+<p>5G网络的软件化、自动化、模块化等功能，确保了网络切片功能的实现。网络切片管理功能结构如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216220616055.png" alt="image-20201216220616055"></p>
+<p>网络切片是用来为用户提供服务的，根据业务的需求对业务进行资源调配管理，形成客户需要的产品和服务，每个网络切片对应的就是一个网络切片实例。客户可以自己管理或者通过租户进行管理，满足自己的服务需要。</p>
+<p>网络切片技术可以让运营商在一个硬件基础设施中切分出多个虚拟的端到端网络，每个网络切片在设备、接入网、传输网以及核心网方面实现逻辑隔离，适配各种类型服务并满足用户的不同需求。</p>
+<p>对每个网络切片而言，网络带宽、服务质量、安全性等专属资源都可以得到充分保证。由于网络切片之间的相互隔离，所以一个网络切片的错误或故障不会影响到其他网络切片的通信。</p>
+<p>端到端网络切片示意如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216220807490.png" alt="image-20201216220807490"></p>
+<p>网络切片是包含接入网和核心网的逻辑网络，通过切片的形式提供相关的通信业务和网络能力。网络切片可以按照提供形式的不同特性来划分。如果网络切片可以提供相同的特性，则可以通过切片来实现用户分组。</p>
+<p>用户可以通过一个无线网络同时接入多个核心网切片，在这种场景下，所有这些切片由一个公共的AMF来管理。每个PDU会话只能由一个网络切片管理。</p>
+<p>在SBA架构下，5G网络切片有多种形态，具备按需编排的能力。5G网络切片形态1——独立切片如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216221054017.png" alt="image-20201216221054017"></p>
+<p>5G网络切片形态2 ——多切片共享NF如图：</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216221125671.png" alt="image-20201216221125671"></p>
+<h4 id="网络切片使用的技术"><a href="#网络切片使用的技术" class="headerlink" title="网络切片使用的技术"></a>网络切片使用的技术</h4><p>终端通过提供网络切片选择辅助信息（Network Slice Selection AssistanceInformation, NSSAI）来选择和组建切片相关的实例，每一条网络切片选择辅助信息对应一个网络切片，包含业务的类型及业务类型的差异因子。</p>
+<p>1、网络切片标识</p>
+<p>网络切片由S-NSSAI标识，这个标识包括以下两个方面的信息。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">切片服务类型（Slice Service Type,SST）</span><br><span class="line"></span><br><span class="line">切片区分符号（Slice Differentiator,SD）,SD可选，是对SST的补充，以区分相同SST的多个不同切片。</span><br></pre></td></tr></table></figure>
+<p>切片类型定义:</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216221409576.png" alt="image-20201216221409576"></p>
+<p>一个S-NSSAI 用于识别一个网络切片，一个UE最多同时支持8个切片。</p>
+<p>3GPP定义了3个基础的切片服务类型（SST），支持跨PLMN服务。</p>
+<p>2、网络切片的层次关系</p>
+<p>网络切片的层次分为：网络功能（NF）、切片实例（NSI）和切片子网实例（NSSI）。</p>
+<p>一个NSI可以支持某个/多个通信业务，包含多个NF。</p>
+<p>一个NSSI可以包含多个NF。</p>
+<p>一个NSI可以由多个NSSI组成。</p>
+<p>一个NSSI可以被多个NSI共用。</p>
+<p>切片组合关系如图：</p>
+<p>NSI X = NSSI A + NSSI C,NSI Y = NSSI A + NSSIB</p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216221623120.png" alt="image-20201216221623120"></p>
+<h4 id="网络切片安全"><a href="#网络切片安全" class="headerlink" title="网络切片安全"></a>网络切片安全</h4><p>安全威胁：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">切片间攻击：DoS 攻击导致一个切片可能消耗其他切片的资源。</span><br><span class="line"></span><br><span class="line">对UE的攻击：UE接入多个切片时数据的机密性和完整性易遭攻击。</span><br><span class="line"></span><br><span class="line">对切片的未授权接入：导致不合法UE接入网络获得服务。</span><br><span class="line"></span><br><span class="line">对管理面的攻击：非法获取对切片的管理功能。</span><br><span class="line"></span><br><span class="line">对第三方API的攻击：通过受损的API操纵切片。</span><br><span class="line"></span><br><span class="line">虚拟化产生的威胁：虚拟化网络功能（Virtualize Network Function,VNF）间缺少认证，拒绝服务攻击</span><br></pre></td></tr></table></figure>
+<p>安全需求：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">安全需求</span><br><span class="line"></span><br><span class="line">网络切片的资源不应相互影响。</span><br><span class="line"></span><br><span class="line">单个UE通过多个网络切片访问服务时，减少网络切片间数据泄露的风险。</span><br><span class="line"></span><br><span class="line">将潜在的网络攻击限制在单个网络切片上。</span><br><span class="line"></span><br><span class="line">认证和授权。</span><br><span class="line"></span><br><span class="line">防止未经授权的UE获得服务。</span><br><span class="line"></span><br><span class="line">对UE接入进行认证并保证各种接入链路的通信安全。</span><br><span class="line"></span><br><span class="line">对切片管理面和API的访问必须获得授权。</span><br><span class="line"></span><br><span class="line">安全服务定制。</span><br><span class="line"></span><br><span class="line">单个切片中要有特定服务的安全保证需求。</span><br><span class="line"></span><br><span class="line">不同切片应该支持不同的安全机制。</span><br></pre></td></tr></table></figure>
+<h1 id="5G主要业务场景"><a href="#5G主要业务场景" class="headerlink" title="5G主要业务场景"></a>5G主要业务场景</h1><h1 id="5G核心网规划"><a href="#5G核心网规划" class="headerlink" title="5G核心网规划"></a>5G核心网规划</h1><h1 id="缩略语"><a href="#缩略语" class="headerlink" title="缩略语"></a>缩略语</h1><p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216222752408.png" alt="image-20201216222752408" style="zoom:200%;"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216222847526.png" alt="image-20201216222847526" style="zoom:200%;"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216222954863.png" alt="image-20201216222954863" style="zoom:200%;"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216223034887.png" alt="image-20201216223034887" style="zoom: 200%;"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216223101036.png" alt="image-20201216223101036" style="zoom: 200%;"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216223156300.png" alt="image-20201216223156300" style="zoom: 200%;"></p>
+<p><img src="/2020/12/15/5G%E6%A0%B8%E5%BF%83%E7%BD%91%E8%A7%84%E5%88%92%E4%B8%8E%E5%BA%94%E7%94%A8/image-20201216223224466.png" alt="image-20201216223224466" style="zoom:150%;"></p>
+]]></content>
       <categories>
         <category>读书笔记</category>
       </categories>
