@@ -896,6 +896,10 @@
 <h4 id="Ubuntu安装vmware-tool"><a href="#Ubuntu安装vmware-tool" class="headerlink" title="Ubuntu安装vmware tool"></a>Ubuntu安装vmware tool</h4><p>虚拟机点击安装vmware tool，在桌面上会自动出现CD标志，进入进入其中，会发现无法对VM***.tar.gz进行操作，显示只读。</p>
 <p>解决方法</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.拖动VM***.tar.gz至桌面，tar zxvf VM***.tar.gz即可</span><br><span class="line">2.进入解压后的文件夹，执行</span><br><span class="line">chmod +x vmware-install.pl</span><br><span class="line">sudo .&#x2F;vmware-install.pl</span><br><span class="line">3.选择yes，一路回车，提示yes输入yes即可，最后reboot</span><br></pre></td></tr></table></figure>
+<h4 id="Linux下批量递归获取文件MD5值"><a href="#Linux下批量递归获取文件MD5值" class="headerlink" title="Linux下批量递归获取文件MD5值"></a>Linux下批量递归获取文件MD5值</h4><p>获取整个目录的MD5值到一个文件中：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">find .&#x2F; -type f -print0 | xargs -0 md5sum &gt; .&#x2F;my.md5</span><br></pre></td></tr></table></figure>
+<p>校验MD5值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">md5sum -c my.md5</span><br></pre></td></tr></table></figure>
 <h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><h4 id="VMware激活"><a href="#VMware激活" class="headerlink" title="VMware激活"></a>VMware激活</h4><p>VMware Workstation Pro 16 激活密钥许可证</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ZF3R0-FHED2-M80TY-8QYGC-NPKYF</span><br><span class="line">YF390-0HF8P-M81RQ-2DXQE-M2UT6</span><br><span class="line">ZF71R-DMX85-08DQY-8YMNC-PPHV8</span><br></pre></td></tr></table></figure>
 <p>VMware Workstation Pro 15 激活密钥许可证</p>
