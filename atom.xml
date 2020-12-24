@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-21T15:24:26.398Z</updated>
+  <updated>2020-12-24T15:11:22.684Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>内网安全攻防</title>
+    <link href="http://yoursite.com/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/"/>
+    <id>http://yoursite.com/2020/12/24/内网安全攻防/</id>
+    <published>2020-12-24T12:36:20.000Z</published>
+    <updated>2020-12-24T15:11:22.684Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="内网基础"><a href="#内网基础" class="headerlink" title="内网基础"></a>内网基础</h1><h2 id="内网基础知识"><a href="#内网基础知识" class="headerlink" title="内网基础知识"></a>内网基础知识</h2><p>内网又称局域网，是指在某一区域内由多台计算机互联而成的计算机组。</p><h4 id="工作组"><a href="#工作组" class="headerlink" title="工作组"></a>工作组</h4><p>将不同的计算机按功能分成不同的组，即工作组。</p><p><img src="/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20201224204924127.png" alt="image-20201224204924127"></p><h4 id="域"><a href="#域" class="headerlink" title="域"></a>域</h4><ul><li>域是一个有安全边界（一个域中的用户无法访问另一个域中的资源）的计算机集合，可以把域简单理解为升级版的工作组。域的安全管理控制更加严格，用户在域中拥有什么样的权限，取决于用户在域内的身份。</li></ul><ul><li>域控制器（DC）是域中一台类似管理服务器的计算机。域控制器负责所有连入的计算机和用户的验证工作。域内的计算机如果想相互访问，都要经过域控制器的审核。域控制器中存在由这个域的账户、密码、属于这个域的计算机等信息构成的数据库。</li><li>域控制器是整个域的通信枢纽，所有的权限身份验证都在域控制器上进行。域内所有用来验证身份的账号和密码散列值都保存在域控制器内。</li></ul><p>域中环境：</p><ul><li>单域</li></ul><p>一般小公司一个域足够使用。在一个域内，至少两台域服务器，一台作为DC，另一台作为备用DC。</p><ul><li>父域和子域</li></ul><p>出于管理需求，需要在网络中划分多个域。第一个域成为父域，各分部的域称为该域的子域。这样每个子域都可以单独管理自己的资源，页都有自己的安全策略。</p><ul><li>域树</li></ul><p>域树是多个域通过建立信任关系组成的集合。一个域管理员只能管理本域，不能访问或管理其他域。信任关系是连接不同域的桥梁。在一个域树中，父域可以包含多个子域。各子域之间用点号隔开，一个点号代表一个层次。放在域名最后的子域称为最高子域或一级域。子域只能使用父域名字作为其域名的后缀。</p><ul><li>域森林</li></ul><p>域森林是指多个域树通过建立信任关系组成的集合。通过域树之间的信任关系，可以管理和使用整个域森林内的资源。</p><ul><li>域名服务器</li></ul><p>域名服务器是指实现域名与其对应IP地址转换的服务器。实际上域内计算机是使用DNS来定位域控制器、服务器、网络服务的，所以域的名字就是DNS域的名字。DNS服务器通常和域控制器配置在一台服务器上。</p><h4 id="活动目录"><a href="#活动目录" class="headerlink" title="活动目录"></a>活动目录</h4><p>活动目录（AD）是指域环境中提供目录服务的组件。</p><p>目录用于存储有关网络对象的信息。如果将企业内网看作字典，内网资源就是字典的内容，活动目录就相当于字典的索引。也就是说活动目录存储的是网络中所有资源的快捷方式，用户可以通过快捷方式来定位资源。</p><p>活动目录的逻辑结构包括域、域树、域森林。域树内所有域共享一个活动目录，这个活动目录的数据分散存储在各个域内，且每个域内只存储该域内的数据。</p><p>活动目录提供以下功能：</p><ul><li>账号集中管理</li><li>软件集中管理</li><li>环境集中管理</li><li>增强安全性</li><li>更可靠，更短的宕机时间</li></ul><p>活动目录是微软提供的统一管理平台，ISA、Exchange、SMS等都依赖这个平台。</p><h4 id="域控和活动目录区别"><a href="#域控和活动目录区别" class="headerlink" title="域控和活动目录区别"></a>域控和活动目录区别</h4><p>要实现域环境，其实就是要安装AD。如果内网一台机器上安装了AD，它就变成了DC（用于存储活动目录数据库的计算机）。</p><h4 id="安全域的划分"><a href="#安全域的划分" class="headerlink" title="安全域的划分"></a>安全域的划分</h4><p>安全域划分的目的是将一组安全等级相同的计算机划入同一网段。</p><p>在一个用路由器连接的内网中，可以将网络划分为三个区域：安全级别最高的内网，安全级别中等的DMZ，安全级别最低的外网Internet。</p><ul><li>DMZ</li></ul><p>DMZ被称为隔离区，是为了解决安装防火墙后外部网络不能访问内部服务器的问题而设立的一个非安全系统与安全系统之间的缓冲区。</p><p>DMZ位于企业内部网络和外部网络之间。可以在DMZ中放置一些必须公开的服务器设施，如web服务器、论坛服务器、FTP服务器等。</p><p>DMZ是对外提供服务的区域，因此可以从外部访问。在网络边界上一般都会部署各种安全检测设备。</p><p>在配置一个拥有DMZ的网络时，通常需定义以下访问控制策略，以实现屏障作用：</p><ul><li>内网可以访问外网，防火墙需要执行NAT</li><li>内网可以访问DMZ</li><li>外网不能访问内网</li><li>外网可以访问DMZ，需要防火墙完成对外地址和服务器实际地址的转换</li><li>DMZ不能访问内网</li><li>DMZ不能访问外网</li></ul><p>内网又可以分为办公区和核心区。</p><ul><li>办公区</li></ul><p>办公区一般能够访问DMZ。如果运维人员也在办公区，那么部分主机也能访问核心数据区，有的还会使用堡垒机来统一管理用户的登录行为。</p><ul><li>核心区</li></ul><p>存储企业最重要的数据，通过日志记录、安全审计等安全措施进行保护。一般只有运维人员或者IT部门主管能直接访问核心区，内网渗透时，这些主机也是优先寻找对象。</p><h4 id="域中计算机分类"><a href="#域中计算机分类" class="headerlink" title="域中计算机分类"></a>域中计算机分类</h4><ul><li>域控制器</li></ul><p>域控制器用于管理所有网络的访问，包括登录服务器、访问共享目录和资源。域控制器中存储了域内所有的账户和策略信息，包括安全策略、用户身份验证信息和账户信息。</p><ul><li>成员服务器</li></ul><p>成员服务器是指安装了服务器操作系统并加入了域、但没有安装活动目录的计算机，其主要任务是提供网络资源。</p><ul><li>客户机</li></ul><p>域中的计算机可以是安装了其他操作系统的计算机，客户利用这些计算机和域中的账户就可以登录域。这些计算机被称为域中的客户机。</p><ul><li>独立服务器</li></ul><p>独立服务器和域没有关系。如果服务器不加入域，也不安装活动目录，就称为独立服务器。</p><h4 id="域内权限"><a href="#域内权限" class="headerlink" title="域内权限"></a>域内权限</h4><p>域本地组来自全林，作用于本域；全局组来自本域，作用于全林；通用组来自全林，作用于全林。</p><ul><li>域本地组</li></ul><p>多域用户访问同一个单域资源，可以从任何域添加用户账号、通用组和全局组。域本地组主要用于授予本域内资源的访问权限。</p><ul><li>全局组</li></ul><p>单域用户访问多域资源（必须是同一个域内的用户），只能在创建该全局组的域中添加用户和全局组。可以在域森林的任何域内指派权限。全局组可以嵌套在其他组。</p><ul><li>通用组</li></ul><p>通用组成员来自域森林中任何域的用户账号、全局组和其他通用组，可以在该域森林的任何域中指派权限，可以嵌套在其他组，非常适合在域森林内的跨域访问中使用。</p><h2 id="平台及工具"><a href="#平台及工具" class="headerlink" title="平台及工具"></a>平台及工具</h2><h4 id="kali-Linux平台工具"><a href="#kali-Linux平台工具" class="headerlink" title="kali Linux平台工具"></a>kali Linux平台工具</h4><ul><li>WCE</li></ul><p>Windows凭证管理器，常用于列出登录会话，以及添加、修改、列出和删除关联凭据（LM Hash、NTLM Hash、明文密码和Kerberos票据），支持Windows XP/Server2003/Vista/Windows7/Server 2008/Windows8。</p><ul><li>minikatz</li></ul><p>用于在内存中获取明文密码、*金票据和密钥等。</p><ul><li>Responder</li></ul><p>用于嗅探网络内所有的LLMNR包和获取各主机的信息，还提供了包括HTTP/HTTPS、SMB、SQLServer、FTP、IMAP、POP3等多种场景。</p><ul><li>Beff</li></ul><p>一款针对浏览器的渗透测试工具。可以通过XSS漏洞，利用Javascript代码对目标主机的浏览器进行测试。</p><ul><li>DSHashes</li></ul><p>从NTDXtract中提取用户易于理解的散列值。</p><ul><li>PowerSploit</li></ul><p>一款基于Powershell的后渗透框架，包括很多的Powershell脚本，主要用于渗透测试中的信息收集、权限提升、权限维持。</p><ul><li>Nishang</li></ul><p>一款针对Powershell的渗透工具，集成了框架、脚本和各种payload，被广泛应用于渗透测试的各个阶段。</p><ul><li>Empire</li></ul><p>一款内网渗透利器，其跨平台的特性类似于Metasploit，有丰富的模块和接口，用户可自行添加模块和功能。</p><ul><li>ps_encoder.py</li></ul><p>使用Base64编码封装的Powershell命令包，其目的是混肴和压缩代码。</p><ul><li>smbexec</li></ul><p>smbexec是一个使用Samba工具的快速PsExec类工具。</p><p>PsExec的执行原理：</p><p>先通过ipc$进行连接，再将psexesvc.exe释放到目标机器中。通过服务管理（SCManger）远程创建psexecsvc服务并启动服务。客户端连接负责执行命令，服务端负责启动相应的程序并回显数据。</p><p>Metasploit、impacket、PTH中的PsExec使用的都是这种原理。</p><p>PsExec会释放文件，特征明显，杀软会检测出来。使用时需安装服务，会留下日志。退出PsExec时偶尔出现服务不能删除的情况，因此需要开启admin$445端口共享。在进行攻击溯源时，可以日志信息来推测攻击过程。</p><p>PsExec的特点在于进行渗透测试时能直接提供目标主机的System权限。</p><ul><li>Veil</li></ul><p>用于免杀</p><ul><li>Metasploit</li></ul><p>提供有关已知安全漏洞的重要信息的安全框架。</p><ul><li>Cobalt Strike</li></ul><p>一款优秀的后渗透测试平台，功能强大，适合团队协作。主要用于内网渗透。</p><h4 id="Windows平台工具"><a href="#Windows平台工具" class="headerlink" title="Windows平台工具"></a>Windows平台工具</h4><ul><li>Nmap</li><li>Wireshark</li><li>PuTTY</li><li>sqlmap</li><li>Burp Suite</li><li>Hydra</li><li>Cain&amp;Abel</li><li>PowerSploit</li><li>Nishang</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://yoursite.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="内网渗透" scheme="http://yoursite.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>区块链安全入门知识</title>
@@ -431,28 +453,6 @@
     
     
       <category term="博客搭建" scheme="http://yoursite.com/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>同个网段和不同网段的ping</title>
-    <link href="http://yoursite.com/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/"/>
-    <id>http://yoursite.com/2020/11/02/同个网段和不同网段的ping/</id>
-    <published>2020-11-02T14:54:23.000Z</published>
-    <updated>2020-11-08T13:58:17.039Z</updated>
-    
-    <content type="html"><![CDATA[<hr><a id="more"></a><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201108215754542.png" alt="image-20201108215754542"></p><h1 id="同一网段和不同网段的ping"><a href="#同一网段和不同网段的ping" class="headerlink" title="同一网段和不同网段的ping"></a>同一网段和不同网段的ping</h1><p>这里讲ping的两情况：一种是同一网段内，一种是跨网段的ping。</p><h2 id="同一网段内"><a href="#同一网段内" class="headerlink" title="同一网段内"></a>同一网段内</h2><p>如图：</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102225812176.png" alt="image-20201102225812176"></p><p>首先，如果主机A，要去ping主机B，那么主机A，就要封装二层报文，它会先查自己的ARP缓存表（IP-MAC的映射），如果没有B的MAC地址，A就会向外发送一个ARP广播包。</p><p>其中ARP报文格式如下:</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230033695.png" alt="image-20201102230033695"></p><p>其中OP：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1：代表ARP请求</span><br><span class="line"></span><br><span class="line">2：ARP应答</span><br><span class="line"></span><br><span class="line">3：表示RARP请求 </span><br><span class="line"></span><br><span class="line">4：表示RARP应答</span><br></pre></td></tr></table></figure><p>首先，交换机收到这个报文后，它会学习到A的MAC和入端口号并保存在MAC地址表中（MAC-port映射）（或者更新A的MAC-port生存期），接着，它会向所有端口发送这个ARP广播包，其它主机收到后，发现不是在找自己，就纷纷丢弃了该报文，不去理会（路由器可以隔绝广播域，一般情况下会丢弃广播包，除非开了代理ARP功能）。主机B收到报文后，就立即响应，我的MAC地址是多少，并回复一个ARP响应报文格式给主机A。如图：</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230314390.png" alt="image-20201102230314390"></p><p>RARP的报文格式如下：</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230356473.png" alt="image-20201102230356473"></p><p>交换机收到ARP响应包之后，先学习B的MAC-port并记录在MAC地址表中（或者更新B的MAC-port的生存期），接着它根据目的MAC查找MAC地址表，发现这个目的MAC跟port有映射，所以直接把这个ARP响应包从该端口发出去给A了。</p><p>而主机A根据ARP响应包，学到了主机B的MAC地址，就把这个MAC地址封装到ICMP协议的二层报文中向主机B发送，报文格式如下： </p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230509174.png" alt="image-20201102230509174"></p><p>交换机这个时候已经知道目的MAC为B的数据包要从哪个端口发出去了，所以它会把ICMP包直接从该端口单播出去。</p><p>当主机B收到了这个报文后，发现是主机A 的ICPM回显请求，就按同样的格式，返回一个值给主机A，这样就完成了同一网段内的ping过程。</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230615799.png" alt="image-20201102230615799"></p><p>实际局域网内的ping，实际过程的发生不到1毫秒。</p><h2 id="不同网段内"><a href="#不同网段内" class="headerlink" title="不同网段内"></a>不同网段内</h2><p>如果主机A要ping主机C，那么主机A发现主机C的IP和自己不是同一网段，他就去找网关转发，但是他也不知道网关的MAC地址情况下呢？他就会向之前那个步骤一样先发送一个ARP广播，学到网关的MAC地址，再发封装ICMP报文给网关路由器.。ICMP报文格式如下（目的MAC是路由器的网卡地址，目的IP还是主机C的ip。这也进一步反应了<strong>链路层只管一跳，而网络层管host-to-host</strong>）：</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230755283.png" alt="image-20201102230755283"></p><p>当路由器收到主机A发过来的ICMP报文，发现其目的地址是本身MAC地址，根据目的的IP2.1.1.1，查路由表，发现2.1.1.1/24的路由表项，得到一个出端口，去掉原来的MAC头部，加上自己的MAC地址向主机C转发。(如果网关也没有主机C的MAC地址，还是要向前面一个步骤一样，ARP广播一下即可相互学到。路由器2端口能学到主机D的MAC地址，主机D也能学到路由器2端口的MAC地址。)报文格式如下（源MAC是路由器网卡地址，目的MAC是主机C的地址）：</p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102230936828.png" alt="image-20201102230936828"></p><p>最后，在主机C已学到路由器2端口MAC地址，路由器2端口转发给路由器1端口，路由1端口学到主机A的MAC地址的情况下，他们就不需要再做ARP解析，就将ICMP的回显请求回复过来。报文格式大致如下: </p><p><img src="/2020/11/02/%E5%90%8C%E4%B8%AA%E7%BD%91%E6%AE%B5%E5%92%8C%E4%B8%8D%E5%90%8C%E7%BD%91%E6%AE%B5%E7%9A%84ping/image-20201102231055128.png" alt="image-20201102231055128"></p><p>路由器收到ICMP响应后，修改ICMP包的目的MAC为00-50-56-C0-00-01,源MAC为00-50-56-C0-00-02，源IP和目的IP保持不变。</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>hxxps://blog.csdn.net/li1914309758/article/details/78725516</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-    
-    </summary>
-    
-      <category term="横贯八方" scheme="http://yoursite.com/categories/%E6%A8%AA%E8%B4%AF%E5%85%AB%E6%96%B9/"/>
-    
-    
-      <category term="横贯八方" scheme="http://yoursite.com/tags/%E6%A8%AA%E8%B4%AF%E5%85%AB%E6%96%B9/"/>
     
   </entry>
   
