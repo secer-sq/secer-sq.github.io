@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="故园遗剑">
 <meta property="og:image" content="http://yoursite.com/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20201224204924127.png">
 <meta property="article:published_time" content="2020-12-24T12:36:20.000Z">
-<meta property="article:modified_time" content="2020-12-24T15:11:22.684Z">
+<meta property="article:modified_time" content="2020-12-27T14:34:54.551Z">
 <meta property="article:author" content="mys3t">
 <meta property="article:tag" content="内网渗透">
 <meta name="twitter:card" content="summary">
@@ -548,6 +548,362 @@
 <li>PowerSploit</li>
 <li>Nishang</li>
 </ul>
+<h1 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h1><p>当进入内网后，首先要对当前所处的网络环境进行判断。包括：</p>
+<ul>
+<li>对当前机器角色的判断</li>
+<li>对当前机器所处网络环境的拓扑结构进行分析和判断</li>
+<li>对当前机器所处区域的判断</li>
+</ul>
+<h2 id="收集本机信息"><a href="#收集本机信息" class="headerlink" title="收集本机信息"></a>收集本机信息</h2><h4 id="网络配置信息"><a href="#网络配置信息" class="headerlink" title="网络配置信息"></a>网络配置信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig &#x2F;all</span><br></pre></td></tr></table></figure>
+<h4 id="操作系统-软件信息"><a href="#操作系统-软件信息" class="headerlink" title="操作系统/软件信息"></a>操作系统/软件信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">systeminfo | findstr &#x2F;B &#x2F;C:&quot;OS Name&quot; &#x2F;C:&quot;OS Version&quot;   &#x2F;&#x2F;英文版操作系统</span><br><span class="line">systeminfo | findstr &#x2F;B &#x2F;C:&quot;OS 名称&quot; &#x2F;C:&quot;OS 版本&quot;       &#x2F;&#x2F;中文版操作系统</span><br><span class="line"></span><br><span class="line">echo %PROCESSOR_ARCHITECTURE%  &#x2F;&#x2F;查看系统架构</span><br><span class="line"></span><br><span class="line">wmic product get name,version   &#x2F;&#x2F;wmic查看安装的软件版本、路径</span><br><span class="line">powershell &quot;Get-WmiObject -class Win32_Product | Select-Object -Property name,version&quot;  </span><br><span class="line">&#x2F;&#x2F;powershell查看安装的软件版本、路径</span><br></pre></td></tr></table></figure>
+<h4 id="查询本机服务信息"><a href="#查询本机服务信息" class="headerlink" title="查询本机服务信息"></a>查询本机服务信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic service list brief</span><br></pre></td></tr></table></figure>
+<h4 id="查询进程列表"><a href="#查询进程列表" class="headerlink" title="查询进程列表"></a>查询进程列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tasklist</span><br><span class="line">wmic process list brief</span><br></pre></td></tr></table></figure>
+<h4 id="查看启动程序信息"><a href="#查看启动程序信息" class="headerlink" title="查看启动程序信息"></a>查看启动程序信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wmic startup get command,caption</span><br></pre></td></tr></table></figure>
+<h4 id="查看计划任务"><a href="#查看计划任务" class="headerlink" title="查看计划任务"></a>查看计划任务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schtasks &#x2F;query &#x2F;fo LIST &#x2F;v</span><br></pre></td></tr></table></figure>
+<h4 id="查看开机时间"><a href="#查看开机时间" class="headerlink" title="查看开机时间"></a>查看开机时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net statistics workstation</span><br></pre></td></tr></table></figure>
+<h4 id="查询用户列表"><a href="#查询用户列表" class="headerlink" title="查询用户列表"></a>查询用户列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net user</span><br><span class="line">net localgroup administrators   &#x2F;&#x2F;获取本地管理员信息</span><br><span class="line">net user || qwinsta             &#x2F;&#x2F;查看当前在线用户</span><br></pre></td></tr></table></figure>
+<h4 id="列出连接会话"><a href="#列出连接会话" class="headerlink" title="列出连接会话"></a>列出连接会话</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net session</span><br></pre></td></tr></table></figure>
+<h4 id="查看端口列表"><a href="#查看端口列表" class="headerlink" title="查看端口列表"></a>查看端口列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
+<h4 id="查看补丁列表"><a href="#查看补丁列表" class="headerlink" title="查看补丁列表"></a>查看补丁列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systeminfo</span><br><span class="line"></span><br><span class="line">wmic qfe get Caption,Decription,HotFixID,InstalledOn</span><br></pre></td></tr></table></figure>
+<p>域内主机补丁通常时批量安装的，通过查看本机补丁列表，就可以找到未打补丁的漏洞。</p>
+<h4 id="查询本机共享列表"><a href="#查询本机共享列表" class="headerlink" title="查询本机共享列表"></a>查询本机共享列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">net share</span><br><span class="line"></span><br><span class="line">wmic share get name,path,status</span><br></pre></td></tr></table></figure>
+<h4 id="查询路由表-ARP缓存表"><a href="#查询路由表-ARP缓存表" class="headerlink" title="查询路由表/ARP缓存表"></a>查询路由表/ARP缓存表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route print</span><br><span class="line">arp -a</span><br></pre></td></tr></table></figure>
+<h4 id="查询防火墙相关配置"><a href="#查询防火墙相关配置" class="headerlink" title="查询防火墙相关配置"></a>查询防火墙相关配置</h4><p>关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netsh firewall set opmode disable   &#x2F;&#x2F;win server2003之前版本</span><br><span class="line">net advfirewall set allprofiles state off  &#x2F;&#x2F;win server2003之后版本</span><br></pre></td></tr></table></figure>
+<p>查看配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh firewall show config</span><br></pre></td></tr></table></figure>
+<p>修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">netsh firewall add allowedprogram c:\nc.exe &quot;allow nc&quot; enable</span><br><span class="line">&#x2F;&#x2F;win server2003之前版本，允许指定程序全部连接</span><br><span class="line"></span><br><span class="line">win server2003之后版本：</span><br><span class="line">netsh advfirewall firewall add rule name&#x3D;&quot;pass nc&quot; dir&#x3D;in action&#x3D;allow program&#x3D;&quot;c:\nc.exe&quot;  </span><br><span class="line">&#x2F;&#x2F;允许指定程序进入</span><br><span class="line"></span><br><span class="line">netsh advfirewall firewall add rule name&#x3D;&quot;Allow nc&quot; dir&#x3D;out action program&#x3D;c&quot;\nc.exe&quot; </span><br><span class="line">&#x2F;&#x2F;允许指定程序出</span><br><span class="line"></span><br><span class="line">netsh advfirewall firewall add rule name&#x3D;&quot;Remote Desktop&quot; protocol &#x3D;TCP dir&#x3D;in localport&#x3D;3389 action&#x3D;allow</span><br><span class="line">&#x2F;&#x2F;允许3389端口放行</span><br></pre></td></tr></table></figure>
+<p>自定义防火墙日志存储位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall set currentprofile logging filename &quot;c:\windows\temp\fw.log&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="查看代理配置"><a href="#查看代理配置" class="headerlink" title="查看代理配置"></a>查看代理配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reg query &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot;</span><br><span class="line">&#x2F;&#x2F;查看服务器127.0.0.1的1080端口代理配置情况</span><br></pre></td></tr></table></figure>
+<h4 id="查询开启远程连接服务"><a href="#查询开启远程连接服务" class="headerlink" title="查询开启远程连接服务"></a>查询开启远程连接服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">REG QUERY &quot;HEKY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp&quot; &#x2F;V PortNumber</span><br><span class="line">&#x2F;&#x2F;查看远程连接端口</span><br><span class="line"></span><br><span class="line">wmic path win32_terminalservicesetting where (__CLASS !&#x3D;&#39;&#39;) call setallowtsconnection 1</span><br><span class="line">&#x2F;&#x2F;win server2003开启3389端口</span><br></pre></td></tr></table></figure>
+<h4 id="WMIC"><a href="#WMIC" class="headerlink" title="WMIC"></a>WMIC</h4><p>WMIC（Windows管理工具命令行）是最有用的Windows命令行工具。在默认情况下，任何版本的windows XP的低权限用户不能访问WMIC，Windows7以上版本的低权限用户允许访问WMIC并执行相关查询操作。</p>
+<h2 id="查询当前权限"><a href="#查询当前权限" class="headerlink" title="查询当前权限"></a>查询当前权限</h2><h4 id="查看当前权限"><a href="#查看当前权限" class="headerlink" title="查看当前权限"></a>查看当前权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami</span><br></pre></td></tr></table></figure>
+<ul>
+<li>本地普通用户</li>
+</ul>
+<p>win-08\user</p>
+<ul>
+<li>本地管理员用户</li>
+</ul>
+<p>win7-test\administrator</p>
+<ul>
+<li>域内用户</li>
+</ul>
+<p>hacke\administrator</p>
+<p>在这个三种用户中，如果当前内网存在域，本地普通用户只能查询本机信息，本地管理员和域内用户可以查询域内信息。其原理是：域内所有查询都是通过域控制器实现的（基于LDAP协议），而这个查询需要经过权限认证，所以只有域内用户才拥有这个权限；当域内用户执行查询命令时，会自动使用Kerberos协议进行认证。</p>
+<p>本地管理员Administrator权限可以直接提升为Nauthority或System权限，在域内除普通用户外，所有的机器都有一个机器用户（用户名是机器名加$）。在本质上，机器的system用户对应的就是域里面的机器用户。所以使用system权限可以执行域内查询。</p>
+<h4 id="获取域SID"><a href="#获取域SID" class="headerlink" title="获取域SID"></a>获取域SID</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami &#x2F;all</span><br></pre></td></tr></table></figure>
+<h4 id="查询指定用户详细信息"><a href="#查询指定用户详细信息" class="headerlink" title="查询指定用户详细信息"></a>查询指定用户详细信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user xxx &#x2F;domain</span><br></pre></td></tr></table></figure>
+<h2 id="判断是否存在域"><a href="#判断是否存在域" class="headerlink" title="判断是否存在域"></a>判断是否存在域</h2><h4 id="ipconfig"><a href="#ipconfig" class="headerlink" title="ipconfig"></a>ipconfig</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig &#x2F;all</span><br></pre></td></tr></table></figure>
+<p>然后通过nslookup来解析域名的IP地址。用解析得到的IP地址进行对比，判断域控制器和DNS服务器是否在一台服务器上。</p>
+<h4 id="查看系统详细信息"><a href="#查看系统详细信息" class="headerlink" title="查看系统详细信息"></a>查看系统详细信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systeminfo</span><br></pre></td></tr></table></figure>
+<h4 id="查看当前登录域及登录用户"><a href="#查看当前登录域及登录用户" class="headerlink" title="查看当前登录域及登录用户"></a>查看当前登录域及登录用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net config workstation</span><br></pre></td></tr></table></figure>
+<h4 id="判断主域"><a href="#判断主域" class="headerlink" title="判断主域"></a>判断主域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net time&#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>域服务器通常会同时作为时间服务器使用。</p>
+<h2 id="探测域内存活主机"><a href="#探测域内存活主机" class="headerlink" title="探测域内存活主机"></a>探测域内存活主机</h2><h4 id="NetBIOS快速探测"><a href="#NetBIOS快速探测" class="headerlink" title="NetBIOS快速探测"></a>NetBIOS快速探测</h4><p>NetBIOS是局域网程序使用的一种应用程序编程接口，为程序提供了请求低级别服务的统一命令集，为局域网提供了网络及其他特殊功能。几乎所有的局域网都是在NetBIOS协议基础上工作的。</p>
+<p>nbtscan是一个命令行工具，用于扫描本地或远程TCP/IP网络上开放的NetBIOS名称服务。NetBIOS的使用方法比较简单，将其上传到目标主机，然后直接输入IP地址范围并运行。</p>
+<h4 id="ICMP协议探测内网"><a href="#ICMP协议探测内网" class="headerlink" title="ICMP协议探测内网"></a>ICMP协议探测内网</h4><p>依次对内网中的每一个IP地址执行ping命令，可以快速找出内网中的所有存活主机。可以使用如下命令循环探测整个C段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for &#x2F;L %I in (1,1,254) DO @ping -w 1 -n 192.168.1.%I | findstr &quot;TTL&#x3D;&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="ARP协议探测内网"><a href="#ARP协议探测内网" class="headerlink" title="ARP协议探测内网"></a>ARP协议探测内网</h4><ul>
+<li>arpscan工具</li>
+<li>Empire中的arpscan模块</li>
+<li>Nishang中的Invoke-ARPScan.ps1脚本</li>
+</ul>
+<h4 id="TCP-UDP端口扫描探测内网"><a href="#TCP-UDP端口扫描探测内网" class="headerlink" title="TCP/UDP端口扫描探测内网"></a>TCP/UDP端口扫描探测内网</h4><p>ScanLine是一款经典的端口扫描工具，可以在所有版本的Windows操作系统中使用，体积小，仅使用单文件。</p>
+<h2 id="扫描域内端口"><a href="#扫描域内端口" class="headerlink" title="扫描域内端口"></a>扫描域内端口</h2><p>关注的信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">端口的banner</span><br><span class="line"></span><br><span class="line">端口上运行的服务</span><br><span class="line"></span><br><span class="line">常见应用的默认端口</span><br></pre></td></tr></table></figure>
+<p>1、Telnet扫描</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet DC 22</span><br></pre></td></tr></table></figure>
+<p>2、S扫描器</p>
+<p>S扫描器是早期的一种快速端口扫描工具，支持大网段扫描。</p>
+<p>3、Metasploit端口扫描</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auxilary&#x2F;scanner&#x2F;portscan</span><br></pre></td></tr></table></figure>
+<p>4、PowerSploit的Invoke-portscan.ps1脚本</p>
+<p>5、Nishang的Invoke-Portscan模块</p>
+<h4 id="端口Banner信息"><a href="#端口Banner信息" class="headerlink" title="端口Banner信息"></a>端口Banner信息</h4><p>文件共享服务端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21、22、69</td>
+<td>FTP/TFTP文件传输协议</td>
+<td>允许匿名上传、下载、爆破和嗅探</td>
+</tr>
+<tr>
+<td>2049</td>
+<td>NFS服务</td>
+<td>配置不当</td>
+</tr>
+<tr>
+<td>139</td>
+<td>SAMBA服务</td>
+<td>爆破、未授权访问、远程代码执行</td>
+</tr>
+<tr>
+<td>389</td>
+<td>LDAP目录访问协议</td>
+<td>注入、允许匿名访问、弱口令</td>
+</tr>
+</tbody>
+</table>
+<p>远程连接服务端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22</td>
+<td>SSH远程连接</td>
+<td>爆破、SSH隧道及内网代理转发、文件传输</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Telnet远程连接</td>
+<td>爆破、嗅探、弱口令</td>
+</tr>
+<tr>
+<td>3389</td>
+<td>RDP远程桌面连接</td>
+<td>Shift后门（win server 2003以下）、爆破</td>
+</tr>
+<tr>
+<td>5900</td>
+<td>VNC</td>
+<td>弱口令爆破</td>
+</tr>
+<tr>
+<td>5632</td>
+<td>PcAnywhere服务</td>
+<td>抓取密码、代码执行</td>
+</tr>
+</tbody>
+</table>
+<p>Web应用服务端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80、443、8080</td>
+<td>常见web服务端口</td>
+<td>web攻击、爆破、对应服务器版本漏洞</td>
+</tr>
+<tr>
+<td>7001、7002</td>
+<td>WebLogic控制台</td>
+<td>Java反序列化、弱口令</td>
+</tr>
+<tr>
+<td>8080、8089</td>
+<td>Jboss/Resin/Jetty/Jenkins</td>
+<td>反序列化、控制台弱口令</td>
+</tr>
+<tr>
+<td>9090</td>
+<td>WebSphere控制台</td>
+<td>Java反序列、弱口令</td>
+</tr>
+<tr>
+<td>4848</td>
+<td>GlassFish控制台</td>
+<td>弱口令</td>
+</tr>
+<tr>
+<td>1352</td>
+<td>Lotus Domino邮件服务</td>
+<td>弱口令、信息泄露、爆破</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>webmin控制面板</td>
+<td>弱口令</td>
+</tr>
+</tbody>
+</table>
+<p>数据库服务端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3306</td>
+<td>MySQL数据库</td>
+<td>注入、提权、爆破</td>
+</tr>
+<tr>
+<td>1433</td>
+<td>MSSQL数据库</td>
+<td>注入、提权、SA弱口令、爆破</td>
+</tr>
+<tr>
+<td>1521</td>
+<td>Oracle数据库</td>
+<td>TNS爆破、注入、反弹shell</td>
+</tr>
+<tr>
+<td>5432</td>
+<td>PostgreSQL数据库</td>
+<td>爆破、注入、弱口令</td>
+</tr>
+<tr>
+<td>27017、27018</td>
+<td>MongoDB数据库</td>
+<td>爆破、未授权访问</td>
+</tr>
+<tr>
+<td>6379</td>
+<td>Redis数据库</td>
+<td>未授权访问、弱口令爆破</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>Sysbase/DB2数据库</td>
+<td>爆破、注入</td>
+</tr>
+</tbody>
+</table>
+<p>邮件服务端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25</td>
+<td>SMTP邮件服务</td>
+<td>邮件伪造</td>
+</tr>
+<tr>
+<td>110</td>
+<td>POP3服务</td>
+<td>爆破、嗅探</td>
+</tr>
+<tr>
+<td>143</td>
+<td>IMAP协议</td>
+<td>爆破</td>
+</tr>
+</tbody>
+</table>
+<p>网络常见协议端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>53</td>
+<td>DNS域名系统</td>
+<td>允许区域传送、DNS劫持、缓存投毒、欺骗</td>
+</tr>
+<tr>
+<td>67、68</td>
+<td>DHCP服务</td>
+<td>劫持、欺骗</td>
+</tr>
+<tr>
+<td>161</td>
+<td>SNMP协议</td>
+<td>爆破、搜集目标内网信息</td>
+</tr>
+</tbody>
+</table>
+<p>特殊服务端口</p>
+<table>
+<thead>
+<tr>
+<th>端口号</th>
+<th>端口说明</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2181</td>
+<td>ZooKeeper</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>8069</td>
+<td>Zabbix服务</td>
+<td>远程执行、SQL注入</td>
+</tr>
+<tr>
+<td>9200、9300</td>
+<td>Elasticearch服务</td>
+<td>远程执行</td>
+</tr>
+<tr>
+<td>11211</td>
+<td>Memcached服务</td>
+<td>未授权访问</td>
+</tr>
+<tr>
+<td>512、513、514</td>
+<td>Linux rexec服务</td>
+<td>爆破、远程登录</td>
+</tr>
+<tr>
+<td>873</td>
+<td>rsync服务</td>
+<td>匿名访问、文件上传</td>
+</tr>
+<tr>
+<td>3690</td>
+<td>SVN服务</td>
+<td>SVN泄露、未授权访问</td>
+</tr>
+<tr>
+<td>50000</td>
+<td>SAP Management Console</td>
+<td>远程执行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="收集域内信息"><a href="#收集域内信息" class="headerlink" title="收集域内信息"></a>收集域内信息</h2><h4 id="查询域"><a href="#查询域" class="headerlink" title="查询域"></a>查询域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view &#x2F;domain</span><br></pre></td></tr></table></figure>
+<h4 id="查询域内所有计算机"><a href="#查询域内所有计算机" class="headerlink" title="查询域内所有计算机"></a>查询域内所有计算机</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view &#x2F;domain:hack</span><br></pre></td></tr></table></figure>
+<h4 id="查询域内所有用户组列表"><a href="#查询域内所有用户组列表" class="headerlink" title="查询域内所有用户组列表"></a>查询域内所有用户组列表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net group &#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>系统自带的常见用户身份：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Domain Admins:域管理员</span><br><span class="line">Domain Computers：域内机器</span><br><span class="line">Domain Controllers：域控制器</span><br><span class="line">Domain Guest：域访客，权限低</span><br><span class="line">Domain Users：域用户</span><br><span class="line">Enterprise Admins：企业系统管理员用户</span><br></pre></td></tr></table></figure>
+<p>默认情况下，Domain Admins和Enterprise Admins对域内所有控制器有完全控制权限。</p>
+<h4 id="查询所有域成员计算机"><a href="#查询所有域成员计算机" class="headerlink" title="查询所有域成员计算机"></a>查询所有域成员计算机</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net group &quot;domain computers&quot; &#x2F;domain</span><br></pre></td></tr></table></figure>
+<h4 id="获取域密码信息"><a href="#获取域密码信息" class="headerlink" title="获取域密码信息"></a>获取域密码信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net accounts &#x2F;domain</span><br></pre></td></tr></table></figure>
+<h4 id="获取域信任信息"><a href="#获取域信任信息" class="headerlink" title="获取域信任信息"></a>获取域信任信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltest &#x2F;domain_trusts</span><br></pre></td></tr></table></figure>
+<h2 id="查找域控制器"><a href="#查找域控制器" class="headerlink" title="查找域控制器"></a>查找域控制器</h2><h4 id="查看域控制器机器名"><a href="#查看域控制器机器名" class="headerlink" title="查看域控制器机器名"></a>查看域控制器机器名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nltest &#x2F;DCLIST：hack</span><br></pre></td></tr></table></figure>
+<h4 id="查看域控制器主机名"><a href="#查看域控制器主机名" class="headerlink" title="查看域控制器主机名"></a>查看域控制器主机名</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Nslookup -type&#x3D;SRV _ldap._tcp</span><br></pre></td></tr></table></figure>
+<h4 id="查看当前时间"><a href="#查看当前时间" class="headerlink" title="查看当前时间"></a>查看当前时间</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net time &#x2F;domain</span><br></pre></td></tr></table></figure>
+<h4 id="查看域控制器组"><a href="#查看域控制器组" class="headerlink" title="查看域控制器组"></a>查看域控制器组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net group &quot;Domain Controllers&quot; &#x2F;domain</span><br><span class="line">netdom query pdc    &#x2F;&#x2F;查询备用DC</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -725,7 +1081,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内网基础"><span class="nav-number">1.</span> <span class="nav-text">内网基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内网基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">内网基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作组"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">工作组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#活动目录"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">活动目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域控和活动目录区别"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">域控和活动目录区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全域的划分"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">安全域的划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域中计算机分类"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">域中计算机分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域内权限"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">域内权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平台及工具"><span class="nav-number">1.2.</span> <span class="nav-text">平台及工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kali-Linux平台工具"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">kali Linux平台工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows平台工具"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Windows平台工具</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内网基础"><span class="nav-number">1.</span> <span class="nav-text">内网基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内网基础知识"><span class="nav-number">1.1.</span> <span class="nav-text">内网基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工作组"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">工作组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#活动目录"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">活动目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域控和活动目录区别"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">域控和活动目录区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全域的划分"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">安全域的划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域中计算机分类"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">域中计算机分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#域内权限"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">域内权限</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平台及工具"><span class="nav-number">1.2.</span> <span class="nav-text">平台及工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kali-Linux平台工具"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">kali Linux平台工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows平台工具"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Windows平台工具</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内网信息收集"><span class="nav-number">2.</span> <span class="nav-text">内网信息收集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#收集本机信息"><span class="nav-number">2.1.</span> <span class="nav-text">收集本机信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网络配置信息"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">网络配置信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统-软件信息"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">操作系统&#x2F;软件信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询本机服务信息"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">查询本机服务信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询进程列表"><span class="nav-number">2.1.0.4.</span> <span class="nav-text">查询进程列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看启动程序信息"><span class="nav-number">2.1.0.5.</span> <span class="nav-text">查看启动程序信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看计划任务"><span class="nav-number">2.1.0.6.</span> <span class="nav-text">查看计划任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看开机时间"><span class="nav-number">2.1.0.7.</span> <span class="nav-text">查看开机时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询用户列表"><span class="nav-number">2.1.0.8.</span> <span class="nav-text">查询用户列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#列出连接会话"><span class="nav-number">2.1.0.9.</span> <span class="nav-text">列出连接会话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看端口列表"><span class="nav-number">2.1.0.10.</span> <span class="nav-text">查看端口列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看补丁列表"><span class="nav-number">2.1.0.11.</span> <span class="nav-text">查看补丁列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询本机共享列表"><span class="nav-number">2.1.0.12.</span> <span class="nav-text">查询本机共享列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询路由表-ARP缓存表"><span class="nav-number">2.1.0.13.</span> <span class="nav-text">查询路由表&#x2F;ARP缓存表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询防火墙相关配置"><span class="nav-number">2.1.0.14.</span> <span class="nav-text">查询防火墙相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看代理配置"><span class="nav-number">2.1.0.15.</span> <span class="nav-text">查看代理配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询开启远程连接服务"><span class="nav-number">2.1.0.16.</span> <span class="nav-text">查询开启远程连接服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WMIC"><span class="nav-number">2.1.0.17.</span> <span class="nav-text">WMIC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询当前权限"><span class="nav-number">2.2.</span> <span class="nav-text">查询当前权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前权限"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">查看当前权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取域SID"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">获取域SID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询指定用户详细信息"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">查询指定用户详细信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否存在域"><span class="nav-number">2.3.</span> <span class="nav-text">判断是否存在域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ipconfig"><span class="nav-number">2.3.0.1.</span> <span class="nav-text">ipconfig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看系统详细信息"><span class="nav-number">2.3.0.2.</span> <span class="nav-text">查看系统详细信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前登录域及登录用户"><span class="nav-number">2.3.0.3.</span> <span class="nav-text">查看当前登录域及登录用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#判断主域"><span class="nav-number">2.3.0.4.</span> <span class="nav-text">判断主域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#探测域内存活主机"><span class="nav-number">2.4.</span> <span class="nav-text">探测域内存活主机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NetBIOS快速探测"><span class="nav-number">2.4.0.1.</span> <span class="nav-text">NetBIOS快速探测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ICMP协议探测内网"><span class="nav-number">2.4.0.2.</span> <span class="nav-text">ICMP协议探测内网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP协议探测内网"><span class="nav-number">2.4.0.3.</span> <span class="nav-text">ARP协议探测内网</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-UDP端口扫描探测内网"><span class="nav-number">2.4.0.4.</span> <span class="nav-text">TCP&#x2F;UDP端口扫描探测内网</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扫描域内端口"><span class="nav-number">2.5.</span> <span class="nav-text">扫描域内端口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#端口Banner信息"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">端口Banner信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#收集域内信息"><span class="nav-number">2.6.</span> <span class="nav-text">收集域内信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询域"><span class="nav-number">2.6.0.1.</span> <span class="nav-text">查询域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询域内所有计算机"><span class="nav-number">2.6.0.2.</span> <span class="nav-text">查询域内所有计算机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询域内所有用户组列表"><span class="nav-number">2.6.0.3.</span> <span class="nav-text">查询域内所有用户组列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询所有域成员计算机"><span class="nav-number">2.6.0.4.</span> <span class="nav-text">查询所有域成员计算机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取域密码信息"><span class="nav-number">2.6.0.5.</span> <span class="nav-text">获取域密码信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取域信任信息"><span class="nav-number">2.6.0.6.</span> <span class="nav-text">获取域信任信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找域控制器"><span class="nav-number">2.7.</span> <span class="nav-text">查找域控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看域控制器机器名"><span class="nav-number">2.7.0.1.</span> <span class="nav-text">查看域控制器机器名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看域控制器主机名"><span class="nav-number">2.7.0.2.</span> <span class="nav-text">查看域控制器主机名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看当前时间"><span class="nav-number">2.7.0.3.</span> <span class="nav-text">查看当前时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看域控制器组"><span class="nav-number">2.7.0.4.</span> <span class="nav-text">查看域控制器组</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
