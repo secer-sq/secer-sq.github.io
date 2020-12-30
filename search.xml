@@ -5589,6 +5589,39 @@
 <h4 id="查看域控制器主机名"><a href="#查看域控制器主机名" class="headerlink" title="查看域控制器主机名"></a>查看域控制器主机名</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Nslookup -type&#x3D;SRV _ldap._tcp</span><br></pre></td></tr></table></figure>
 <h4 id="查看当前时间"><a href="#查看当前时间" class="headerlink" title="查看当前时间"></a>查看当前时间</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net time &#x2F;domain</span><br></pre></td></tr></table></figure>
 <h4 id="查看域控制器组"><a href="#查看域控制器组" class="headerlink" title="查看域控制器组"></a>查看域控制器组</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net group &quot;Domain Controllers&quot; &#x2F;domain</span><br><span class="line">netdom query pdc    &#x2F;&#x2F;查询备用DC</span><br></pre></td></tr></table></figure>
+<h2 id="获取域内用户和管理员信息"><a href="#获取域内用户和管理员信息" class="headerlink" title="获取域内用户和管理员信息"></a>获取域内用户和管理员信息</h2><h4 id="查询所有域用户列表"><a href="#查询所有域用户列表" class="headerlink" title="查询所有域用户列表"></a>查询所有域用户列表</h4><p>向域控制器进行查询：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net user &#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>获取域内用户的详细信息：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wmic useraccount get &#x2F;all</span><br></pre></td></tr></table></figure>
+<p>查看存在的用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dsquery user</span><br></pre></td></tr></table></figure>
+<p>常用dsquery命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">dsquery computer-查看目录中的计算机</span><br><span class="line">dsquery contact-查看目录中的联系人</span><br><span class="line">dsquery subnet-查看目录中的子网</span><br><span class="line">dsquery group-查看目录中的组</span><br><span class="line">dsquery ou-查看目录中的组织结构</span><br><span class="line">dsquery site-查看目录中的站点</span><br><span class="line">dsquery server-查看目录中的AD DC实例</span><br><span class="line">dsquery user-查看目录中的用户</span><br><span class="line">dsquery quota-查看目录中的配额规定</span><br><span class="line">dsquery partition-查看目录中的分区</span><br></pre></td></tr></table></figure>
+<p>查询本地管理员组用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net localgroup administrators</span><br></pre></td></tr></table></figure>
+<h4 id="查询域管理员用户组"><a href="#查询域管理员用户组" class="headerlink" title="查询域管理员用户组"></a>查询域管理员用户组</h4><p>查询域管理员用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net group &quot;domain admins&quot;  &#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>查询管理员用户组：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net group &quot;	Enterprise Admins&quot; &#x2F;domain</span><br></pre></td></tr></table></figure>
+<h2 id="定位域管理员"><a href="#定位域管理员" class="headerlink" title="定位域管理员"></a>定位域管理员</h2><h4 id="域管理员定位概述"><a href="#域管理员定位概述" class="headerlink" title="域管理员定位概述"></a>域管理员定位概述</h4><p>在一个域中，当计算机加入域，会默认给域管理员组赋予本地系统管理员权限。因此，域管理员组的成员均可访问本地计算机，且具备完全控制权限。</p>
+<p>定位域内管理员的常规渠道，一是日志，二是会话。日志是指本地机器的管理员日志，可以使用脚本或wevtutil工具导出并查看。会话是指域内每台机器的登录会话，可以使用netsess.exe或PowerView等工具查询。</p>
+<h4 id="常用域管理员定位工具"><a href="#常用域管理员定位工具" class="headerlink" title="常用域管理员定位工具"></a>常用域管理员定位工具</h4><p>假设已经在windows域内取得普通用户的权限，希望在域内横向移动。枚举主机、用户和组，有助于了解域的布局。</p>
+<p>常见的域管理员定位工具有psloggedon.exe、PVEFindADUser.exe、netsess.exe，以及hunter NetView等。在Powershell中，常用工具是Power View。</p>
+<h2 id="查找域管理进程"><a href="#查找域管理进程" class="headerlink" title="查找域管理进程"></a>查找域管理进程</h2><h4 id="本机检查"><a href="#本机检查" class="headerlink" title="本机检查"></a>本机检查</h4><p>获取域管理员列表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net group &quot;Domain Admins&quot; &#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>列出本机所有进程及进程用户：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tasklist &#x2F;v</span><br></pre></td></tr></table></figure>
+<h4 id="查询域控制器的域用户会话"><a href="#查询域控制器的域用户会话" class="headerlink" title="查询域控制器的域用户会话"></a>查询域控制器的域用户会话</h4><p>查询域控制器的域用户会话，其原理是：在域控制器中查询域用户会话列表，并将其与域管理员列表进行交叉引用，从而得到域管理会话的系统列表。必须查询所有的域控制器。</p>
+<p>查询域控制器列表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net group &quot;Domain Controllers&quot; &#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>收集域管理员列表：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">net group &quot;Domain Admins&quot; &#x2F;domain</span><br></pre></td></tr></table></figure>
+<p>收集所有活动域的会话列表：</p>
+<p>使用netsess.exe查询每个域控制器，收集所有活动域会话列表。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NetSess -h</span><br></pre></td></tr></table></figure>
+<p>交叉引用域管理员列表与活动会话列表：</p>
+<p>使用脚本Get Domain Admins（GDA）批处理脚本。</p>
+<h2 id="域分析工具BloodHound"><a href="#域分析工具BloodHound" class="headerlink" title="域分析工具BloodHound"></a>域分析工具BloodHound</h2><p>BloodHound是一款免费的工具。通过图与线的形式，将域内用户、计算机、组、会话、ACL，以及域内所有的相关用户、组、计算机、登录信息、访问控制策略之间的关系，直观的展示在红队面前，可以更便捷的分析域内情况、为更快速的在域内提升权限提供条件。</p>
 ]]></content>
       <categories>
         <category>读书笔记</category>
