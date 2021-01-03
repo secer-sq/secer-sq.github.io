@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-27T16:08:10.467Z</updated>
+  <updated>2021-01-03T13:36:18.526Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shiro反序列化漏洞利用</title>
+    <link href="http://yoursite.com/2021/01/03/Shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/"/>
+    <id>http://yoursite.com/2021/01/03/Shiro反序列化漏洞利用/</id>
+    <published>2021-01-03T12:25:46.000Z</published>
+    <updated>2021-01-03T13:36:18.526Z</updated>
+    
+    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="Shiro反序列化漏洞利用"><a href="#Shiro反序列化漏洞利用" class="headerlink" title="Shiro反序列化漏洞利用"></a>Shiro反序列化漏洞利用</h1><p>Apache Shiro是一个强大易用的Java安全框架，提供了认证、授权、加密和会话管理等功能。Shiro框架直观、易用，同时也能提供健壮的安全性。</p><h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>Apache Shiro框架提供了记住我的功能（RememberMe），用户登陆成功后会生成经过加密并编码的cookie。cookie的key为RememberMe，cookie的值是经过对相关信息进行序列化，然后使用aes加密，最后在使用base64编码处理形成的。</p><p>Shiro记住用户会话功能的逻辑如下：</p><p>获取RememberMe的值 —&gt; Base64解密 —&gt; ASE解密 –&gt; 反序列化</p><p>在服务端接收cookie值时，按照如下步骤来解析处理：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一步：检索RememberMe cookie 的值</span><br><span class="line">第二步：Base 64解码</span><br><span class="line">第三步：使用AES解密(加密密钥硬编码)</span><br><span class="line">第四步：进行反序列化操作（未作过滤处理）</span><br></pre></td></tr></table></figure><h2 id="Shiro-rememberMe反序列化漏洞（Shiro-550）"><a href="#Shiro-rememberMe反序列化漏洞（Shiro-550）" class="headerlink" title="Shiro rememberMe反序列化漏洞（Shiro-550）"></a>Shiro rememberMe反序列化漏洞（Shiro-550）</h2><h4 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h4><p>因为在反序列化时,不会对其进行过滤,所以如果传入恶意代码将会造成安全问题。<br>在 1.2.4 版本前,是默认ASE秘钥,Key: kPH+bIxk5D2deZiIxcaaaA==,可以直接反序列化执行恶意代码，而在1.2.4之后,ASE秘钥就不为默认了,需要获取到Key才可以进行渗透。</p><p>payload产生过程：</p><p>命令=&gt;序列化=&gt;AES加密=&gt;base64编码=&gt;RememberMe Cookie值</p><p>在整个漏洞利用过程中，比较重要的是AES加密的密钥，如果没有修改默认的密钥那么就很容易就知道密钥了,Payload构造起来也是十分的简单。</p><h4 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h4><p>Apache Shiro &lt; 1.2.4</p><h4 id="特征判断"><a href="#特征判断" class="headerlink" title="特征判断"></a>特征判断</h4><p>返回包中包含rememberMe=deleteMe字段。</p><h4 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h4><p>环境搭建：使用VULFOCUS靶场拉取docker镜像，启动镜像即可。</p><p><img src="/2021/01/03/Shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/image-20210103203900520.png" alt="image-20210103203900520"></p><p><img src="/2021/01/03/Shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/image-20210103203958054.png" alt="image-20210103203958054"></p><h4 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h4><p>maven配置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo wget  https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;apache&#x2F;maven&#x2F;maven-3&#x2F;3.6.3&#x2F;binaries&#x2F;apache-maven-3.6.3-bin.tar.gz</span><br><span class="line">tar -zxvf apache-maven-3.6.3-bin.tar.gz</span><br><span class="line">sudo mv apache-maven-3.6.3 &#x2F;usr&#x2F;local&#x2F;maven3</span><br><span class="line">在&#x2F;etc&#x2F;profile末尾添加maven环境变量:</span><br><span class="line">export M2_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;maven3</span><br><span class="line">export PATH&#x3D;$PATH:$JAVA_HOME&#x2F;bin:$M2_HOME&#x2F;bin</span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure><p>下载ysoserial并打包：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;frohoff&#x2F;ysoserial.git</span><br><span class="line">cd ysoserial</span><br><span class="line">mvn package -D skipTests</span><br></pre></td></tr></table></figure><p>生成的工具在ysoserial/target文件中。</p><h4 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h4><p>检查是否存在默认的key。</p><p>这里使用一个 Shiro_exploit，获取key</p><p>Github项目地址：<a href="https://github.com/insightglacier/Shiro_exploit" target="_blank" rel="noopener">https://github.com/insightglacier/Shiro_exploit</a></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python shiro_exploit.py -u http:&#x2F;&#x2F;192.168.126.132:30709</span><br></pre></td></tr></table></figure><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>hxxps://[www.]cnblogs.com/xiaozi/p/13239046.html</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+    
+    </summary>
+    
+      <category term="漏洞复现" scheme="http://yoursite.com/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+      <category term="漏洞复现" scheme="http://yoursite.com/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Webshell</title>
@@ -431,28 +453,6 @@
     
     
       <category term="kali" scheme="http://yoursite.com/tags/kali/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python-发送短信</title>
-    <link href="http://yoursite.com/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/"/>
-    <id>http://yoursite.com/2020/11/04/Python-发送短信/</id>
-    <published>2020-11-04T14:36:24.000Z</published>
-    <updated>2020-11-04T15:32:27.876Z</updated>
-    
-    <content type="html"><![CDATA[<hr><a id="more"></a><h1 id="使用python发送短信twilio"><a href="#使用python发送短信twilio" class="headerlink" title="使用python发送短信twilio"></a>使用python发送短信twilio</h1><p>主要内容是叙述如何使用Python传送手机短信，主要是以美国Twilio公司所提供的服务为例说明。全球这类通信公司很多，可以用关键词free sms gateway查询，sms全名是shortmessage service短信服务，这是目前电信公司很普遍的一个服务。</p><h2 id="安装twilio模块"><a href="#安装twilio模块" class="headerlink" title="安装twilio模块"></a>安装twilio模块</h2><p>为了要用Python设计与Twilio公司有关的网络服务，首先要安装twilio模块。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install twilio</span><br></pre></td></tr></table></figure><h2 id="到Twilio公司注册账号"><a href="#到Twilio公司注册账号" class="headerlink" title="到Twilio公司注册账号"></a>到Twilio公司注册账号</h2><p>为了要使用Twilio公司所提供的短信服务，需要到Twilio公司注册账号，以取得下列信息：</p><p>1、Account SID：Twilio API key账号。</p><p>2、Auth TOKEN：Twilio账号的图腾(TOKEN)。</p><p>3、Twilio Number：Twilio电话号码。</p><p>4、Verified numbers：电话号码使用地区。</p><p>上述信息我们可以称之为API key(密钥)，有了上述密钥，您就可以使用Python程序发送短信了。</p><h4 id="申请账号"><a href="#申请账号" class="headerlink" title="申请账号"></a>申请账号</h4><p>首先进入hxxp://<a href="http://www.twilio.com网站。" target="_blank" rel="noopener">www.twilio.com网站。</a></p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231058183.png" alt="image-20201104231058183"></p><p>点选Get a free API key，然后将看到空白窗体。填写完成后，按Get Started按钮。</p><p>为了不被网络恶意软件注册攻击，所以会要求输入电话号码，Twilio网站会从你登录IP判断你的位置，然后自动勾选你的国家或地区，请在上述字段输入你的手机号码，然后按Verify via SMS按钮，Twilio公司会发送验证码到你的手机，下列是笔者手机收到验证码的图例。</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231445340.png" alt="image-20201104231445340"></p><p>输入完成后，请按Submit按钮，整个注册就算完成了。</p><h4 id="获得Account-SID"><a href="#获得Account-SID" class="headerlink" title="获得Account SID"></a>获得Account SID</h4><p>注册成功后，在画面上可以看到Dashboard，请点选可以在此看到的所申请的Account SID信息。</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231543343.png" alt="image-20201104231543343"></p><p>未来可以点选上述SID码，然后复制到Python程序。</p><h4 id="获得Auth-TOKEN"><a href="#获得Auth-TOKEN" class="headerlink" title="获得Auth TOKEN"></a>获得Auth TOKEN</h4><p>与SID一样，使用时最好用复制方式粘贴到Python程序，比较方便，同时也不会有错误。</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231735522.png" alt="image-20201104231735522"></p><h4 id="获得Twilio-Number"><a href="#获得Twilio-Number" class="headerlink" title="获得Twilio Number"></a>获得Twilio Number</h4><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231812663.png" alt="image-20201104231812663"></p><p>在屏幕上有Phone Numbers，点选Phone Numbers。</p><p>将会看到：</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104231859663.png" alt="image-20201104231859663"></p><p>点选Get Started按钮：</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232005975.png" alt="image-20201104232005975"></p><p>点选Get yourfirst Twilio phone number按钮：</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232040297.png" alt="image-20201104232040297"></p><p>将列出你的Twilio号码，按Choose this Number按钮：</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232122259.png" alt="image-20201104232122259"></p><p>未来python程序需要上述格式的号码。</p><h4 id="设定Twilio使用地区"><a href="#设定Twilio使用地区" class="headerlink" title="设定Twilio使用地区"></a>设定Twilio使用地区</h4><p>由于这是试用账号，同时我们不是在美国本土，所以还需在系统设定短信适用地区。</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232224000.png" alt="image-20201104232224000"></p><p>点选所有服务功能，然后选Programmable SMS服务，将看到下列画面。</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232307073.png" alt="image-20201104232307073"></p><p>点选these countries字符串，将看到Message Grographic Permissions标题，选China(+86)，未来用Python所发的短信就可以在中国大陆使用了。</p><h2 id="使用Python程序设计发送短信"><a href="#使用Python程序设计发送短信" class="headerlink" title="使用Python程序设计发送短信"></a>使用Python程序设计发送短信</h2><p>导入模块：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from twilio.rest import client</span><br></pre></td></tr></table></figure><p>发送短信的方法:</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232616420.png" alt="image-20201104232616420"></p><p>执行结果：</p><p><img src="/2020/11/04/Python-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1/image-20201104232657932.png" alt="image-20201104232657932"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-    
-    </summary>
-    
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
-    
-    
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
   </entry>
   
