@@ -5828,4 +5828,111 @@
         <tag>APT</tag>
       </tags>
   </entry>
+  <entry>
+    <title>内网SOCKS代理工具</title>
+    <url>/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<h2 id="SOCKS代理"><a href="#SOCKS代理" class="headerlink" title="SOCKS代理"></a>SOCKS代理</h2><p>常见的网络场景有三种：</p>
+<p>1、服务器在内网，可以任意访问外部网络</p>
+<p>2、服务器在内网中，可以访问外部网络，但是服务器安装了防火墙来拒绝敏感端口的连接</p>
+<p>3、服务器在内网中，对外只开放了部分端口，且服务器不能访问外部网络</p>
+<p>SOCKS是一种代理服务，可以简单的将一端的系统连接另一端。SOCKS支持多种协议，包括HTTP、FTP等。SOCKS分为SOCKS 4和SOCKS 5两种类型，SOCKS 4只支持TCP协议；SOCKS  5支持TCP/UDP协议，且支持身份验证机制，其标准端口为1080。SOCKS能够与目标内网计算机进行通信，避免多次使用端口转发。</p>
+<h2 id="常用SOCKS代理工具"><a href="#常用SOCKS代理工具" class="headerlink" title="常用SOCKS代理工具"></a>常用SOCKS代理工具</h2><h4 id="EarthWorm"><a href="#EarthWorm" class="headerlink" title="EarthWorm"></a>EarthWorm</h4><p>EarthWorm是一套便携的网络工具，具有SOCKS 5服务架设和端口转发两大核心功能，可以在复杂的网络环境中实现网络穿透。</p>
+<p>EW能够以正向、反向、多级级联等方式建立网络隧道。</p>
+<p>Termite 是EW（EarthWorm）的最新版，官方链接： <a href="http://rootkiter.com/Termite/" target="_blank" rel="noopener">http://rootkiter.com/Termite/</a></p>
+<h4 id="reGeorg"><a href="#reGeorg" class="headerlink" title="reGeorg"></a>reGeorg</h4><p>reGeorg是reDuh的升级版，主要功能是把内网服务器的端口通过HTTP/HTTPS隧道转发到本机，形成一个回路。</p>
+<p>reGeorg可以使目标机器在内网中（或者设置了端口策略的情况下）连接内部开放端口。reGeorg利用webshell建立一个SOCKS代理进行内网穿透，服务器必须支持ASPX、PHP、JSP中的一种。</p>
+<h2 id="代理工具-reGeorg"><a href="#代理工具-reGeorg" class="headerlink" title="代理工具-reGeorg"></a>代理工具-reGeorg</h2><h4 id="reGeorg是什么"><a href="#reGeorg是什么" class="headerlink" title="reGeorg是什么"></a>reGeorg是什么</h4><p>考虑一种场景，资产组里有2台机器：主机A、主机B。其中主机A上运行了Web服务，且IP或者端口映射到公网，可以被外部人员访问，主机B是在外网访问不到的。攻击者通过漏洞在主机A上传了Webshell，但同时又出于某些限制并未能得到主机A的主机权限也无法反弹shell，那么他这个时候，也是无法通过常规方法反弹shell或者直接登录主机A从而访问到主机B的。</p>
+<p>reGeorg就在这个时候起了作用，攻击者已经有了主机A的webshell权限（即可以在web服务器中上传文件），而主机A可以和主机B通信。那么在主机A上安装reGeorg工具，使得攻击者发出的请求以及目标机器的响应经过A的http转发，达到攻击者可以和主机B进行通信的效果。</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104225625439.png" alt="image-20210104225625439"></p>
+<h4 id="reGeorg使用"><a href="#reGeorg使用" class="headerlink" title="reGeorg使用"></a>reGeorg使用</h4><h5 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h5><p>attk是攻击主机，victim_a和victim_b是被攻击主机。s1和s2是两个交换机，r1是路由器。</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104225826138.png" alt="image-20210104225826138"></p>
+<p>初始化后的IP如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">攻击者IP：192.168.218.227</span><br><span class="line"></span><br><span class="line">victim_a IP：192.168.253.16</span><br><span class="line"></span><br><span class="line">victim_b IP:192.168.253.42</span><br><span class="line"></span><br><span class="line">路由器两个网卡的IP：192.168.218.1,192.168.253.1</span><br><span class="line"></span><br><span class="line">掩码都是255.255.255.0。</span><br></pre></td></tr></table></figure>
+<p>attk配置路由器不为默认网关，这样attk无法与victim_a和victim_b直接通信。</p>
+<p>在victim_a主机上部署java和tomcat。</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104230049888.png" alt="image-20210104230049888"></p>
+<p>然后再在路由器做一下端口映射：</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104230321032.png" alt="image-20210104230321032"></p>
+<p>这样，就将victim_a的8080端口映射到了路由器的9999端口。</p>
+<p>attk直接访问<a href="http://192.168.218.1:9999即访问到了victim_a的web服务：">http://192.168.218.1:9999即访问到了victim_a的web服务：</a></p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104230403315.png" alt="image-20210104230403315"></p>
+<p>攻击者无法直接访问victim_a(192.168.253.16)，不过可以通过访问192.168.218.1:9999间接访问到victim_a上的web服务。</p>
+<h5 id="安装工具"><a href="#安装工具" class="headerlink" title="安装工具"></a>安装工具</h5><p>reGeorg工具的github目录为：<a href="https://github.com/sensepost/reGeorg" target="_blank" rel="noopener">https://github.com/sensepost/reGeorg</a></p>
+<p>1、将tunnel.jsp上传victim_a的tomcat的ROOT目录。</p>
+<p>2、将reGeorgSocksProxy.py上传到攻击机attk，并执行：</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104230706726.png" alt="image-20210104230706726"></p>
+<p>3、在攻击机安装sock5客户端privoxy，并连接本地的9999端口</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104230744521.png" alt="image-20210104230744521"></p>
+<p>Privoxy监听的端口是8118：</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104230945717.png" alt="image-20210104230945717"></p>
+<p>令http_proxy=127.0.0.1:8118：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export http_proxy&#x3D;127.0.0.1:8118</span><br></pre></td></tr></table></figure>
+<p>此时，可以直接以victim_a的内网ip对于它的web服务进行访问：</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104231210713.png" alt="image-20210104231210713"></p>
+<p>也可以访问与victim_a处于同一个网的victim_b的web服务:</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104231240271.png" alt="image-20210104231240271"></p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><h5 id="reGeorgSocksProxy-py"><a href="#reGeorgSocksProxy-py" class="headerlink" title="reGeorgSocksProxy.py"></a>reGeorgSocksProxy.py</h5><p>py脚本主要是位于攻击机上，接收socks请求，并通过http请求发送给被攻击主机。同时，当响应体有内容时，将响应回传给socks客户端。</p>
+<p>具体步骤如下：</p>
+<p>1、从参数中解析得到本地监听端口listen-port，以及连接的已失陷主机上的tunnel.jsp的url</p>
+<p>2、判断url是否可以连接成功</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104231550521.png" alt="image-20210104231550521"></p>
+<p>3、建立socket，监听本地的listen-port端口</p>
+<p>4、根据listen-port端口收到的一个字节是\x05还是\x04判断收到的请求是SOCKS5请求还是SOCKS4请求。（因为SOCKS请求的第一个字节是版本号）</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104231737369.png" alt="image-20210104231737369"></p>
+<p>5、当SOCKS请求发过来的是CONNECT命令时，将请求中带有的IP和端口，发送给setupRemoteSession方法。</p>
+<p>6、setupRemoteSession方法，主要是在url后面拼接?cmd=connect&amp;target=%s&amp;port=%d参数，将需要连接的IP和端口发送到被攻击主机的tunnel.jsp。</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104231830139.png" alt="image-20210104231830139"></p>
+<p>7、当请求的响应码为200，且响应体头部有x-status字段且字段值为OK时，就判定为连接成功，记录cookie信息。</p>
+<p>8、成功连接后，启动reader线程和writer线程。</p>
+<p>9、reader线程，主要是发送<a href="http://victim_ip:port/tunnel.jsp?cmd=read请求。并将响应内容，回传给SOCKS客户端。">http://victim_ip:port/tunnel.jsp?cmd=read请求。并将响应内容，回传给SOCKS客户端。</a></p>
+<p>10、writer线程，主要是从SOCKS请求中取得数据data，并发送<a href="http://victim_ip:port/tunnel.jsp?cmd=forward请求，将data作为POST请求体发送到被攻击主机。">http://victim_ip:port/tunnel.jsp?cmd=forward请求，将data作为POST请求体发送到被攻击主机。</a></p>
+<h5 id="tunnel-jsp"><a href="#tunnel-jsp" class="headerlink" title="tunnel.jsp"></a>tunnel.jsp</h5><p>tunnel.jsp脚本位于被攻击机上，主要是接受命令，并与内网主机建立socket连接，将命令发送给内网主机并取得响应，响应内容以http响应体返回给攻击机。</p>
+<p>1、解析四种命令，CONNECT/DISCONNECT/READ/FORWARD。</p>
+<p>2、当收到CONNECT命令时，解析得到指定的内网IP和端口，并使用socket与之建立连接。并在响应中，增加头部X-STATUS:OK。并将socket放入session里，避免http结束后socket连接丢失。</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104232133055.png" alt="image-20210104232133055"></p>
+<p>3、当收到READ命令时，从session中取得socket，并尝试从socket读取内容。并将读取的内容，写入到http响应中。</p>
+<p>4、当收到FORWARD命令时，从请求中读取命令，并使用socket发送给被连接的内网IP、端口。</p>
+<p>5、DISCONNECT命令，只有当reGeorgSocksProxy.py捕获到异常时才会发送，主要就是断开与指定的内网主机的IP、端口的socket连接。</p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>1、在url：<a href="http://victim_ip:port/tunnel.jsp?cmd=connect&amp;target=%s&amp;port=%d请求发送后，响应内容的头部带有X-STATUS:OK。">http://victim_ip:port/tunnel.jsp?cmd=connect&amp;target=%s&amp;port=%d请求发送后，响应内容的头部带有X-STATUS:OK。</a></p>
+<p>2、CONNECT命令之后，有READ、FORWARD命令。且如果请求成功，它们的响应头部也带有X-STATUS:OK。</p>
+<p>3、如果使用reGeorg工具，对于内网主机执行命令成功例如READ读取成功。那么除了头部会带上X-STATUS:OK，同时响应体内，也会有读取出来的内容，如截图所示：</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104232334726.png" alt="image-20210104232334726"></p>
+<h2 id="代理工具-FRP"><a href="#代理工具-FRP" class="headerlink" title="代理工具-FRP"></a>代理工具-FRP</h2><p>frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内网穿透，对外网提供服务，支持 tcp, http, https 等协议类型，并且 web 服务支持根据域名进行路由转发。</p>
+<p>项目地址：<a href="https://github.com/fatedier/frp" target="_blank" rel="noopener">https://github.com/fatedier/frp</a></p>
+<h4 id="为什么使用内网穿透"><a href="#为什么使用内网穿透" class="headerlink" title="为什么使用内网穿透"></a>为什么使用内网穿透</h4><p>当两个不同网络环境的机器想要互相访问的时候，这个时候外网的机器无法单方面的访问内网的机器。所以我们要借助内网穿透工具进行访问。正常使用的时候我们想要控制内网中的linux的22端口或者windows的3389端口，使用了frp会非常方便且容易。</p>
+<p>但是frp和端口转发并不是一样的，这样的frp是使用了内网的全端口全流量的。而端口转发仅仅是做了端口的流量的转发。</p>
+<h4 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h4><p>端口转发：有时被叫做隧道，是安全壳(SSH) 为网络安全通信使用的一种方法。当黑客攻击一台机器可以扫描内网其他机器，这个是时候可以把其他的机器某个端口转发到具有公网ip的机器上，然后访问公网ip即可。</p>
+<p>端口映射：是指将一台主机的内网（LAN）IP地址映射成一个公网（WAN）IP地址，当用户访问提供映射端口主机的某个端口时，服务器将请求转移到本地局域网内部提供这种特定服务的主机；利用端口映射功能还可以将一台外网IP地址机器的多个端口映射到内网不同机器上的不同端口。</p>
+<p>流量转发：将来往某台机器的流量转发到另外的机器上去。端口转发和隧道通信是流量转发的一种方式。</p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>frp工作分为五个步骤：</p>
+<p><img src="/2021/01/04/%E5%86%85%E7%BD%91SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/image-20210104234052473.png" alt="image-20210104234052473"></p>
+<p>配置文件：</p>
+<p>ssh</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">＃ frps.ini </span><br><span class="line">[common] </span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line">＃ frpc.ini </span><br><span class="line">[common] </span><br><span class="line">server_addr &#x3D; xxxx</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line">[ssh]</span><br><span class="line">type&#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">remote_port &#x3D; 6000</span><br><span class="line">plugin &#x3D; socks5</span><br></pre></td></tr></table></figure>
+<p>web</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr &#x3D; 0.0.0.0</span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line">privilege_token &#x3D; 12345678</span><br><span class="line"></span><br><span class="line">#frpc.ini</span><br><span class="line">[common]</span><br><span class="line">server_addr &#x3D; 192.168.112.140</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">privilege_token &#x3D; 12345678</span><br><span class="line"></span><br><span class="line">[httpname]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_port &#x3D; 80</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">remote_port &#x3D; 8080</span><br></pre></td></tr></table></figure>
+<p>dns</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">＃ frps.ini </span><br><span class="line">[common] </span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line"># frpc.ini</span><br><span class="line">[common]</span><br><span class="line">server_addr &#x3D; x.x.x.x</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line">[dns]</span><br><span class="line">type &#x3D; udp</span><br><span class="line">local_ip &#x3D; 8.8.8.8</span><br><span class="line">local_port &#x3D; 53</span><br><span class="line">remote_port &#x3D; 6000</span><br><span class="line">plugin &#x3D; socks5</span><br></pre></td></tr></table></figure>
+<h4 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h4><p>1、将 frps 及 frps.ini 放到有公网 IP 的机器上，修改frps.ini文件，配置一个名为ssh的反向代理：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># frps.ini</span><br><span class="line">[common]</span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line"></span><br><span class="line">[ssh]</span><br><span class="line">listen_port&#x3D;6000</span><br><span class="line">auth_token&#x3D;123</span><br></pre></td></tr></table></figure>
+<p>2、启动frps：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;frps -c .&#x2F;frps.ini</span><br></pre></td></tr></table></figure>
+<p>3、将 frpc 及 frpc.ini 放到处于内网环境的机器上，修改 frpc.ini 文件，设置 frps 所在服务器的 IP 为 x.x.x.x：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># frpc.ini</span><br><span class="line">[common]</span><br><span class="line">server_addr &#x3D; 192.168.172.131</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">auth_token &#x3D;123</span><br><span class="line"></span><br><span class="line">[ssh]</span><br><span class="line">type &#x3D; tcp</span><br><span class="line">local_ip &#x3D; 127.0.0.1</span><br><span class="line">local_port &#x3D; 22</span><br><span class="line">remote_port &#x3D; 6000</span><br></pre></td></tr></table></figure>
+<p>4、启动frpc：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;frpc -c .&#x2F;frpc.ini</span><br></pre></td></tr></table></figure>
+<p>5、通过ssh访问内网服务器，假设用户名为test：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -p 6000 test@x.x.x.x</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>https[:]//www[.]freebuf.com/sectool/243687.html</p>
+<p>https[:]//www[.]freebuf.com/articles/system/255119.html</p>
+]]></content>
+      <categories>
+        <category>安全工具</category>
+      </categories>
+      <tags>
+        <tag>内网渗透</tag>
+      </tags>
+  </entry>
 </search>
