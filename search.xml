@@ -6147,4 +6147,41 @@ NIST 网络安全框架，第二章已经介绍
         <tag>横贯八方</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Burpsuite安装</title>
+    <url>/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<h2 id="配置JDK"><a href="#配置JDK" class="headerlink" title="配置JDK"></a>配置JDK</h2><h4 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h4><p>双击运行安装包</p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202214827617.png" alt="image-20210202214827617"></p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202214957979.png" alt="image-20210202214957979"></p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202215036217.png" alt="image-20210202215036217"></p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202215120723.png" alt="image-20210202215120723"></p>
+<h4 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h4><p>我的电脑右键属性，选择高级系统设置</p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202215304934.png" alt="image-20210202215304934"></p>
+<h4 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h4><p>添加环境变量</p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202215506111.png" alt="image-20210202215506111"></p>
+<p>新建系统变量JAVA_HOME,变量值为jdk安装目录</p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202215633738.png" alt="image-20210202215633738"></p>
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><p>新建/修改 CLASSPATH 变量，如果存在 CLASSPATH 变量，选中点击 Edit(编辑)。</p>
+<p>没有就新建</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">变量名：CLASSPATH</span><br><span class="line">变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</span><br></pre></td></tr></table></figure>
+<h4 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h4><p>修改Path 变量</p>
+<p>由于 win10 的不同，当选中 Path 变量的时候，系统会很方便的把所有不同路径都分开了，不会像 win7 或者 win8 那样连在一起。</p>
+<p>新建两条路径：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br><span class="line">%JAVA_HOME%\jre\bin</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202222631474.png" alt="image-20210202222631474"></p>
+<p>检查 打开 cmd，输入 java，出现一连串的指令提示，说明配置成功了: </p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202222756063.png" alt="image-20210202222756063"></p>
+<h2 id="激活Burpsuite"><a href="#激活Burpsuite" class="headerlink" title="激活Burpsuite"></a>激活Burpsuite</h2><p>先打开keygen，选择手动激活</p>
+<p><img src="/2021/02/02/Burpsuite%E5%AE%89%E8%A3%85/image-20210202224149945.png" alt="image-20210202224149945"></p>
+<p>下一步即可激活成功。</p>
+]]></content>
+      <categories>
+        <category>安全工具</category>
+      </categories>
+      <tags>
+        <tag>安全工具</tag>
+      </tags>
+  </entry>
 </search>
