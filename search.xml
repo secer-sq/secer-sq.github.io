@@ -6646,7 +6646,8 @@ http://downloads.volatilityfoundation.org/releases/2.6/volatility-2.6.zip
 <p><img src="/2021/04/01/%E8%AF%86%E5%88%ABCobaltStrike%E5%88%B0JA3/image-20210401191300640.png" alt="image-20210401191300640"></p>
 <p>在这个日志输出中，JA3位于左侧，JA3S位于右侧，使用同一客户端与同一服务器交互了4次。然后，再次使用不同的客户端进行了4次以上的交互。不难发现，服务器的响应方式对于同一客户端总是相同的，但对于不同的客户端却是不同的。</p>
 <h2 id="安全用途"><a href="#安全用途" class="headerlink" title="安全用途"></a>安全用途</h2><p>如果攻击方构建了定制的恶意软件可执行文件，那么JA3指纹很可能对该可执行文件来说是唯一的。</p>
-<p>例如：MetaSploit 的 Meterpreter 和 CobaltStrike（并非4.1版本） 的 Beacon 都使用 Windows 套接字来启动 TLS 通信。在 Windows 10 上，JA3=72a589da586844d7f0818ce684948eea（指定 IP 地址），JA3=a0e9f5d64349fb13191bc781f81f42e1（指定域名）。由于 Windows 上的其他普普通通的应用程序也使用相同的套接字，因此，我们很难识别其中的恶意通信。但是，Kali Linux 上的 C2 服务器对该客户端应用程序的响应方式与 Internet 上的普通服务器对该套接字的响应方式相比来说是独一无二的。尽管服务器对不同客户端的响应不同，但它们对同一客户端的响应总是一致的。因此，如果结合 ja3+ja3s，就能够识别这种恶意通信，而不用考虑目的地 IP、域名或证书等细节信息。</p>
+<p>例如：MetaSploit 的 Meterpreter 和 CobaltStrike（并非4.1版本） 的 Beacon 都使用 Windows 套接字来启动 TLS 通信。</p>
+<p>在 Windows 10 上，JA3=72a589da586844d7f0818ce684948eea（指定 IP 地址），JA3=a0e9f5d64349fb13191bc781f81f42e1（指定域名）。由于 Windows 上的其他普普通通的应用程序也使用相同的套接字，因此，我们很难识别其中的恶意通信。但是，Kali Linux 上的 C2 服务器对该客户端应用程序的响应方式与 Internet 上的普通服务器对该套接字的响应方式相比来说是独一无二的。尽管服务器对不同客户端的响应不同，但它们对同一客户端的响应总是一致的。因此，如果结合 ja3+ja3s，就能够识别这种恶意通信，而不用考虑目的地 IP、域名或证书等细节信息。</p>
 <p>Trickbot恶意软件：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JA3 &#x3D; 6734f37431670b3ab4292b8f60f29984 （trickbot）</span><br><span class="line">JA3S &#x3D; 623de93db17d313345d7ea481e7443cf（C2服务器的响应）</span><br></pre></td></tr></table></figure>
 <p> Emotet恶意软件：</p>
