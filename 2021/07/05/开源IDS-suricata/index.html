@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="横贯八方," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="故园遗剑" type="application/atom+xml" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源IDS-suricata">
+<meta property="og:url" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/index.html">
+<meta property="og:site_name" content="故园遗剑">
+<meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705224622825.png">
+<meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225113016.png">
+<meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225202033.png">
+<meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225313792.png">
+<meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225445629.png">
+<meta property="article:published_time" content="2021-07-05T14:38:22.000Z">
+<meta property="article:modified_time" content="2021-07-05T15:27:22.339Z">
+<meta property="article:author" content="mys3t">
+<meta property="article:tag" content="横贯八方">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705224622825.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/07/05/开源IDS-suricata/"/>
+
+
+
+
+
+  <title>开源IDS-suricata | 故园遗剑</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">故园遗剑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-横贯八方" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mys3t">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="故园遗剑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">开源IDS-suricata</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-07-05T22:38:22+08:00">
+                2021-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A8%AA%E8%B4%AF%E5%85%AB%E6%96%B9/" itemprop="url" rel="index">
+                    <span itemprop="name">横贯八方</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<a id="more"></a>
+<h1 id="Suricata"><a href="#Suricata" class="headerlink" title="Suricata"></a>Suricata</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Suricata 是由 OISF（开发信息安全基金会）开发，它也是基于签名，但是集成了创新的技术。该引擎嵌入了一个 HTTP 规范化器和分析器（HTP 库），可提供非常先进的 HTTP 流处理，从而能够在 OSI 模型的第七层（应用层）上解析流量。</p>
+<p>Suircata 是一款支持 IDS 和 IPS 的多线程入侵检测系统。与传统 Snort 相比，Suircata 的多线程和模块化设计使其在效率和性能上超过了原有 Snort，它将 CPU 密集型的深度包检测工作并行地分配给多个并发任务来完成。这样的并行检测可以充分利用多核硬件的优势来提升入侵检测系统的吞吐量，在数据包的深度检测上效果优越。同时，Suircata 可以兼容现有的 Snort 规则签名，还增加了对 ipv6 的支持，已经逐渐成为传统 Snort 入侵检测系统的代替方案。</p>
+<p>Suricata是一款基于TCP/IP协议栈解析与安全数据分析引擎：</p>
+<pre><code>能够进行实时入侵检测（IDS）、内联入侵预防（IPS）、网络安全监控（NSM）和离线PCAP处理，全面支持Snort规则；
+
+Suricata使用强大而广泛的规则和签名语言检查网络流量，并具有强大的Lua脚本支持来检测复杂的威胁；
+
+使用标准的输入和输出格式（如yaml和json），与现有的siem、splunk、logstash/elasticsearch、kibana和其他数据库等工具的集成变得很容易；
+
+入侵检测规则更新活跃，具有较强的社区支持。
+</code></pre><p>支持数据包解码：</p>
+<pre><code>IPv4, IPv6, TCP, UDP, SCTP, ICMPv4, ICMPv6, GRE
+
+Ethernet, PPP, PPPoE, Raw, SLL, VLAN, QINQ, MPLS, ERSPAN
+
+HTTP，SSL，TLS，SMB，DCERPC，SMTP，FTP，SSH，DNS，Modbus，ENIP / CIP，DNP3，NFS，NTP，DHCP，TFTP，KRB5，IKEv2
+</code></pre><p>要做网络层的入侵检、流量分析，能想到的就是Snort、Suricata、Bro，它们是业界比较成熟的开源方案。更多选择suricata原因：</p>
+<pre><code>Snort始于1998，对于适度流量场景，算是一个比较好的解决方案；
+
+Suricata始于2009，是针对大规模网络的snort扩展，在大流量环境下，丢包率源低于snort，性能表现更优秀；
+
+Bro是一种被动的开源网络流量分析器，可以检查链路上的所有流量，以查看可疑活动的迹象，大流量环境下表现比较优秀。Bro支持甚至在安全域之外的各种流量分析任务，包括性能测量和帮助解决问题，与Snort或Suricata中的规则集相比，其强大的脚本功能绝对具有更大的优势。
+</code></pre><p>选择Suricata的原因是方便上手，与snort相通，社区资料也比较多，Bro的资料相比之下就少很多了，并且还要花时间研究怎么写脚本。</p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>Suricata 有三种运行模式，分别为 single，workers，autofp。官方推荐性能最佳的运行模式为 workers 。</p>
+<pre><code>single 模式：只有一个包处理线程，一般在开发模式下使用。
+workers 模式：多个包处理线程，每个线程包含完整的处理逻辑。
+autofp 模式：有多个包捕获线程，多个包处理线程。一般适用于 nfqueue 场景，从多个 queue 中消费流量来处理。
+</code></pre><p>报文检测系统通常包含四大部分，报文获取、报文解码、报文检测、日志记录；Suricata 不同的功能安装模块划分，一个模块的输出是另一个模块的输入。</p>
+<h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><p>Suricata 的搭建过程非常简单，如果是通过软件源安装只需要添加相应仓库源即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:oisf&#x2F;suricata-stable</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install suricata jq</span><br></pre></td></tr></table></figure>
+<p>测试使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">suricata-update # 更新规则</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705224622825.png" alt="image-20210705224622825"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">suricata -T     # 测试运行</span><br><span class="line">suricata -i ens33 -c &#x2F;etc&#x2F;suricata&#x2F;suricata.yaml    # 启动运行</span><br></pre></td></tr></table></figure>
+<p>如果要使 Suricata 发挥出最大功力。还可以配置加上 luajit、PF_RING。</p>
+<h2 id="LuaJIT"><a href="#LuaJIT" class="headerlink" title="LuaJIT"></a>LuaJIT</h2><p>LuaJIT 是采用 C 语言写的 Lua 代码的解释器，LuaJIT 试图保留 Lua 的精髓–轻量级,高效和可扩展。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;luajit.org&#x2F;download&#x2F;LuaJIT-2.0.5.tar.gz</span><br><span class="line">tar -zxf LuaJIT-2.0.5.tar.gz</span><br><span class="line">cd LuaJIT-2.0.5&#x2F;</span><br><span class="line">sudo make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>/etc/suricata/ 目录下有 4 个配置文件和一个文件夹,作用分别是:</p>
+<ul>
+<li>classification.config : 定义了各种流量攻击类型和优先级，类似拒绝服务攻击和 web 应用攻击等</li>
+</ul>
+<p><img src="/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225113016.png" alt="image-20210705225113016"></p>
+<ul>
+<li>reference.config : 记录一些安全网站，漏洞平台的网址，或者是自己可以自定义的 url，是参考的意思，用来联系外部的恶意攻击检测网站中关于此类攻击的页面。</li>
+</ul>
+<p><img src="/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225202033.png" alt="image-20210705225202033"></p>
+<ul>
+<li><p>suricata.yaml : Suricata 默认的配置文件，以硬编码的形式写在源代码中,里面定义了几乎关于 Suricata 的所有运行内容，包括运行模式、抓包的数量和大小、签名和规则的属性和日志告警输出等等。</p>
+<p>  先设置 HOME_NET 与 EXTERNAL_NET，推荐 HOME_NET 填写内网网段，EXTERNAL_NET 设置为 any<br>  如果 HOME_NET 设置了 any，EXTERNAL_NET 设置 !$HOME_NET 的话会报错，如果 HOME_NET 设置了内网地址，EXTERNAL_NET 设置为 !$HOME_NET 的话，有些内网之间的告警就无法匹配到<br><img src="/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225313792.png" alt="image-20210705225313792"></p>
+</li>
+<li><p>threshold.config : threshold（阈值）关键字可用于控制规则的警报频率，可用于在规则生成警报之前为其设置最小阈值.</p>
+</li>
+<li><p>rules : 规则目录,存放不同种类的规则，规则用来判定流量攻击类型，并定义攻击类型和告警种类，可以存放自带的规则，也可以自己按规则语法编写.</p>
+</li>
+</ul>
+<p><img src="/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225445629.png" alt="image-20210705225445629"></p>
+<h2 id="规则详解"><a href="#规则详解" class="headerlink" title="规则详解"></a>规则详解</h2><p>suricata 完全兼容 snort 规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">alert modbus any any -&gt; any any (msg:&quot;SURICATA Modbus Request flood detected&quot;; flow:to_server;app-layer-event:modbus.flooded; classtype:protocol-command-decode; sid:2250009; rev:2;)</span><br><span class="line">- alert：默认顺序为：pass，drop，reject，alert，跳过、丢弃、拒绝、警告四种类型的动作</span><br><span class="line">- Modbus：注明协议种类，UDP&#x2F;ICMP 等</span><br><span class="line">- Any：源地址&#x2F;目的地址（IP）</span><br><span class="line">- Any：源端口&#x2F;目的端口</span><br><span class="line">- -&gt;：方向，单向流量；&lt;&gt;双向流量</span><br><span class="line">- Any：源地址&#x2F;目的地址（IP）</span><br><span class="line">- Any：源端口&#x2F;目的端口</span><br><span class="line">- msg:”SURICATA Modbus Request flood detected”：关键字 msg 提供对触发警报的有关签名&#x2F;规则相关文本提示信息</span><br><span class="line">- flow:to_server：客户端到服务器</span><br><span class="line">- app-layer-event:modbus.flooded：具体攻击内容</span><br><span class="line">- classtype:protocol-command-decode：提供有关规则和警报分类的信息，由 classification.config 文件定义。</span><br><span class="line">- sid:2250009：用于唯一性规则标识，sid 不能重复</span><br><span class="line">- rev:2：规则版本号，每次修改规则 rev 则递增1</span><br></pre></td></tr></table></figure>
+<p>完整规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert  tcp $EXTERNAL_NET $FILE_DATA_PORTS -&gt; $HOME_NET any (msg:&quot;INDICATOR-SHELLCODE  heapspray characters detected - ASCII     &quot;; flow:to_client,established; file_data; content:&quot;0d0d0d0d&quot;;  fast_pattern:only; metadata:service ftp-data, service http,service imap, service  pop3;  reference:url,sf-freedom.blogspot.com&#x2F;2006&#x2F;07&#x2F;heap-spraying-internet-exploiter.html;  classty    pe:attempted-user; sid:33339;  rev:1;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>alert tcp $EXTERNAL_NET $FILE_DATA_PORTS -&gt; $HOME_NET any</p>
+</li>
+<li><p>规则行为 协议 源ip 源端口 流量方向 目标ip 目标端口 红色代表规则头</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> -&gt; 单向流量，从源 ip 到目标 ip 的单项流量</span><br><span class="line"> </span><br><span class="line">&lt;&gt; 双向流量，2 个 ip 往返之间的流量</span><br><span class="line"></span><br><span class="line">支持设置单个端口 80，端口组[80,8080],端口范围[1024:65535]以及 any 任意端口,还可以在配置文件中添加端口组，通过 ! 号来进行排除</span><br><span class="line"></span><br><span class="line">支持单个 ip，cidr，ip 组，[96.30.87.36,96.32.45.57]，所有主机 any，以及规则文件中配置的 ip 变量 $HOME_NET（受保护的 ip 段）与 $EXTERNAL_NET（其他所有 ip）：TCP、UDP、ICMP、IP（同时用与 TCP 与 UDP）、http、ftp、smb、dns</span><br><span class="line"></span><br><span class="line">pass 如果匹配到规则后，suricata 会停止扫描数据包，并跳到所有规则的末尾</span><br><span class="line"></span><br><span class="line">rop ips 模式使用，如果匹配到之后则立即阻断数据包不会发送任何信息</span><br><span class="line"></span><br><span class="line">reject 对数据包主动拒绝，接受者与发送中都会收到一个拒绝包</span><br><span class="line"></span><br><span class="line">alert 记录所有匹配的规则并记录与匹配规则相关的数据包</span><br><span class="line"></span><br><span class="line">规则行为，根据优先级排列：</span><br><span class="line"></span><br><span class="line">协议：在规则中指定匹配那些协议，suricata 支持的协议要比 snort 多一些</span><br><span class="line"></span><br><span class="line">源 ip，目标 ip：</span><br><span class="line"></span><br><span class="line">源端口&#x2F;目标端口：</span><br><span class="line"></span><br><span class="line">流量方向：</span><br></pre></td></tr></table></figure>
+<ul>
+<li>规则体 : <code>(msg:&quot;INDICATOR-SHELLCODE heapspray characters detected - ASCII &quot;; flow:to_client,established; file_data; content:&quot;0d0d0d0d&quot;; fast_pattern:only; metadata:service ftp-data, service http,service imap, service pop3; reference:url,sf-freedom.blogspot.com/2006/07/heap-spraying-internet-exploiter.html; classtype:attempted-user; sid:33339; rev:1;)</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">规则版本号，每次修改规则 rev 则递增 1</span><br><span class="line"></span><br><span class="line">用于唯一性规则标识，sid 不能重复，0-10000000 VRT 保留，20000000-29999999 Emerging 保留，30000000+：公用</span><br><span class="line"></span><br><span class="line">根据规则检测到的活动类型为规则分类，classtype:attempted-user</span><br><span class="line"></span><br><span class="line">连接外部信息来源，补充描述，reference:url,sf-freedom.blogspot.com&#x2F;2006&#x2F;07&#x2F;heap-spraying-internet-exploiter.html</span><br><span class="line"></span><br><span class="line">手动设置规则优先级别，范围 1-255，1 最高，一般都是 1-4，suricata 会首先检查优先级较高的规则</span><br><span class="line"></span><br><span class="line">[1:2000000] 告警前面的 1 代表组 id</span><br><span class="line"></span><br><span class="line">suricata 会忽略元数据背后的语句，用于添加备注</span><br><span class="line"></span><br><span class="line">如果有多个匹配项可以使用 content:&quot;evilliveshere&quot;; content:&quot;here&quot;; 这种写法，注意如果没有用内容修饰的话，ids 不会按照先后顺序去匹配的，只会在内容中匹配是否包含这 2 个值，必须用内容修饰来调整先后顺序，用 distance 0 来让第二个匹配项在第一个匹配项匹配位置之后匹配，并且如果有多个 content 他们的关系是 and 关系必须都匹配到才告警.</span><br><span class="line"></span><br><span class="line">使用感叹号 ! 对匹配项的否定：content:!&quot;evilliveshere&quot;;</span><br><span class="line"></span><br><span class="line">将字符串的十六进制用管道符（|）进行包围：content:&quot;|FF D8|&quot;; 字符串与十六进制混合使用：content:&quot;FF |SMB|25 05 00 00 80&quot;;</span><br><span class="line"></span><br><span class="line">匹配内容区分大小写，保留字符（; \ &quot;|）须进行转义或十六进制转码</span><br><span class="line"></span><br><span class="line">内容修饰，能够更加精准匹配</span><br><span class="line"></span><br><span class="line">不区分大小写 nocase：</span><br><span class="line"></span><br><span class="line">偏移位置 offset：</span><br><span class="line"></span><br><span class="line">结束位置 depth：</span><br><span class="line"></span><br><span class="line">在 xx 范围外 distance ：</span><br><span class="line">    </span><br><span class="line">在 xx 范围内 within：</span><br><span class="line"></span><br><span class="line">有效载荷大小 dsize：</span><br><span class="line"></span><br><span class="line">pcre 正则 pcre：</span><br><span class="line"></span><br><span class="line">http 修饰符：</span><br><span class="line"></span><br><span class="line">快速匹配模式：</span><br><span class="line"></span><br><span class="line">content:&quot;root&quot;;nocase; #修饰符直接在；号后面添加</span><br><span class="line"></span><br><span class="line">content:&quot;xss&quot;;offset 100; #代表了从数据包开始位置 0 往后偏移 100 位字节后进行匹配</span><br><span class="line"></span><br><span class="line">content:&quot;xss&quot;;offset 100;depth 200; #代表了匹配数据包结束的位置，如果没有 offset 则是从开始位置计算，有 offset 则是从 offset 开始，此次则是从 100 字节开始匹配到 200 字节内的内容。</span><br><span class="line"></span><br><span class="line">本次匹配必须在上一次匹配结束位置到 distance 设置的偏移位置区间之外，例如content:&quot;msg1&quot;;content:&quot;msg2&quot;;distance 25; 如果 msg1 在第 100 行找到，那么就会在 100+25 后匹配 msg2</span><br><span class="line"></span><br><span class="line">本次匹配必须在上一次匹配结束位置之内，如果上次结束是 100，within 15；那么第二次匹配必须在 100 到 115 之内开始匹配,如果 within 与 distance 同时出现 content:&quot;evilliveshere&quot;; content:&quot;here&quot;; </span><br><span class="line"></span><br><span class="line">distance:1;within:7; 则匹配 here 在 evilliveshere 位置结束 1-7 内匹配</span><br><span class="line"></span><br><span class="line">dsize: &gt;64 用来匹配 payload 大小，可以用来检测异常包大小</span><br><span class="line"></span><br><span class="line">content:&quot;xss&quot;; pcre:&quot;xss\w&quot; 先匹配 content 内容后才进行匹配 pcre 正则，这样的话减少系统开销</span><br><span class="line">更多详细内容查看：http:&#x2F;&#x2F;suricata.readthedocs.io&#x2F;en&#x2F;suricata-4.0.4&#x2F;rules&#x2F;http-keywords.html</span><br><span class="line"></span><br><span class="line">alert tcp any any -&gt; any 80(msg:&quot;Evil Doamin www.appliednsm.com&quot;; </span><br><span class="line"></span><br><span class="line">&quot;content:&quot;GET&quot;;httpmethod; content:&quot;www.appliednsm.com&quot;;http_uri; sid:5445555; rev:1;)</span><br><span class="line"></span><br><span class="line">http_client_body HTTP 客户端请求的主体内容</span><br><span class="line"></span><br><span class="line">http_cookie HTTP 头字段的“Cookie”内容</span><br><span class="line"></span><br><span class="line">http_header HTTP 请求或响应头的任何内容</span><br><span class="line"></span><br><span class="line">http_method 客户端使用的 HTTP 方法（GET，POST 等）</span><br><span class="line"></span><br><span class="line">http_uri HTTP 客户端请求的 URI 内容</span><br><span class="line"></span><br><span class="line">http_stat_code 服务器响应的 HTTP 状态字段内容</span><br><span class="line"></span><br><span class="line">http_stat_message 服务器响应的 HTTP 状态消息内容</span><br><span class="line"></span><br><span class="line">http_encode 在 HTTP 传输过程中所使用的编码类型</span><br><span class="line"></span><br><span class="line">url_len url 长度</span><br><span class="line"></span><br><span class="line">fast_pattern; 如果 suricata 规则中有多个匹配项目，快速匹配的目的是设置优先级最高的匹配项，如果设置了快速匹配模式没有命中则跳过这条规则</span><br><span class="line"></span><br><span class="line">threshold: type &lt;threshold|limit|both&gt;, track &lt;by_src|by_dst&gt;, count &lt;N&gt;, seconds &lt;T&gt;</span><br><span class="line"></span><br><span class="line">threshold 最小阀值 也就是说只有匹配到至少多少次数才进行告警</span><br><span class="line"></span><br><span class="line">limit 限制告警次数，例如最少 5 分钟内告警一次</span><br><span class="line"></span><br><span class="line">调节阀值主要是通过 2 种方法，一种是通过规则内的 threshold 关键字来调节，下图中类型是 limit 也就是限制告警次数，track by_s rc 代表来源 ip，seconds 60 每个 60 秒告警一次 count 1</span><br><span class="line"></span><br><span class="line">另外一种则是通过配置文件 &#x2F;etc&#x2F;suricata&#x2F;threshold.config 来进行控制，更加推荐这种方法，写在规则内部每次更新后都会替换掉。</span><br><span class="line"></span><br><span class="line">event_filter gen_id 1（组id）, sig_id 1101111（规则id）, type limit ,track by_src, count 1 , seconds 60</span><br><span class="line"></span><br><span class="line">suppress 则是告警排除，排除指定 ip 产生的规则告警</span><br><span class="line"></span><br><span class="line">flow 是特定时间内具有相同数据的数据包（5 元组信息）同属于一个流，suricata 会将这些流量保存在内存中。</span><br><span class="line"></span><br><span class="line">flowbits set , name 设置条件</span><br><span class="line"></span><br><span class="line">flowbits isset, name 选择条件</span><br><span class="line"></span><br><span class="line">一旦设置 flowbits 之后，第一条规则没有命中那么第二条规则即使命中了也不会显示出来，例如一些攻击行为的响应信息，现在请求中设置条件，然后在响应中选择条件</span><br><span class="line"></span><br><span class="line">to_client&#x2F;from_server 服务器到客户端</span><br><span class="line"></span><br><span class="line">to_server&#x2F;from_client 客户端到服务器</span><br><span class="line"></span><br><span class="line">established 匹配已经建立连接的（tcp 则是经过 3 次握手之后，udp 则是有双向流量）</span><br><span class="line"></span><br><span class="line">no_established 匹配不属于建立连接的</span><br><span class="line"></span><br><span class="line">only_stream 匹配由流引擎重新组装的数据包</span><br><span class="line"></span><br><span class="line">no_stream 不匹配流引擎重新组装的数据包</span><br><span class="line"></span><br><span class="line">sameip 会将流量中源 ip 和目标 ip 相同的显示出来</span><br><span class="line"></span><br><span class="line">alert ip any any -&gt; any any (msg:&quot;GPL SCAN same SRC&#x2F;DST&quot;; sameip; reference:bugtraq,2666; reference:cve,1999-0016; reference:url,www.cert.org&#x2F;advisories&#x2F;CA-1997-28.html; </span><br><span class="line"></span><br><span class="line">classtype:bad-unknown; sid:2100527; rev:9; metadata:created_at 2010_09_23, updated_at 2010_09_23;)</span><br><span class="line"></span><br><span class="line">ids 告警上显示的信息，INDICATOR-SHELLCODE heapspray characters detected - ASCII</span><br><span class="line"></span><br><span class="line">MSG：规则名称，规则中的第一个字段</span><br><span class="line"></span><br><span class="line">源 ip、目标 ip 检测：</span><br><span class="line"></span><br><span class="line">flow 流匹配：</span><br><span class="line"></span><br><span class="line">阀值 threshold：</span><br><span class="line"></span><br><span class="line">内容匹配 content：检测数据包中是否存在此内容，例如检测流量中是否存在 0d0d0d0d</span><br><span class="line"></span><br><span class="line">元数据 Metadata：</span><br><span class="line"></span><br><span class="line">组 gid：</span><br><span class="line"></span><br><span class="line">优先级 priority：</span><br><span class="line"></span><br><span class="line">引用 reference：</span><br><span class="line"></span><br><span class="line">类别 classtype：</span><br><span class="line"></span><br><span class="line">特征标示符 sid：</span><br><span class="line"></span><br><span class="line">修订 rev：</span><br></pre></td></tr></table></figure>
+<h2 id="规则修改"><a href="#规则修改" class="headerlink" title="规则修改"></a>规则修改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">suricata-update list-sources    # 列出当前的规则源</span><br><span class="line">suricata-update                 # 更新规则</span><br></pre></td></tr></table></figure>
+<p>例如要禁用某一个规则，直接新建 /etc/suricata/disable.conf 文件，然后在里面填入 sid，每次更新的话会自动禁止该规则。规则更新后，所有的规则都会保存在 /var/lib/suricata/rules/suricata.rules 文件中，这时候就必须修改 suricata 配置文件的 default-rule-path 与 rule-files 来指定规则文件到这个规则上。</p>
+<p>suricata 主要是 et/open 规则，这是系统自带的规则，目前开源免费的就是 et/open、pt 规则、sslbl 规则，其余的均需要授权码才能更新。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://suricata.readthedocs.io/en/suricata-4.0.4/rules/http-keywords.html" target="_blank" rel="noopener">http://suricata.readthedocs.io/en/suricata-4.0.4/rules/http-keywords.html</a>: <a href="http://suricata.readthedocs.io/en/suricata-4.0.4/rules/http-keywords.html" target="_blank" rel="noopener">http://suricata.readthedocs.io/en/suricata-4.0.4/rules/http-keywords.html</a></p>
+<p>Suricata工控规则研究: <a href="https://www.freebuf.com/articles/ics-articles/237420.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/ics-articles/237420.html</a></p>
+<p>Suricata IDS 入门 — 规则详解: <a href="https://www.secpulse.com/archives/71603.html" target="_blank" rel="noopener">https://www.secpulse.com/archives/71603.html</a></p>
+<p>使用Suricata和ELK进行流量检测: <a href="https://zhuanlan.zhihu.com/p/64742715" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/64742715</a></p>
+<p>开源IDS与IPS的搭建与使用 : Suricata <a href="https://mp.weixin.qq.com/s/yWSYcWmsQgXU-5OOdX91yQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yWSYcWmsQgXU-5OOdX91yQ</a></p>
+<p>使用Suricata构建网络层入侵检测<a href="https://mp.weixin.qq.com/s/feViQpiQCX7RLwHAyF93dQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/feViQpiQCX7RLwHAyF93dQ</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%A8%AA%E8%B4%AF%E5%85%AB%E6%96%B9/" rel="tag"># 横贯八方</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/05/%E5%BC%80%E6%BA%90IDS-Snort/" rel="next" title="开源IDS-Snort">
+                <i class="fa fa-chevron-left"></i> 开源IDS-Snort
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mys3t</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Suricata"><span class="nav-number">1.</span> <span class="nav-text">Suricata</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">1.2.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建"><span class="nav-number">1.3.</span> <span class="nav-text">搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LuaJIT"><span class="nav-number">1.4.</span> <span class="nav-text">LuaJIT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">1.5.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则详解"><span class="nav-number">1.6.</span> <span class="nav-text">规则详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规则修改"><span class="nav-number">1.7.</span> <span class="nav-text">规则修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.8.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mys3t</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
