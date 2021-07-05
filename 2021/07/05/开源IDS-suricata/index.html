@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225313792.png">
 <meta property="og:image" content="http://yoursite.com/2021/07/05/%E5%BC%80%E6%BA%90IDS-suricata/image-20210705225445629.png">
 <meta property="article:published_time" content="2021-07-05T14:38:22.000Z">
-<meta property="article:modified_time" content="2021-07-05T15:27:22.339Z">
+<meta property="article:modified_time" content="2021-07-05T15:31:36.248Z">
 <meta property="article:author" content="mys3t">
 <meta property="article:tag" content="横贯八方">
 <meta name="twitter:card" content="summary">
@@ -388,14 +388,8 @@
 <h1 id="Suricata"><a href="#Suricata" class="headerlink" title="Suricata"></a>Suricata</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Suricata 是由 OISF（开发信息安全基金会）开发，它也是基于签名，但是集成了创新的技术。该引擎嵌入了一个 HTTP 规范化器和分析器（HTP 库），可提供非常先进的 HTTP 流处理，从而能够在 OSI 模型的第七层（应用层）上解析流量。</p>
 <p>Suircata 是一款支持 IDS 和 IPS 的多线程入侵检测系统。与传统 Snort 相比，Suircata 的多线程和模块化设计使其在效率和性能上超过了原有 Snort，它将 CPU 密集型的深度包检测工作并行地分配给多个并发任务来完成。这样的并行检测可以充分利用多核硬件的优势来提升入侵检测系统的吞吐量，在数据包的深度检测上效果优越。同时，Suircata 可以兼容现有的 Snort 规则签名，还增加了对 ipv6 的支持，已经逐渐成为传统 Snort 入侵检测系统的代替方案。</p>
 <p>Suricata是一款基于TCP/IP协议栈解析与安全数据分析引擎：</p>
-<pre><code>能够进行实时入侵检测（IDS）、内联入侵预防（IPS）、网络安全监控（NSM）和离线PCAP处理，全面支持Snort规则；
-
-Suricata使用强大而广泛的规则和签名语言检查网络流量，并具有强大的Lua脚本支持来检测复杂的威胁；
-
-使用标准的输入和输出格式（如yaml和json），与现有的siem、splunk、logstash/elasticsearch、kibana和其他数据库等工具的集成变得很容易；
-
-入侵检测规则更新活跃，具有较强的社区支持。
-</code></pre><p>支持数据包解码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">能够进行实时入侵检测（IDS）、内联入侵预防（IPS）、网络安全监控（NSM）和离线PCAP处理，全面支持Snort规则；</span><br><span class="line"></span><br><span class="line">Suricata使用强大而广泛的规则和签名语言检查网络流量，并具有强大的Lua脚本支持来检测复杂的威胁；</span><br><span class="line"></span><br><span class="line">使用标准的输入和输出格式（如yaml和json），与现有的siem、splunk、logstash&#x2F;elasticsearch、kibana和其他数据库等工具的集成变得很容易；</span><br><span class="line"></span><br><span class="line">入侵检测规则更新活跃，具有较强的社区支持。</span><br></pre></td></tr></table></figure>
+<p>支持数据包解码：</p>
 <pre><code>IPv4, IPv6, TCP, UDP, SCTP, ICMPv4, ICMPv6, GRE
 
 Ethernet, PPP, PPPoE, Raw, SLL, VLAN, QINQ, MPLS, ERSPAN
