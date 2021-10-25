@@ -6991,4 +6991,22 @@ autofp 模式：有多个包捕获线程，多个包处理线程。一般适用�
         <tag>横贯八方</tag>
       </tags>
   </entry>
+  <entry>
+    <title>kali安装卸载docker</title>
+    <url>/2021/10/25/kali%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BDdocker/</url>
+    <content><![CDATA[<hr>
+<a id="more"></a>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><h4 id="1、安装https协议、CA证书、dirmngr"><a href="#1、安装https协议、CA证书、dirmngr" class="headerlink" title="1、安装https协议、CA证书、dirmngr"></a>1、安装https协议、CA证书、dirmngr</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get update </span><br><span class="line">apt-get install -y apt-transport-https ca-certificates </span><br><span class="line">apt-get install dirmngr</span><br></pre></td></tr></table></figure>
+<h4 id="2、添加GPG密钥并添加更新源"><a href="#2、添加GPG密钥并添加更新源" class="headerlink" title="2、添加GPG密钥并添加更新源"></a>2、添加GPG密钥并添加更新源</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl -fsSL https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;debian&#x2F;gpg | sudo apt-key add -</span><br><span class="line">echo &#39;deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;docker-ce&#x2F;linux&#x2F;debian&#x2F; buster stable&#39; | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;docker.list</span><br></pre></td></tr></table></figure>
+<h4 id="3、系统更新以及安装docker"><a href="#3、系统更新以及安装docker" class="headerlink" title="3、系统更新以及安装docker"></a>3、系统更新以及安装docker</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br><span class="line">apt install docker-ce</span><br></pre></td></tr></table></figure>
+<h4 id="4、启动docker服务"><a href="#4、启动docker服务" class="headerlink" title="4、启动docker服务"></a>4、启动docker服务</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<h2 id="卸载docker"><a href="#卸载docker" class="headerlink" title="卸载docker"></a>卸载docker</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get autoremove --purge docker-ce 卸载docker所有程序包和依赖关系</span><br><span class="line">rm-rf &#x2F;var&#x2F;lib&#x2F;docker 删除所有图像，容器和卷</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+      </categories>
+      <tags>
+        <tag>日常踩坑</tag>
+      </tags>
+  </entry>
 </search>
